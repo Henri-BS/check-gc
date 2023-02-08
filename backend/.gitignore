@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Backend ###
+application.properties
+application-dev.properties
+check-gc-uml.puml
