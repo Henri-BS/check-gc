@@ -18,8 +18,15 @@ public class ClientService implements IClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public Page<ClientDTO> findAllClients(Pageable pageable) {
-        Page<Client> list = clientRepository.findAll(pageable);
+    public Page<ClientDTO> findAllClients(Pageable pageable, String name) {
+        Page<Client> list = clientRepository.findAllClients(pageable, name);
         return list.map(x -> new ClientDTO());
+    }
+
+    @Override
+    public ClientDTO findClientById(Long id) {
+        Client find = clientRepository.findById(id).orElse(null);
+        assert find != null;
+        return new ClientDTO(find);
     }
 }

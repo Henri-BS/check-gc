@@ -6,5 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface IClientService {
 
-    Page<ClientDTO> findAllClients(Pageable pageable);
+    Page<ClientDTO> findAllClients(Pageable pageable, String name);
+
+    ClientDTO findClientById(Long id);
 }

@@ -3,16 +3,19 @@ package com.altercode.checkgc.dto;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class ClientDTO implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long clientId;
     private String name;
     private String phoneNumber;
     private String address;
-    private ClientAccount account;
+    private Long account;
 
     public ClientDTO() {
     }
@@ -22,7 +25,7 @@ public class ClientDTO implements Serializable {
         name = entity.getName();
         phoneNumber = entity.getPhoneNumber();
         address = entity.getAddress();
-        account = entity.getAccount();
+        account = entity.getAccount().getAccountId();
     }
 
     public Long getClientId() {
@@ -57,11 +60,11 @@ public class ClientDTO implements Serializable {
         this.address = address;
     }
 
-    public ClientAccount getAccount() {
+    public Long getAccount() {
         return account;
     }
 
-    public void setAccount(ClientAccount account) {
+    public void setAccount(Long account) {
         this.account = account;
     }
 }
