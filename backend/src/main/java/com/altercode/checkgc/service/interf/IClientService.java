@@ -9,4 +9,6 @@ public interface IClientService {
     Page<ClientDTO> findAllClients(Pageable pageable, String name);
 
     ClientDTO findClientById(Long id);
+
+    ClientDTO saveClient(ClientDTO dto);
 }

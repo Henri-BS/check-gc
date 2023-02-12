@@ -2,6 +2,8 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.ClientAccount;
+import com.altercode.checkgc.repository.ClientAccountRepository;
 import com.altercode.checkgc.repository.ClientRepository;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class ClientService implements IClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private ClientAccountRepository accountRepository;
+
+
     @Override
     public Page<ClientDTO> findAllClients(Pageable pageable, String name) {
         Page<Client> list = clientRepository.findAllClients(pageable, name);
@@ -28,5 +34,24 @@ public class ClientService implements IClientService {
         Client find = clientRepository.findById(id).orElse(null);
         assert find != null;
         return new ClientDTO(find);
+    }
+
+    @Override
+    public ClientDTO saveClient(ClientDTO dto) {
+
+        Client add = new Client();
+        add.setName(dto.getName());
+        add.setAddress(dto.getAddress());
+        add.setPhoneNumber(dto.getPhoneNumber());
+        clientRepository.saveAndFlush(add);
+
+        Client find = clientRepository.findById(add.getClientId()).orElse(null);
+
+        ClientAccount account = new ClientAccount();
+        account.setClient(find);
+        accountRepository.saveAndFlush(account);
+        add.setAccount(account);
+
+        return new ClientDTO(clientRepository.save(add));
     }
 }

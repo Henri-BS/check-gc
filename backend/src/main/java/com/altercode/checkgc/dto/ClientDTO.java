@@ -1,7 +1,6 @@
 package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.ClientAccount;
 
 import java.io.Serial;
 import java.io.Serializable;
