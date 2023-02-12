@@ -36,9 +36,14 @@ public class ClientController {
 
     @PutMapping("/edit")
     public ResponseEntity<ClientDTO> editClient(@RequestBody ClientDTO dto){
-        ClientDTO edit = clientService.editClient(dto);
+        ClientDTO edit = clientService.updateClient(dto);
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteClient(@PathVariable Long id){
+        this.clientService.deleteClient(id);
+    }
 
 }

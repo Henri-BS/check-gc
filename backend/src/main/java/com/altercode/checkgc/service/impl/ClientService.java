@@ -56,7 +56,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public ClientDTO editClient(ClientDTO dto) {
+    public ClientDTO updateClient(ClientDTO dto) {
         Client edit = clientRepository.findById(dto.getClientId()).orElse(null);
         assert edit != null;
         edit.setClientId(dto.getClientId());
@@ -64,5 +64,10 @@ public class ClientService implements IClientService {
         edit.setPhoneNumber(dto.getPhoneNumber());
         edit.setAddress(dto.getAddress());
         return new ClientDTO(clientRepository.save(edit));
+    }
+
+    @Override
+    public void deleteClient(Long id) {
+        this.clientRepository.deleteById(id);
     }
 }

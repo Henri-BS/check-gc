@@ -12,5 +12,7 @@ public interface IClientService {
 
     ClientDTO saveClient(ClientDTO dto);
 
-    ClientDTO editClient(ClientDTO dto);
+    ClientDTO updateClient(ClientDTO dto);
+
+    void deleteClient(Long id);
 }
