@@ -34,4 +34,11 @@ public class ClientController {
         return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
 
+    @PutMapping("/edit")
+    public ResponseEntity<ClientDTO> editClient(@RequestBody ClientDTO dto){
+        ClientDTO edit = clientService.editClient(dto);
+        return new ResponseEntity<>(edit, HttpStatus.OK);
+    }
+
+
 }

@@ -11,4 +11,6 @@ public interface IClientService {
     ClientDTO findClientById(Long id);
 
     ClientDTO saveClient(ClientDTO dto);
+
+    ClientDTO editClient(ClientDTO dto);
 }

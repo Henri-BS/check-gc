@@ -54,4 +54,15 @@ public class ClientService implements IClientService {
 
         return new ClientDTO(clientRepository.save(add));
     }
+
+    @Override
+    public ClientDTO editClient(ClientDTO dto) {
+        Client edit = clientRepository.findById(dto.getClientId()).orElse(null);
+        assert edit != null;
+        edit.setClientId(dto.getClientId());
+        edit.setName(dto.getName());
+        edit.setPhoneNumber(dto.getPhoneNumber());
+        edit.setAddress(dto.getAddress());
+        return new ClientDTO(clientRepository.save(edit));
+    }
 }
