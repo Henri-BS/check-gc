@@ -12,7 +12,9 @@ import com.altercode.checkgc.repository.StatusRepository;
 import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DebtService implements IDebtService {
@@ -29,6 +31,11 @@ public class DebtService implements IDebtService {
     @Autowired
     private StatusRepository statusRepository;
 
+    @Override
+    public List<DebtDTO> findAllDebtsByAccount(ClientAccount account) {
+        List<Debt> find = debtRepository.findAllDebtsByAccount(account);
+        return find.stream().map(x -> new DebtDTO(x)).collect(Collectors.toList());
+    }
 
     @Override
     public DebtDTO findDebtById(Long id) {
@@ -55,12 +62,12 @@ public class DebtService implements IDebtService {
 
         Debt debt = debtRepository.findById(add.getDebtId()).orElseThrow();
 
-        double price = debt.getProduct().getPrice();
-        int quantity = debt.getProductQuantity();
         double total;
-        total = quantity * price;
+        total = debt.getProductQuantity() * debt.getProduct().getPrice();
         debt.setProductAmount(total);
 
         return new DebtDTO(debtRepository.save(debt));
     }
+
+
 }

@@ -31,8 +31,7 @@ public class ClientService implements IClientService {
 
     @Override
     public ClientDTO findClientById(Long id) {
-        Client find = clientRepository.findById(id).orElse(null);
-        assert find != null;
+        Client find = clientRepository.findById(id).orElseThrow();
         return new ClientDTO(find);
     }
 
@@ -45,7 +44,7 @@ public class ClientService implements IClientService {
         add.setPhoneNumber(dto.getPhoneNumber());
         clientRepository.saveAndFlush(add);
 
-        Client find = clientRepository.findById(add.getClientId()).orElse(null);
+        Client find = clientRepository.findById(add.getClientId()).orElseThrow();
 
         ClientAccount account = new ClientAccount();
         account.setClient(find);
@@ -57,8 +56,7 @@ public class ClientService implements IClientService {
 
     @Override
     public ClientDTO updateClient(ClientDTO dto) {
-        Client edit = clientRepository.findById(dto.getClientId()).orElse(null);
-        assert edit != null;
+        Client edit = clientRepository.findById(dto.getClientId()).orElseThrow();
         edit.setClientId(dto.getClientId());
         edit.setName(dto.getName());
         edit.setPhoneNumber(dto.getPhoneNumber());
