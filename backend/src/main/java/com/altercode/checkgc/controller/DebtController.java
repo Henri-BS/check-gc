@@ -18,9 +18,15 @@ public class DebtController {
     @Autowired
     private DebtService debtService;
 
-    @GetMapping("/list/{account}")
+    @GetMapping("/list-account/{account}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable ClientAccount account) {
         List<DebtDTO> list = debtService.findAllDebtsByAccount(account);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/list-status/{status}")
+    public ResponseEntity<List<DebtDTO>> findAllDebtsByStatus(@PathVariable Status status) {
+        List<DebtDTO> list = debtService.findAllDebtsByStatus(status);
         return ResponseEntity.ok(list);
     }
 
