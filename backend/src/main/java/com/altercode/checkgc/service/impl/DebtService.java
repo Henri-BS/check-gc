@@ -34,12 +34,12 @@ public class DebtService implements IDebtService {
     @Override
     public List<DebtDTO> findAllDebtsByAccount(ClientAccount account) {
         List<Debt> list = debtRepository.findAllDebtsByAccount(account);
-        return list.stream().map(x -> new DebtDTO(x)).collect(Collectors.toList());
+        return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
     public List<DebtDTO> findAllDebtsByStatus(Status status) {
         List<Debt> list = debtRepository.findAllDebtsByStatus(status);
-        return list.stream().map(x -> new DebtDTO(x)).collect(Collectors.toList());
+        return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
     @Override
@@ -88,5 +88,9 @@ public class DebtService implements IDebtService {
         edit.setStatus(status);
 
         return new DebtDTO(debtRepository.save(edit));
+    }
+
+    public void deleteDebt(Long id) {
+        this.debtRepository.deleteById(id);
     }
 }

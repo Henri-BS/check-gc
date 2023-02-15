@@ -48,4 +48,10 @@ public class DebtController {
         DebtDTO edit = debtService.updateDebt(dto);
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDebt(@PathVariable Long id) {
+        this.debtService.deleteDebt(id);
+    }
 }
