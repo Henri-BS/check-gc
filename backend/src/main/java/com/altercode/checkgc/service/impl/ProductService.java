@@ -22,5 +22,9 @@ public class ProductService implements IProductService {
         return list.map(ProductDTO::new);
     }
 
-
+    @Override
+    public ProductDTO findProductById(Long id) {
+    Product find = productRepository.findById(id).orElseThrow();
+    return new ProductDTO(find);
+    }
 }

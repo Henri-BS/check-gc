@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
@@ -18,8 +16,14 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<ProductDTO>> findProductsByDescription(Pageable pageable, String description) {
+    public ResponseEntity<Page<ProductDTO>> findProductsByDescription(Pageable pageable, @RequestParam String description) {
         Page<ProductDTO> list = productService.findProductsByDescription(pageable, description);
         return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> findProductById(@PathVariable Long id) {
+        ProductDTO find = productService.findProductById(id);
+        return ResponseEntity.ok(find);
     }
 }
