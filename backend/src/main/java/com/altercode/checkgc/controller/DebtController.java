@@ -39,7 +39,13 @@ public class DebtController {
 
     @PostMapping("/add")
     public ResponseEntity<DebtDTO> saveDebt(@RequestBody DebtDTO dto) {
-        DebtDTO update = debtService.saveDebt(dto);
-        return new ResponseEntity<>(update, HttpStatus.OK);
+        DebtDTO add = debtService.saveDebt(dto);
+        return new ResponseEntity<>(add, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<DebtDTO> updateDebt(@RequestBody DebtDTO dto) {
+        DebtDTO edit = debtService.updateDebt(dto);
+        return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 }

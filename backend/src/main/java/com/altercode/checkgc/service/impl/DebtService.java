@@ -75,5 +75,18 @@ public class DebtService implements IDebtService {
     }
 
 
+    public DebtDTO updateDebt(DebtDTO dto) {
+        Debt edit = debtRepository.findById(dto.getDebtId()).orElseThrow();
+        Product product = productRepository.findById(dto.getProduct()).orElseThrow();
+        Status status = statusRepository.findById(dto.getStatus()).orElseThrow();
 
+        edit.setDebtId(edit.getDebtId());
+        edit.setDebtDate(dto.getDebtDate());
+        edit.setProductQuantity(dto.getProductQuantity());
+        edit.setProductAmount(dto.getProductAmount());
+        edit.setProduct(product);
+        edit.setStatus(status);
+
+        return new DebtDTO(debtRepository.save(edit));
+    }
 }

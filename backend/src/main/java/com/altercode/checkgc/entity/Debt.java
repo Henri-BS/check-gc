@@ -16,10 +16,10 @@ public class Debt {
     private LocalDate debtDate;
 
     @Column(name = "product_quantity")
-    private Integer productQuantity;
+    private Integer productQuantity = 0;
 
     @Column(name = "product_amount")
-    private Double productAmount;
+    private Double productAmount = 0.0;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")

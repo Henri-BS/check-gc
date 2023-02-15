@@ -5,4 +5,6 @@ import com.altercode.checkgc.entity.Client;
 
 public interface IClientAccountService {
     ClientAccountDTO findAccountByClient(Client client);
+
+    ClientAccountDTO updateAccountTotalValues(ClientAccountDTO dto);
 }

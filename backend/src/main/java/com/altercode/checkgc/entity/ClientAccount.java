@@ -30,8 +30,8 @@ public class ClientAccount {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "account")
-    private Set<Debt> debts = new HashSet<>();
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Debt> debts = new HashSet<Debt>();
 
     public ClientAccount() {
     }
