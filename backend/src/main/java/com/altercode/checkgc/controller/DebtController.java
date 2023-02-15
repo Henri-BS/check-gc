@@ -19,7 +19,7 @@ public class DebtController {
     private DebtService debtService;
 
     @GetMapping("/list-account/{account}")
-    public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable ClientAccount account) {
+    public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable ClientAccount account, @RequestParam Status status) {
         List<DebtDTO> list = debtService.findAllDebtsByAccount(account);
         return ResponseEntity.ok(list);
     }
@@ -29,7 +29,6 @@ public class DebtController {
         List<DebtDTO> list = debtService.findAllDebtsByStatus(status);
         return ResponseEntity.ok(list);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<DebtDTO> findDebtById(@PathVariable Long id) {
