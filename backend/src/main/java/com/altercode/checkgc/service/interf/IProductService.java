@@ -8,4 +8,6 @@ public interface IProductService {
     Page<ProductDTO> findProductsByDescription(Pageable pageable, String description);
 
     ProductDTO findProductById(Long id);
+
+    ProductDTO saveProduct(ProductDTO dto);
 }

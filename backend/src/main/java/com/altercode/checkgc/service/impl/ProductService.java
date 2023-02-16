@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class ProductService implements IProductService {
@@ -17,7 +16,7 @@ public class ProductService implements IProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Page<ProductDTO> findProductsByDescription(Pageable pageable, @RequestParam String description) {
+    public Page<ProductDTO> findProductsByDescription(Pageable pageable, String description) {
         Page<Product>  list = productRepository.findProductsByDescription(pageable, description);
         return list.map(ProductDTO::new);
     }
@@ -26,5 +25,13 @@ public class ProductService implements IProductService {
     public ProductDTO findProductById(Long id) {
     Product find = productRepository.findById(id).orElseThrow();
     return new ProductDTO(find);
+    }
+
+    @Override
+    public ProductDTO saveProduct(ProductDTO dto) {
+        Product add = new Product();
+        add.setDescription(dto.getDescription());
+        add.setPrice(dto.getPrice());
+        return new ProductDTO(productRepository.saveAndFlush(add));
     }
 }
