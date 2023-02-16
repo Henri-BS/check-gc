@@ -45,4 +45,9 @@ public class ProductService implements IProductService {
 
         return new ProductDTO(productRepository.save(edit));
     }
+
+    @Override
+    public void deleteProduct(Long id) {
+        this.productRepository.deleteById(id);
+    }
 }
