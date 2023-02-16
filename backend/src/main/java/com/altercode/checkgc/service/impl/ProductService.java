@@ -34,4 +34,15 @@ public class ProductService implements IProductService {
         add.setPrice(dto.getPrice());
         return new ProductDTO(productRepository.saveAndFlush(add));
     }
+
+    @Override
+    public ProductDTO updateProduct(ProductDTO dto) {
+        Product edit = productRepository.findById(dto.getProductId()).orElseThrow();
+
+        edit.setProductId(edit.getProductId());
+        edit.setDescription(dto.getDescription());
+        edit.setPrice(dto.getPrice());
+
+        return new ProductDTO(productRepository.save(edit));
+    }
 }

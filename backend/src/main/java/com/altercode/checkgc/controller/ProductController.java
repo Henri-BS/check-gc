@@ -33,4 +33,10 @@ public class ProductController {
         ProductDTO add = productService.saveProduct(dto);
         return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO dto){
+        ProductDTO edit = productService.updateProduct(dto);
+        return new ResponseEntity<>(edit, HttpStatus.OK);
+    }
 }
