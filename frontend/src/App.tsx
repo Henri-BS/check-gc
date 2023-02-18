@@ -1,10 +1,13 @@
+import { Navbar } from 'components/Navbar';
 import React from 'react';
 
 function App() {
   return (
+    <>
     <div>
-      <h1>Frontend</h1>
+      <Navbar/>
     </div>
+    </>
   );
 }
 

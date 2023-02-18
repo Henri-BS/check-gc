@@ -55,7 +55,13 @@ public class DebtService implements IDebtService {
     public DebtDTO saveDebt(DebtDTO dto) {
         Product product = productRepository.findById(dto.getProduct()).orElseThrow();
         ClientAccount account = accountRepository.findById(dto.getAccount()).orElseThrow();
-        Status status = statusRepository.findById(dto.getStatus()).orElseThrow();
+        Status status = statusRepository.findById(dto.getStatus()).orElse(null);
+
+        if(status == null) {
+            status = new Status();
+            status.setStatusId(dto.getStatus());
+            status = statusRepository.saveAndFlush(status);
+        }
 
         Debt add = new Debt();
         add.setDebtDate(dto.getDebtDate());
@@ -78,7 +84,7 @@ public class DebtService implements IDebtService {
     public DebtDTO updateDebt(DebtDTO dto) {
         Debt edit = debtRepository.findById(dto.getDebtId()).orElseThrow();
         Product product = productRepository.findById(dto.getProduct()).orElseThrow();
-        Status status = statusRepository.findById(dto.getStatus()).orElseThrow();
+        Status status = statusRepository.findById(dto.getStatus()).orElse(null);
 
         edit.setDebtId(edit.getDebtId());
         edit.setDebtDate(dto.getDebtDate());

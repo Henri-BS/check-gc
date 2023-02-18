@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;500;700&display=swap');
+:root {
+    --white-prim: #dddde6;
+    --dark-prim: #1c2327;
+    --green-prim: #22d1d3;
+}
+
+body {
+    background: var(--white-prim);
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Signika Negative', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
