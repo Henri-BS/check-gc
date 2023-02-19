@@ -2,7 +2,29 @@
 :root {
     --white-prim: #dddde6;
     --dark-prim: #1c2327;
+    --dark-seco: #3c4a52;
     --green-prim: #22d1d3;
+    --green-seco: #1aa1a3;
+}
+
+.page-link {
+    color: var(--dark-seco);
+    font-size: x-large;
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    color: var(--green-seco);
+}
+
+.blur-container {
+    max-inline-size: 100%;
+    margin: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 22px 0 rgba(0, 0, 0.39, 0.37);
 }
 
 body {
