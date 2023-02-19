@@ -1,16 +1,21 @@
 .home-bar-container {
-    height: 300px;
+    width: 550px;
+    height: max-content;
     padding: 10px;
-    overflow-y: scroll;
-    box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.17);
-    margin: 16px;
+    box-shadow: 0px 8px 20px 5px rgba(0, 0, 0, 0.40);
+    margin-top: 40px;
+    border-radius: 8px;
+}
+
+.home-bar-list {
+    height: max-content;
 }
 
 .home-bar-title {
     display: flex;
     height: max-content;
     list-style: none;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: 500;
     justify-content: space-between;
     align-items: center;
@@ -24,8 +29,8 @@
     justify-content: center;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    background-color: var(--white-prim);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+    border: 1px solid #c9c9c9;
+    border-radius: 12px;
 }
 
 .home-bar-item:hover {
@@ -40,4 +45,5 @@
 .home-bar-content {
     border-radius: 8px;
     padding: 4px;
+    margin-left: 2px;
 }

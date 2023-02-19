@@ -22,11 +22,16 @@ public class ClientService implements IClientService {
     @Autowired
     private ClientAccountRepository accountRepository;
 
+    @Override
+    public Page<ClientDTO> findAllClients(Pageable pageable) {
+        Page<Client> list = clientRepository.findAll(pageable);
+        return list.map(ClientDTO::new);
+    }
 
     @Override
-    public Page<ClientDTO> findAllClients(Pageable pageable, String name) {
+    public Page<ClientDTO> findClientsByName(Pageable pageable, String name) {
         Page<Client> list = clientRepository.findAllClients(pageable, name);
-        return list.map(x -> new ClientDTO());
+        return list.map(ClientDTO::new);
     }
 
     @Override
@@ -69,4 +74,6 @@ public class ClientService implements IClientService {
         this.clientRepository.deleteById(id);
         this.accountRepository.deleteById(id);
     }
+
+
 }

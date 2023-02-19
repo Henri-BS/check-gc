@@ -21,8 +21,8 @@ INSERT INTO tb_product (description, price) VALUES ('Refrigerante Fanta Laranja 
 INSERT INTO tb_product (description, price) VALUES ('Refrigerante Fanta Uva Mini Pet 250ml', 1.75);
 INSERT INTO tb_product (description, price) VALUES ('Refrigerante Kuat Mini Pet 250ml', 1.75);
 INSERT INTO tb_product (description, price) VALUES ('Linguíça Toscana P/Churrasco Friato Pacote 5kg', 21.90);
-INSERT INTO tb_product (description, price) VALUES ('Iorgute Activia Líquido Prc Ameixa Danone 150g', 2.95, );
-INSERT INTO tb_product (description, price) VALUES ('Iorgute Activia Líquido Prc Morango Danone 150g', 2.95,');
+INSERT INTO tb_product (description, price) VALUES ('Iorgute Activia Líquido Prc Ameixa Danone 150g', 2.95);
+INSERT INTO tb_product (description, price) VALUES ('Iorgute Activia Líquido Prc Morango Danone 150g', 2.95);
 INSERT INTO tb_product (description, price) VALUES ('Arroz Carvalho 5kg', 23.50);
 INSERT INTO tb_product (description, price) VALUES ('Leite Piracanjuba Desnatado Líquido 1l', 9.90);
 INSERT INTO tb_product (description, price) VALUES ('Café Santa Clara 250g', 9.90);
