@@ -9,6 +9,7 @@
 
 .home-bar-list {
     height: max-content;
+    justify-content: space-evenly;
 }
 
 .home-bar-title {
@@ -25,11 +26,10 @@
     list-style: none;
     padding: 0;
     margin: 2px;
-    height: 60px;
-    justify-content: center;
+    height: 80px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    border: 1px solid #c9c9c9;
+    border: 1px solid #b8b6b6;
     border-radius: 12px;
 }
 
@@ -46,4 +46,14 @@
     border-radius: 8px;
     padding: 4px;
     margin-left: 2px;
+}
+
+@media screen and (max-width: 550px) {
+    .home-bar-content {
+        padding: 8px;
+        font-size: smaller;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+    }
 }

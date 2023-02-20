@@ -15,10 +15,15 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public Page<ProductDTO> findAllProducts(Pageable pageable) {
+        Page<Product> page = productRepository.findAll(pageable);
+        return page.map(ProductDTO::new);
+    }
+
     @Override
     public Page<ProductDTO> findProductsByDescription(Pageable pageable, String description) {
-        Page<Product>  list = productRepository.findProductsByDescription(pageable, description);
-        return list.map(ProductDTO::new);
+        Page<Product>  page = productRepository.findProductsByDescription(pageable, description);
+        return page.map(ProductDTO::new);
     }
 
     @Override
@@ -50,4 +55,6 @@ public class ProductService implements IProductService {
     public void deleteProduct(Long id) {
         this.productRepository.deleteById(id);
     }
+
+
 }
