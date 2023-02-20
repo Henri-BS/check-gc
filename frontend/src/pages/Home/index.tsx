@@ -2,6 +2,7 @@ import axios from "axios";
 import { Navbar } from "components/Navbar";
 import { useEffect, useState } from "react";
 import { ClientPage } from "types/client";
+import { DebtPage } from "types/debt";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
@@ -16,13 +17,25 @@ useEffect(() => {
     .then((response) => {
         setClientList(response.data);
     });
-}, [])
+}, []);
+
+const [debtList, setDebtList] = useState<DebtPage>({
+    content: [],
+    number: 0
+});
+
+useEffect(() => {
+    axios.get(`${BASE_URL}/debt/list?size=10&sort=debtId,desc`)
+    .then((response) => {
+        setDebtList(response.data)
+    });
+}, []);
 
     return (
         <>
             <Navbar />
             <div className="container">
-                
+
                 <div className="home-bar-container">
                     <ul className="home-bar-title">
                         <li><i className="fa fa-user" /> Novos Clientes</li>
@@ -43,28 +56,14 @@ useEffect(() => {
                         <li><i className="fa fa-book" aria-hidden="true" /> Dívidas Recentes </li>
                         <li className="page-link">ver lista completa</li>
                     </ul>
+                    {debtList.content.map(x => (
                     <div className="home-bar-list">
-                        <ul className="home-bar-item">
-                            <li className="home-bar-content">Produto: </li>
-                            <li className="home-bar-content">Cliente: </li>
-                        </ul>
-                        <ul className="home-bar-item">
-                            <li className="home-bar-content">Produto: </li>
-                            <li className="home-bar-content">Cliente: </li>
-                        </ul>
-                        <ul className="home-bar-item">
-                            <li className="home-bar-content">Produto: </li>
-                            <li className="home-bar-content">Cliente: </li>
-                        </ul>
-                        <ul className="home-bar-item">
-                            <li className="home-bar-content">Produto: </li>
-                            <li className="home-bar-content">Cliente: </li>
-                        </ul>
-                        <ul className="home-bar-item">
-                            <li className="home-bar-content">Produto: </li>
-                            <li className="home-bar-content">Cliente: </li>
+                        <ul className="home-bar-item" >
+                            <li className="home-bar-content">Produto: {x.productDescription} ({x.productQuantity})</li>
+                            <li className="home-bar-content">Situação: {x.status}</li>
                         </ul>
                     </div>
+                    ))}
                 </div>
 
 

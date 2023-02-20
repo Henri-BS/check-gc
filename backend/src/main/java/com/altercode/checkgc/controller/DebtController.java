@@ -5,6 +5,8 @@ import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Status;
 import com.altercode.checkgc.service.impl.DebtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,12 @@ public class DebtController {
 
     @Autowired
     private DebtService debtService;
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<DebtDTO>> findAllDebts(Pageable pageable) {
+        Page<DebtDTO> list = debtService.findAllDebts(pageable);
+        return ResponseEntity.ok(list);
+    }
 
     @GetMapping("/list-account/{account}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable ClientAccount account, @RequestParam Status status) {

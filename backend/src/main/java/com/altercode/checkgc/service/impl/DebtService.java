@@ -11,6 +11,8 @@ import com.altercode.checkgc.repository.ProductRepository;
 import com.altercode.checkgc.repository.StatusRepository;
 import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,12 +33,19 @@ public class DebtService implements IDebtService {
     @Autowired
     private StatusRepository statusRepository;
 
+
+    public Page<DebtDTO> findAllDebts(Pageable pageable) {
+        Page<Debt> page = debtRepository.findAll(pageable);
+        return page.map(DebtDTO::new);
+    }
+
     @Override
     public List<DebtDTO> findAllDebtsByAccount(ClientAccount account) {
         List<Debt> list = debtRepository.findAllDebtsByAccount(account);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
+    @Override
     public List<DebtDTO> findAllDebtsByStatus(Status status) {
         List<Debt> list = debtRepository.findAllDebtsByStatus(status);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
@@ -96,7 +105,10 @@ public class DebtService implements IDebtService {
         return new DebtDTO(debtRepository.save(edit));
     }
 
+    @Override
     public void deleteDebt(Long id) {
         this.debtRepository.deleteById(id);
     }
+
+
 }

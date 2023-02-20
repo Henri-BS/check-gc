@@ -7,12 +7,13 @@ export type Client = {
 
 export type ClientPage = {
     content: Client[];
-    last?: boolean;
-    totalElements?: number;
-    totalPages?: number;
-    size?: number;
-    number: number;
-    first?: boolean;
-    numberOfElements?: number;
-    empty?: boolean;
+ last?: boolean;
+  totalElements?: number;
+  totalPages?: number;
+  size?: number;
+  number: number;
+  first?: boolean;
+  numberOfElements?: number;
+  empty?: boolean;
 }
+

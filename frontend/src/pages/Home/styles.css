@@ -1,5 +1,5 @@
 .home-bar-container {
-    width: 550px;
+    max-width: 550px;
     height: max-content;
     padding: 10px;
     box-shadow: 0px 8px 20px 5px rgba(0, 0, 0, 0.40);
