@@ -1,12 +1,7 @@
 package com.altercode.checkgc.dto;
 
-import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
