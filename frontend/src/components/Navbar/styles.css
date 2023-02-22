@@ -34,6 +34,7 @@
 }
 
 .navbar-link {
+    color: var(--dark-seco);
     text-decoration: none;
     padding: 8px 30px;
     transition: all 0.2s ease-in-out;
@@ -42,6 +43,7 @@
 }
 
 .navbar-link:hover {
+    color: var(--dark-prim);
     border: 3px solid var(--green-prim);
 }
 

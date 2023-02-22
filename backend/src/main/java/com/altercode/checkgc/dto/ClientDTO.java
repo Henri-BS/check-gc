@@ -14,7 +14,7 @@ public class ClientDTO implements Serializable {
     private String name;
     private String phoneNumber;
     private String address;
-    private Long account;
+    private ClientAccountDTO account;
 
     public ClientDTO() {
     }
@@ -24,7 +24,7 @@ public class ClientDTO implements Serializable {
         name = entity.getName();
         phoneNumber = entity.getPhoneNumber();
         address = entity.getAddress();
-        account = entity.getAccount().getAccountId();
+        account = new ClientAccountDTO(entity.getAccount());
     }
 
     public Long getClientId() {
@@ -59,11 +59,11 @@ public class ClientDTO implements Serializable {
         this.address = address;
     }
 
-    public Long getAccount() {
+    public ClientAccountDTO getAccount() {
         return account;
     }
 
-    public void setAccount(Long account) {
+    public void setAccount(ClientAccountDTO account) {
         this.account = account;
     }
 }

@@ -3,6 +3,7 @@ export type Client = {
   name: string;
   phoneNumber: string;
   address: string;
+  account: ClientAccount;
 };
 
 export type ClientPage = {

@@ -1,5 +1,5 @@
 .card-md-container {
-    max-width: 300px;
+    width: 350px;
     height: max-content;
     padding: 10px;
     box-shadow: 0px 8px 20px 5px rgba(0, 0, 0, 0.40);
@@ -16,7 +16,7 @@
     display: flex;
     height: max-content;
     list-style: none;
-    font-size: x-large;
+    font-size: large;
     font-weight: 500;
     justify-content: space-between;
     align-items: center;
@@ -26,24 +26,14 @@
     list-style: none;
     padding: 0;
     margin: 2px;
-    height: 40px;
+    height: 50px;
+    border-top: 1px solid #b8b6b6;
     transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    border: 1px solid #b8b6b6;
-    border-radius: 12px;
-}
-
-.card-md-item:hover {
-    background-color: #e9e9e9;
-    max-inline-size: 100%;
-    margin: 0;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(40px);
-    box-shadow: 0px 12px 32px 0px rgba(0, 0, 17, 0.40);
 }
 
 .card-md-content {
-    border-radius: 8px;
+    font-size: medium;
+    font-weight: 300;
     padding: 4px;
     margin-left: 2px;
 }

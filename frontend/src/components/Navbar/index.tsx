@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./styles.css"
 
 export function Navbar() {
@@ -10,11 +11,13 @@ export function Navbar() {
               <i className="fa fa-home" /> Início
             </div>
           </li>
-          <li className="col-12 col-lg-3 navbar-item">
-            <div className="navbar-link">
+       
+          <li className="col-12 col-lg-3 navbar-item ">  
+           <Link to={`/client-list`} className="navbar-link">
               Clientes
-            </div>
+        </Link>
           </li>
+        
           <li className="col-12 col-lg-3 navbar-item">
             <div className="navbar-link">
               Dívidas
