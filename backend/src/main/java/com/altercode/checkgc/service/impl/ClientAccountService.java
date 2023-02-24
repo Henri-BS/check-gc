@@ -18,23 +18,17 @@ public class ClientAccountService implements IClientAccountService {
     @Override
     public ClientAccountDTO findAccountByClient(Client client) {
         ClientAccount find = accountRepository.findAccountByClient(client);
+
+        double total = 0.0;
+        for(Debt a : find.getDebts()) {
+            total = a.getProductQuantity() * a.getProduct().getPrice();
+        }
+        find.setDebtQuantity(find.getDebts().size());
+        find.setDebtAmount(total);
+        accountRepository.save(find);
+
         return new ClientAccountDTO(find);
     }
 
-    @Override
-    public ClientAccountDTO updateAccountTotalValues(ClientAccountDTO dto) {
-        ClientAccount account = accountRepository.findById(dto.getAccountId()).orElseThrow();
 
-        double total = 0.0;
-        int quantity = 0;
-        for (Debt d : account.getDebts()) {
-            total = d.getProductQuantity() * d.getProductAmount();
-            quantity = quantity + d.getProductQuantity();
-        }
-        account.setDebtQuantity(quantity);
-        account.setDebtAmount(total);
-        accountRepository.save(account);
-
-        return new ClientAccountDTO(account);
-    }
 }

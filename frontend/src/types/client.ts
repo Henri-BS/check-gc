@@ -18,6 +18,10 @@ export type ClientPage = {
   empty?: boolean;
 };
 
+export type ClientProps = {
+    clientId: string;
+}
+
 export type ClientAccount = {
   accountId: number;
   debtAmount: number;

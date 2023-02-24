@@ -20,10 +20,4 @@ public class ClientAccountController {
         ClientAccountDTO find = accountService.findAccountByClient(client);
         return ResponseEntity.ok(find);
     }
-
-    @PutMapping("/update-values/{accountId}")
-    public ResponseEntity<ClientAccountDTO> updateAccountTotalValues( ClientAccountDTO dto, @PathVariable Long accountId) {
-        ClientAccountDTO update = accountService.updateAccountTotalValues(dto);
-        return new ResponseEntity<>(update, HttpStatus.OK);
-    }
 }

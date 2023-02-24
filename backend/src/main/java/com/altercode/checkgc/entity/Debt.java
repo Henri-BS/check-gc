@@ -33,6 +33,7 @@ public class Debt {
     @JoinColumn(name = "status_id")
     private Status status;
 
+
     public Debt() {
     }
 
