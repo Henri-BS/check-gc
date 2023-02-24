@@ -11,17 +11,17 @@ export function Navbar() {
               <i className="fa fa-home" /> Início
             </div>
           </li>
-       
-          <li className="col-12 col-lg-3 navbar-item ">  
-           <Link to={`/client-list`} className="navbar-link">
+
+          <li className="col-12 col-lg-3 navbar-item ">
+            <Link to={`/client-list`} className="navbar-link">
               Clientes
-        </Link>
+            </Link>
           </li>
-        
+
           <li className="col-12 col-lg-3 navbar-item">
-            <div className="navbar-link">
-              Dívidas
-            </div>
+              <Link to={`/debt-list`} className="navbar-link">
+                Dívidas
+              </Link>
           </li>
           <li className="col-12 col-lg-3 navbar-item">
             <div className="navbar-link">
