@@ -64,3 +64,31 @@ export function DebtList() {
     );
 }
 
+export function ProductList() {
+
+    const [productList, setProductList] = useState<ProductPage>({
+        content: [],
+        number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/list`)
+            .then((response) => {
+                setProductList(response.data);
+            });
+    }, []);
+
+    return (
+        <>
+            <Navbar />
+            <div className="container">
+                <div className="row">
+                    {productList.content.map(x => (
+                        <div className="col-12 col-md-6 col-xl-4">
+                            <ProductCard product={x} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+}

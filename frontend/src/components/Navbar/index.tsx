@@ -7,9 +7,9 @@ export function Navbar() {
       <nav className="navbar">
         <ul className=" row navbar-menu">
           <li className=" navbar-item">
-            <div className="navbar-logo">
+            <Link to={`/`} className="navbar-logo">
               <i className="fa fa-home" /> Início
-            </div>
+            </Link>
           </li>
 
           <li className="col-12 col-lg-3 navbar-item ">
@@ -24,9 +24,9 @@ export function Navbar() {
               </Link>
           </li>
           <li className="col-12 col-lg-3 navbar-item">
-            <div className="navbar-link">
+            <Link to={`/product-list`} className="navbar-link">
               Produtos
-            </div>
+            </Link>
           </li>
         </ul>
       </nav>

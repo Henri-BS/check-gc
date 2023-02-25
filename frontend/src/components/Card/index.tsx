@@ -66,7 +66,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="card-md-title">
             <i className="fa fa-cart-plus" /> {product.description}
         </div>
-        <div className="card-md-item card-md-content">{product.price}</div>
+        <div className="card-md-item card-md-content"> Preço: {product.price}</div>
     </div>
     );
 }
