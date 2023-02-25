@@ -1,9 +1,10 @@
 import axios from "axios";
-import { ClientCard, DebtCard } from "components/Card";
+import { ClientCard, DebtCard, ProductCard } from "components/Card";
 import { Navbar } from "components/Navbar";
 import { useEffect, useState } from "react";
 import { ClientPage } from "types/client";
 import { DebtPage } from "types/debt";
+import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 
 export function ClientList() {
@@ -46,19 +47,20 @@ export function DebtList() {
             .then((response) => {
                 setDebtList(response.data);
             });
-    });
-    return(    
+    }, []);
+    return (
         <>
-    <Navbar />
-        <div className="container">
-            <div className="row">
-                {debtList.content.map(x => (
-                    <div className="col-12 col-md-6 col-xl-4 mb-3">
-                        <DebtCard debt={x}/>
-                    </div>
-                ))}
+            <Navbar />
+            <div className="container">
+                <div className="row">
+                    {debtList.content.map(x => (
+                        <div className="col-12 col-md-6 col-xl-4 mb-3">
+                            <DebtCard debt={x} />
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
         </>
     );
 }
+

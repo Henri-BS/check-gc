@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Client, ClientAccount } from "types/client";
 import { Debt } from "types/debt";
+import { Product } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
@@ -42,7 +43,7 @@ export function DebtCard({ debt }: DebtCardProps) {
     return (
         <div className="card-md-container">
             <div className="card-md-title">
-                <i className="fa fa-book" /> {debt.client}
+                <i className="fa fa-book" />{debt.client}
             </div>
             <ul className="card-md-list">
                 <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
@@ -52,5 +53,20 @@ export function DebtCard({ debt }: DebtCardProps) {
                 <li className="card-md-item card-md-content">Situação: {debt.status}</li>
             </ul>
         </div>
+    );
+}
+
+type ProductCardProps = {
+    product: Product;
+}
+
+export function ProductCard({ product }: ProductCardProps) {
+    return(
+    <div className="card-md-container">
+        <div className="card-md-title">
+            <i className="fa fa-cart-plus" /> {product.description}
+        </div>
+        <div className="card-md-item card-md-content">{product.price}</div>
+    </div>
     );
 }
