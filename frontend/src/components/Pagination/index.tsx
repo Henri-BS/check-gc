@@ -33,7 +33,7 @@ function Pagination({ page, onPageChange }: PageProps) {
                     <button className="page-link" onClick={() => onPageChange(page.number = 5)}>5</button>
                 </li>
 
-                <li className={`page-item ${page.last ? 'disabled' : ''}`}>
+                <li className={`page-item ${page.last ? `disabled` : ''}`}>
                     <button className="page-link" onClick={() => onPageChange(page.number + 1)} aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </button>

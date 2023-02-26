@@ -27,7 +27,9 @@ body::-webkit-scrollbar {
 }
 
 .page-link:hover {
-    color: var(--green-seco);
+    background: transparent;
+    color: #188f91;
+    border: 1px solid #463b3b93;
 }
 
 .blur-container {

@@ -1,0 +1,27 @@
+.form-container {
+    padding: 20px;
+}
+
+.form {
+    width: calc(1000% - 20px);
+    background-color: transparent;
+}
+
+.form-group {
+    width: 300px;
+    color: var(--dark-seco);
+}
+
+.form-control {
+    background-color: var(--white-prim);
+    color: var(--dark-seco)
+}
+
+.form-card {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+}

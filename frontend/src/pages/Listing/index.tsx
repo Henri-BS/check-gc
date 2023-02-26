@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ClientCard, DebtCard, ProductCard } from "components/Card";
+import { AddClientForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
@@ -11,21 +12,32 @@ import "./styles.css"
 
 export function ClientList() {
 
+    const [pageNumber, setPageNumber] = useState(0);
+    const handlePageChange = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
+
     const [clientList, setClientList] = useState<ClientPage>({
         content: [],
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/client/list`)
+        axios.get(`${BASE_URL}/client/list?page=${pageNumber}&size=3`)
             .then((response) => {
                 setClientList(response.data);
             });
-    }, []);
+    }, [pageNumber]);
 
     return (
         <>
             <Navbar />
             <div className="container">
+
+                <ul className="pagination-container">
+                    <li className="page-link" data-bs-target="#addClientModal" data-bs-toggle="modal"><i className="fa fa-save" /> Adicionar Cliente</li>
+                    <li><Pagination page={clientList} onPageChange={handlePageChange} /></li>
+                    <li>Clientes Cadastrados: {clientList.totalElements}</li>
+                </ul>
                 <div className="row">
                     {clientList.content?.map(x => (
                         <div key={x.clientId} className="col-12 col-md-6 col-xl-4 mb-3">
@@ -34,26 +46,47 @@ export function ClientList() {
                     ))}
                 </div>
             </div>
+            <div className="modal fade" id="addClientModal" role={"dialog"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="clientLabel" className="modal-title">Adicionar um novo cliente</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body"><AddClientForm /></div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
 
 export function DebtList() {
 
+    const [pageNumber, setPageNumber] = useState(0);
+    const handlePageChange = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
+
     const [debtList, setDebtList] = useState<DebtPage>({
         content: [],
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list`)
+        axios.get(`${BASE_URL}/debt/list?page=${pageNumber}}&size=3`)
             .then((response) => {
                 setDebtList(response.data);
             });
-    }, []);
+    }, [pageNumber]);
     return (
         <>
             <Navbar />
             <div className="container">
+                <div className="pagination-container">
+                    <Pagination page={debtList} onPageChange={handlePageChange} />
+                </div>
                 <div className="row">
                     {debtList.content.map(x => (
                         <div className="col-12 col-md-6 col-xl-4 mb-3">
@@ -78,7 +111,7 @@ export function ProductList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&size=2`)
+        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&size=3`)
             .then((response) => {
                 setProductList(response.data);
             });

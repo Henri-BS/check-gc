@@ -47,6 +47,11 @@
     border: 3px solid var(--green-prim);
 }
 
+.navbar-link:focus {
+    color: var(--dark-prim);
+    border: 3px solid var(--green-prim);
+}
+
 .navbar-logo {
     color: var(--dark-prim);
     text-decoration: none;
