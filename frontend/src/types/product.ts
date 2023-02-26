@@ -14,4 +14,5 @@ export type ProductPage = {
     first?: boolean;
     numberOfElements?: number;
     empty?: boolean;
+    pageNumber?: number;
 }

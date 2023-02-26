@@ -16,6 +16,7 @@ export type ClientPage = {
   first?: boolean;
   numberOfElements?: number;
   empty?: boolean;
+  pageNumber?: number;
 };
 
 export type ClientProps = {
@@ -40,4 +41,5 @@ export type ClientAccountPage = {
   first?: boolean;
   numberOfElements?: number;
   empty?: boolean;
+  pageNumber?: number;
 };

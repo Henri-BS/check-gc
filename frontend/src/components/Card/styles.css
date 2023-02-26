@@ -14,7 +14,7 @@
 
 .card-md-title {
     display: flex;
-    height: max-content;
+    height: 60px;
     list-style: none;
     font-size: large;
     font-weight: 500;

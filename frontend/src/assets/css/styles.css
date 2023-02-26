@@ -5,7 +5,7 @@
     --dark-seco: #3c4a52;
     --dark-tert: #606c72;
     --green-prim: #22d1d3;
-    --green-seco: #1aa1a3;
+    --green-seco: #188f91;
 }
 
 body::-webkit-scrollbar {
@@ -13,11 +13,17 @@ body::-webkit-scrollbar {
     height: 0;
 }
 
+.page-item {
+    background: transparent;
+}
+
 .page-link {
+    background: transparent;
     color: var(--dark-seco);
     font-size: large;
     transition: all 0.3s ease-out;
     cursor: pointer;
+    border: 1px solid #463b3b31;
 }
 
 .page-link:hover {

@@ -5,7 +5,7 @@
 .navbar {
     border-radius: 10px;
     width: 100%;
-    min-height: 90px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -48,8 +48,22 @@
 }
 
 .navbar-logo {
+    color: var(--dark-prim);
     text-decoration: none;
     padding: 8px 28px;
     transition: all 0.2s ease-in-out;
     border-radius: 20px;
+}
+
+.navbar-logo:hover {
+    color: var(--green-seco);
+}
+
+@media screen and (max-width: 550px) {
+    .navbar {
+        height: 110px;
+    }
+    .navbar-item {
+        margin: 4px;
+    }
 }

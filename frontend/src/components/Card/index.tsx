@@ -61,12 +61,12 @@ type ProductCardProps = {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-    return(
-    <div className="card-md-container">
-        <div className="card-md-title">
-            <i className="fa fa-cart-plus" /> {product.description}
+    return (
+        <div className="card-md-container">
+            <div className="card-md-title">
+               {product.description}
+            </div>
+            <div className="card-md-item card-md-content"> Preço: {product.price}</div>
         </div>
-        <div className="card-md-item card-md-content"> Preço: {product.price}</div>
-    </div>
     );
 }
