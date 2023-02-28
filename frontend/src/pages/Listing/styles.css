@@ -1,8 +1,19 @@
 .pagination-container {
     list-style: none;
-    padding-top: 12px;
+    margin: 0;
+    padding: 12px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: medium;
+    text-align: center;
+}
+
+@media screen and (max-width: 550px) {
+    .pagination-container {
+        grid-row: 3fr;
+        grid-template-rows: 3fr;
+        grid-column-end: auto;
+    }
 }

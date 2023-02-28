@@ -18,19 +18,19 @@ function Pagination({ page, onPageChange }: PageProps) {
                 </li>
 
                 <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 1)}>1</button>
+                    <button className="page-link" onClick={() => onPageChange(page.number = 0)}>1</button>
                 </li>
                 <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 2)}>2</button>
+                    <button className="page-link" onClick={() => onPageChange(page.number = 1)}>2</button>
                 </li>
                 <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 3)}>3</button>
+                    <button className="page-link" onClick={() => onPageChange(page.number = 2)}>3</button>
                 </li>
                 <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 4)}>4</button>
+                    <button className="page-link" onClick={() => onPageChange(page.number = 3)}>4</button>
                 </li>
                 <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 5)}>5</button>
+                    <button className="page-link" onClick={() => onPageChange(page.number = 4)}>5</button>
                 </li>
 
                 <li className={`page-item ${page.last ? `disabled` : ''}`}>

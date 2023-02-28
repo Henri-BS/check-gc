@@ -14,7 +14,13 @@
 
 .form-control {
     background-color: var(--white-prim);
-    color: var(--dark-seco)
+    color: var(--dark-seco);
+    border-color: var(--dark-seco);
+}
+
+.form-control:enabled {
+    background-color: var(--white-seco);
+    border-color: var(--dark-prim);
 }
 
 .form-card {

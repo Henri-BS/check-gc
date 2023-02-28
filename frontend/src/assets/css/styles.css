@@ -1,54 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;500;700&display=swap');
 :root {
     --white-prim: #dddde6;
-    --dark-prim: #1c2327;
+    --white-seco: #eeeeee;
+    --dark-prim: #12171a;
     --dark-seco: #3c4a52;
     --dark-tert: #606c72;
+    --dark-quat: #606c721a;
     --green-prim: #22d1d3;
     --green-seco: #188f91;
+    --green-tert: #0f5c5e;
+    --red-prim: #b30b0b;
 }
 
 body::-webkit-scrollbar {
     width: 0;
     height: 0;
-}
-
-.page-item {
-    background: transparent;
-}
-
-.page-link {
-    background: transparent;
-    color: var(--dark-seco);
-    font-size: large;
-    transition: all 0.3s ease-out;
-    cursor: pointer;
-    border: 1px solid #463b3b31;
-}
-
-.page-link:hover {
-    background: transparent;
-    color: #188f91;
-    border: 1px solid #463b3b93;
-}
-
-.blur-container {
-    max-inline-size: 100%;
-    margin: 0;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 4px 22px 0 rgba(0, 0, 0.39, 0.37);
-}
-
-::-webkit-scrollbar {
-    background-color: rgb(168, 180, 179);
-    border-radius: 0px 8px 8px 0px;
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--dark-tert);
-    border-radius: 8px;
 }
 
 body {
@@ -63,4 +29,94 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.pagination {
+    justify-content: center;
+    align-items: center;
+}
+
+.page-item::after {
+    background: transparent;
+}
+
+.page-link {
+    background: transparent;
+    color: var(--dark-seco);
+    font-size: large;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    border: 1px solid #463b3b31;
+}
+
+.page-link:hover:focus {
+    background: transparent;
+    color: #188f91;
+    border: 1px solid #463b3b93;
+}
+
+.modal-content {
+    background-color: var(--white-prim);
+}
+
+.close {
+    font-size: large;
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--red-prim);
+}
+
+.link-option {
+    font-size: large;
+    color: var(--dark-seco);
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.link-option:hover {
+    color: var(--dark-prim);
+    background-color: var(--dark-quat);
+    border-radius: 8px;
+}
+
+.blur-container {
+    max-inline-size: 100%;
+    margin: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 22px 0 rgba(0, 0, 0.39, 0.37);
+}
+
+.btn-confirm {
+    background-color: var(--green-seco);
+    color: var(--white-seco);
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-confirm:hover {
+    background-color: transparent;
+    color: var(--dark-prim);
+    border: 3px solid var(--green-seco);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(168, 180, 179);
+    border-radius: 0px 8px 8px 0px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--dark-tert);
+    border-radius: 8px;
 }

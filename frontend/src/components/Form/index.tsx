@@ -1,7 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Client, ClientProps } from "types/client";
 import { BASE_URL } from "utils/requests";
+import "./styles.css"
 
 export function AddClientForm() {
 
@@ -47,5 +49,6 @@ export function AddClientForm() {
                 <button type="submit" className="btn-confirm">Adicionar</button>
             </div>
         </form>
-    )
+    );
 }
+

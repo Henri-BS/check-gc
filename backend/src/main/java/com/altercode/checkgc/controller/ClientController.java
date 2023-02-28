@@ -2,6 +2,7 @@ package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.service.impl.ClientService;
+import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
 
     @Autowired
-    private ClientService clientService;
+    private IClientService clientService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<ClientDTO>> findAllClients(Pageable pageable) {

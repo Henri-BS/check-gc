@@ -33,11 +33,13 @@ export function ClientList() {
             <Navbar />
             <div className="container">
 
-                <ul className="pagination-container">
-                    <li className="page-link" data-bs-target="#addClientModal" data-bs-toggle="modal"><i className="fa fa-save" /> Adicionar Cliente</li>
-                    <li><Pagination page={clientList} onPageChange={handlePageChange} /></li>
-                    <li>Clientes Cadastrados: {clientList.totalElements}</li>
-                </ul>
+                <nav className="pagination-container row">
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addClientModal" data-bs-toggle="modal">
+                        <button className="btn-confirm"><i className="fa fa-save" /> Adicionar Cliente</button>
+                    </div>
+                    <div className="col-12 col-md-4 col-xl-6 mb-2" ><Pagination page={clientList} onPageChange={handlePageChange} /></div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Clientes Cadastrados: {clientList.totalElements}</div>
+                </nav>
                 <div className="row">
                     {clientList.content?.map(x => (
                         <div key={x.clientId} className="col-12 col-md-6 col-xl-4 mb-3">
