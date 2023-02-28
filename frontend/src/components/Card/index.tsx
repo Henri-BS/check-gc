@@ -1,5 +1,7 @@
 import axios from "axios";
+import { ClientEditForm } from "components/Form";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Client, ClientAccount } from "types/client";
 import { Debt } from "types/debt";
 import { Product } from "types/product";
@@ -10,21 +12,24 @@ type ClientCardProps = {
     client: Client;
 }
 
-
 export function ClientCard({ client }: ClientCardProps) {
+
     const [account, setAccount] = useState<ClientAccount>();
     useEffect(() => {
         axios.get(`${BASE_URL}/account/client/${client.clientId}`)
             .then((response) => {
                 setAccount(response.data);
             })
-    }, [client.clientId])
+    }, [client.clientId]);
+
+    const params = useParams();
+
     return (
         <>
             <div className="card-md-container">
                 <nav className="card-md-title">
                     {client.name}
-                    <div data-bs-target="#optionModal" data-bs-toggle="modal">
+                    <div className="link-option" data-bs-target="#optionModal" data-bs-toggle="modal">
                         <i className="fa fa-ellipsis-v" />
                     </div>
                 </nav>
@@ -45,13 +50,31 @@ export function ClientCard({ client }: ClientCardProps) {
                             <button className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
-                        </div> 
-                        <hr/>
-                        <ul className="modal-body md-card-list">     
-                            <li className="card-md-content link-option"><i className="fa fa-edit" /> Editar Cliente</li>
-                      
-                            <li className="card-md-content link-option"><i className="fa fa-trash" /> Deletar Cliente</li>
+                        </div>
+                        <hr />
+                        <ul className="modal-body md-card-list">
+                            <li className="card-md-content link-option" data-bs-target="#clientEditModal" data-bs-toggle="modal">
+                                <i className="fa fa-edit" /> Editar Cliente
+                            </li>
+
+                            <li className="card-md-content link-option">
+                                <i className="fa fa-trash" /> Deletar Cliente
+                            </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="clientEditModal" role={"dialog"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="clientLabel" className="modal-title">Editar cliente</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body"><ClientEditForm clientId={`${params.clientId}`} /></div>
                     </div>
                 </div>
             </div>
