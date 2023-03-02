@@ -40,3 +40,8 @@
     padding: 8px;
     margin-left: 2px;
 }
+
+.card-lg-container {
+    width: 500px;
+    padding: 10px;
+}

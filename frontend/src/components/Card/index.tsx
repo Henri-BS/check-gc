@@ -1,8 +1,8 @@
 import axios from "axios";
 import { ClientEditForm } from "components/Form";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Client, ClientAccount } from "types/client";
+import { Link, useParams } from "react-router-dom";
+import { Client, ClientAccount, ClientProps } from "types/client";
 import { Debt } from "types/debt";
 import { Product } from "types/product";
 import { BASE_URL } from "utils/requests";
@@ -13,7 +13,7 @@ type ClientCardProps = {
 }
 
 export function ClientCard({ client }: ClientCardProps) {
-
+    
     const [account, setAccount] = useState<ClientAccount>();
     useEffect(() => {
         axios.get(`${BASE_URL}/account/client/${client.clientId}`)
@@ -22,13 +22,15 @@ export function ClientCard({ client }: ClientCardProps) {
             })
     }, [client.clientId]);
 
+
     const params = useParams();
 
     return (
-        <>
+        <> 
+        <Link to={`/client/${client.clientId}`} className="text-decoration-none text-dark"> 
             <div className="card-md-container">
                 <nav className="card-md-title">
-                    {client.name}
+                   {client.name}
                     <div className="link-option" data-bs-target="#optionModal" data-bs-toggle="modal">
                         <i className="fa fa-ellipsis-v" />
                     </div>
@@ -41,6 +43,7 @@ export function ClientCard({ client }: ClientCardProps) {
                     <li className="card-md-item card-md-content">Última Atualização: {account?.lastModifiedDate}</li>
                 </ul>
             </div>
+            </Link>
 
             <div className="modal fade" id="optionModal" role={"dialog"}>
                 <div className="modal-dialog" role={"document"}>
@@ -81,6 +84,55 @@ export function ClientCard({ client }: ClientCardProps) {
         </>
     );
 }
+
+
+
+export function ClientProfileCard({ clientId }: ClientProps) {
+
+    const [client, setClient] = useState<Client>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/${clientId}`)
+            .then((response) => {
+                setClient(response.data);
+            })
+    }, [clientId]);
+
+    const [account, setAccount] = useState<ClientAccount>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/account/client/${clientId}`)
+            .then((response) => {
+                setAccount(response.data);
+            })
+    }, [clientId]);
+
+    return (
+        <>
+            <div className="card-lg-container">
+                <ul className="card-md-list">
+                    <li className="card-md-title">Endereço: {client?.name}</li>
+                    <li className="card-md-item card-md-content">Endereço: {client?.address}</li>
+                    <li className="card-md-item card-md-content">Contato: {client?.phoneNumber}</li>
+                    <li className="card-md-item card-md-content">Valor Total da Conta: {account?.debtAmount}</li>
+                    <li className="card-md-item card-md-content">Compras Realizadas: {account?.debtQuantity}</li>
+                    <li className="card-md-item card-md-content">Última Atualização: {account?.lastModifiedDate}</li>
+                </ul>
+            </div>
+        </>
+    );
+}
+
+export function ClientProfile() {
+
+    const params = useParams();
+
+    return (
+        <>
+            <div className="container m-0">
+                <ClientProfileCard clientId={`${params.clientId}`} />
+            </div>
+        </>
+    );
+} 
 
 type DebtCardProps = {
     debt: Debt;

@@ -1,6 +1,5 @@
 package com.altercode.checkgc.repository;
 
-import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.entity.Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -4,6 +4,7 @@ import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Status;
 import com.altercode.checkgc.service.impl.DebtService;
+import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ import java.util.List;
 public class DebtController {
 
     @Autowired
-    private DebtService debtService;
+    private IDebtService debtService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<DebtDTO>> findAllDebts(Pageable pageable) {

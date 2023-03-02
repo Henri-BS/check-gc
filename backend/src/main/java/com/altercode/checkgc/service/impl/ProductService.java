@@ -15,6 +15,7 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Override
     public Page<ProductDTO> findAllProducts(Pageable pageable) {
         Page<Product> page = productRepository.findAll(pageable);
         return page.map(ProductDTO::new);

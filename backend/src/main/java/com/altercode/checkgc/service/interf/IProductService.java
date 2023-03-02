@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IProductService {
+
+    Page<ProductDTO> findAllProducts(Pageable pageable);
+
     Page<ProductDTO> findProductsByDescription(Pageable pageable, String description);
 
     ProductDTO findProductById(Long id);

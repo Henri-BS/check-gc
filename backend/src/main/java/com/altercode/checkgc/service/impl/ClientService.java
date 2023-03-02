@@ -62,7 +62,7 @@ public class ClientService implements IClientService {
     @Override
     public ClientDTO updateClient(ClientDTO dto) {
         Client edit = clientRepository.findById(dto.getClientId()).orElseThrow();
-        edit.setClientId(dto.getClientId());
+        edit.setClientId(edit.getClientId());
         edit.setName(dto.getName());
         edit.setPhoneNumber(dto.getPhoneNumber());
         edit.setAddress(dto.getAddress());

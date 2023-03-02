@@ -3,6 +3,7 @@ package com.altercode.checkgc.controller;
 import com.altercode.checkgc.dto.ClientAccountDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.impl.ClientAccountService;
+import com.altercode.checkgc.service.interf.IClientAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientAccountController {
 
     @Autowired
-    private ClientAccountService accountService;
+    private IClientAccountService accountService;
 
     @GetMapping("/client/{client}")
     public ResponseEntity<ClientAccountDTO> findAccountByClient(@PathVariable Client client) {

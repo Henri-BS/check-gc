@@ -33,7 +33,7 @@ public class DebtService implements IDebtService {
     @Autowired
     private StatusRepository statusRepository;
 
-
+    @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
         Page<Debt> page = debtRepository.findAll(pageable);
         return page.map(DebtDTO::new);
@@ -66,7 +66,7 @@ public class DebtService implements IDebtService {
         ClientAccount account = accountRepository.findById(dto.getAccount()).orElseThrow();
         Status status = statusRepository.findById(dto.getStatus()).orElse(null);
 
-        if(status == null) {
+        if (status == null) {
             status = new Status();
             status.setStatusId(dto.getStatus());
             status = statusRepository.saveAndFlush(status);
@@ -89,7 +89,7 @@ public class DebtService implements IDebtService {
         return new DebtDTO(debtRepository.save(debt));
     }
 
-
+    @Override
     public DebtDTO updateDebt(DebtDTO dto) {
         Debt edit = debtRepository.findById(dto.getDebtId()).orElseThrow();
         Product product = productRepository.findById(dto.getProduct()).orElseThrow();
@@ -109,6 +109,4 @@ public class DebtService implements IDebtService {
     public void deleteDebt(Long id) {
         this.debtRepository.deleteById(id);
     }
-
-
 }

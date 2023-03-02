@@ -4,8 +4,8 @@ import { AddClientForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
-import { ClientPage } from "types/client";
-import { DebtPage } from "types/debt";
+import { ClientPage, ClientProps } from "types/client";
+import { Debt, DebtPage } from "types/debt";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -99,6 +99,34 @@ export function DebtList() {
             </div>
         </>
     );
+}
+
+export function DebtListByClient({ clientId }: ClientProps) {
+
+    const [debtList, setDebtList] = useState<Debt[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/list-account/${clientId}`)
+            .then((response) => {
+                setDebtList(response.data);
+            })
+    }, [clientId]);
+
+    return (
+        <div className="home-bar-container">
+            <ul className="home-bar-title">
+                <li><i className="fa fa-book" /> Novos Clientes</li>
+                <li className="page-link">ver lista completa</li>
+            </ul>
+            <div className="home-bar-list">
+                {debtList?.map(x => (
+                    <ul className="home-bar-item" key={x.debtId}>
+                        <li className="home-bar-content">{x.debtDate}</li>
+                        <li className="home-bar-content">Produto: {x.product}</li>
+                    </ul>
+                ))}
+            </div>
+        </div>
+        );
 }
 
 export function ProductList() {
