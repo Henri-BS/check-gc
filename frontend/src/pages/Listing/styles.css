@@ -10,6 +10,17 @@
     text-align: center;
 }
 
+.horizontal-list-container {
+    height: 440px;
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.horizontal-list-item {
+    padding: 12px;
+}
+
 @media screen and (max-width: 550px) {
     .pagination-container {
         grid-row: 3fr;

@@ -32,14 +32,16 @@ INSERT INTO tb_product (description, price) VALUES ('Sal Cavalinho 1kg', 1.0);
 
 INSERT INTO tb_status(status_id) VALUES('Devendo');
 INSERT INTO tb_status(status_id) VALUES('Pago');
-INSERT INTO tb_status(status_id) VALUES('Parcialmente Pago');
-INSERT INTO tb_status(status_id) VALUES('Dívida Atrasada');
 
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-12', 4, 0.0, 1, 1, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-12', 2, 0.0, 1, 4, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 1, 0.0, 1, 9, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 1, 0.0, 6, 1, 'Pago');
+
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-10', 8, 0.0, 2, 5, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 5, 0.0, 3, 3, 'Dívida Atrasada');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 5, 0.0, 3, 3, 'Pago');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-20', 2, 0.0, 2, 6, 'Pago');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-02', 3, 0.0, 6, 11, 'Pago');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-05', 2, 0.0, 5, 7, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-13', 9, 0.0, 7, 2, 'Dívida Atrasada');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-13', 9, 0.0, 7, 2, 'Devendo');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-16', 14, 0.0, 4, 8, 'Pago');

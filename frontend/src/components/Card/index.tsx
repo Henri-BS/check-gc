@@ -85,8 +85,6 @@ export function ClientCard({ client }: ClientCardProps) {
     );
 }
 
-
-
 export function ClientProfileCard({ clientId }: ClientProps) {
 
     const [client, setClient] = useState<Client>();
@@ -120,19 +118,6 @@ export function ClientProfileCard({ clientId }: ClientProps) {
         </>
     );
 }
-
-export function ClientProfile() {
-
-    const params = useParams();
-
-    return (
-        <>
-            <div className="container m-0">
-                <ClientProfileCard clientId={`${params.clientId}`} />
-            </div>
-        </>
-    );
-} 
 
 type DebtCardProps = {
     debt: Debt;

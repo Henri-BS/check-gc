@@ -22,3 +22,7 @@ export type DebtPage = {
   empty?: boolean;
   pageNumber?: number;
 };
+
+export type Status = {
+  statusId: string;
+}

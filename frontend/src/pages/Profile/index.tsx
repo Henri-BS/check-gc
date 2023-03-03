@@ -1,6 +1,7 @@
 import { ClientProfileCard } from "components/Card";
+import { DebtListByClient } from "pages/Listing";
 import { useParams } from "react-router-dom";
-import "./styles.css";
+
 
 export function ClientProfile() {
 
@@ -8,10 +9,10 @@ export function ClientProfile() {
 
     return (
         <>
-            <div className="container m-0">
-                <div className="row">
-                <div className="col-lg-6"><ClientProfileCard clientId={`${params.clientId}`} /></div>
-                </div>
+            <div className="container ">
+                    <ClientProfileCard clientId={`${params.clientId}`} />
+                    <DebtListByClient clientId={`${params.clientId}`} />
+                
             </div>
         </>
     );

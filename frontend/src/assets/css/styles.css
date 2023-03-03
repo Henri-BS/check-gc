@@ -114,6 +114,7 @@ code {
     background-color: rgb(168, 180, 179);
     border-radius: 0px 8px 8px 0px;
     width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
