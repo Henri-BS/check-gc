@@ -62,8 +62,6 @@ export function ClientEditForm({ clientId }: ClientProps) {
             });
     }, [clientId]);
 
-    
-
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const name = (event.target as any).name.value;
@@ -89,7 +87,6 @@ export function ClientEditForm({ clientId }: ClientProps) {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <input id="clientId" type="hidden" className="form-control" defaultValue={clientId} />
                 <div className="form-group">
                     <label htmlFor="name">Nome do Cliente</label>
                     <input id="name" type="text" className="form-control" defaultValue={client?.name} />
@@ -104,7 +101,7 @@ export function ClientEditForm({ clientId }: ClientProps) {
                 </div>
             </div>
             <div className="modal-footer">
-                <button type="submit" className="btn-confirm">Editar</button>
+                <button type="submit" className="btn btn-confirm">Editar</button>
             </div>
         </form>
     );

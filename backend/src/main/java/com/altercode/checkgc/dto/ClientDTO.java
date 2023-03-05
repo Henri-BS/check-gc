@@ -1,6 +1,7 @@
 package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.ClientAccount;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,6 +15,8 @@ public class ClientDTO implements Serializable {
     private String name;
     private String phoneNumber;
     private String address;
+
+    private Long accountId;
     private ClientAccountDTO account;
 
     public ClientDTO() {
@@ -24,6 +27,7 @@ public class ClientDTO implements Serializable {
         name = entity.getName();
         phoneNumber = entity.getPhoneNumber();
         address = entity.getAddress();
+        accountId = entity.getAccount().getAccountId();
         account = new ClientAccountDTO(entity.getAccount());
     }
 
@@ -57,6 +61,14 @@ public class ClientDTO implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public ClientAccountDTO getAccount() {

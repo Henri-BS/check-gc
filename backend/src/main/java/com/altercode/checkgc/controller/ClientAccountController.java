@@ -21,4 +21,10 @@ public class ClientAccountController {
         ClientAccountDTO find = accountService.findAccountByClient(client);
         return ResponseEntity.ok(find);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAccount(@PathVariable Long id) {
+        this.accountService.deleteAccount(id);
+    }
 }

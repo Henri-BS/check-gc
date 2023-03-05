@@ -5,7 +5,7 @@ import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { ClientPage, ClientProps } from "types/client";
-import { Debt, DebtPage, Status } from "types/debt";
+import { Debt, DebtPage } from "types/debt";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -35,7 +35,7 @@ export function ClientList() {
 
                 <nav className="pagination-container row">
                     <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addClientModal" data-bs-toggle="modal">
-                        <button className="btn-confirm"><i className="fa fa-save" /> Adicionar Cliente</button>
+                        <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Cliente</button>
                     </div>
                     <div className="col-12 col-md-4 col-xl-6 mb-2" ><Pagination page={clientList} onPageChange={handlePageChange} /></div>
                     <div className="col-12 col-md-4 col-xl-3 mb-2" >Clientes Cadastrados: {clientList.totalElements}</div>
@@ -101,7 +101,6 @@ export function DebtList() {
     );
 }
 
-
 export function DebtListByClient({ clientId }: ClientProps) {
 
     const [oweList, setOweList] = useState<Debt[]>();
@@ -112,36 +111,14 @@ export function DebtListByClient({ clientId }: ClientProps) {
             })
     }, [clientId]);
 
-    const [value, setValue] = useState("");
-    useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list-account/${clientId}?status=${value}`)
-            .then((response) => {
-                setValue(response.data);
-            })
-    }, [clientId, value]);
-
     return (
         <>
             <ul className="home-bar-title">
                 <li><i className="fa fa-book" /> Dívidas</li>
-                <div className="form-group">
-                <li>
-
-                    <input 
-                    className="form-control"
-                    id="value"
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    
-                    />
-                    
-                    </li>
-                </div>
+                
             </ul>
             <div className="horizontal-list-container ">
-                {oweList?.filter((x) =>
-                    x.status.includes(value.toLocaleLowerCase()))
-                    .map((x) => (
+                {oweList?.map((x) => (
                         <div key={x.debtId} className="horizontal-list-item">
                             <DebtCard debt={x} />
                         </div>

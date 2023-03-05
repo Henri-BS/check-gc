@@ -10,6 +10,7 @@
 .card-md-list {
     height: max-content;
     justify-content: space-evenly;
+    padding: 0;
 }
 
 .card-md-title {
@@ -42,6 +43,5 @@
 }
 
 .card-lg-container {
-    width: 500px;
     padding: 10px;
 }

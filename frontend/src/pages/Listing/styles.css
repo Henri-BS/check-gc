@@ -10,6 +10,21 @@
     text-align: center;
 }
 
+.sub-navbar-item {
+    height: 100%;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--dark-prim);
+}
+
+.sub-navbar-item h2 {
+    text-align: center;
+    margin: 0;
+    padding: 4px;
+}
+
 .horizontal-list-container {
     height: 440px;
     width: 100%;

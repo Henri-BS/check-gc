@@ -9,12 +9,8 @@
     --green-prim: #22d1d3;
     --green-seco: #188f91;
     --green-tert: #0f5c5e;
-    --red-prim: #b30b0b;
-}
-
-body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+    --red-prim: #911836;
+    --blue-prim: #184891;
 }
 
 body {
@@ -27,9 +23,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+
+/*Pagination*/
 
 .pagination {
     justify-content: center;
@@ -55,6 +59,9 @@ code {
     border: 1px solid #463b3b93;
 }
 
+
+/*Modal*/
+
 .modal-content {
     background-color: var(--white-prim);
 }
@@ -73,17 +80,22 @@ code {
 
 .link-option {
     font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
     color: var(--dark-seco);
     background-color: transparent;
     border: none;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    border-radius: 100%;
 }
 
 .link-option:hover {
     color: var(--dark-prim);
     background-color: var(--dark-quat);
-    border-radius: 8px;
 }
 
 .blur-container {
@@ -94,21 +106,56 @@ code {
     box-shadow: 0 4px 22px 0 rgba(0, 0, 0.39, 0.37);
 }
 
-.btn-confirm {
-    background-color: var(--green-seco);
-    color: var(--white-seco);
+
+/*Button*/
+
+.btn {
     border: 3px solid transparent;
     border-radius: 10px;
     padding: 6px;
     transition: all 0.2s ease-in-out;
 }
 
+.btn:hover {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.btn-confirm {
+    background-color: var(--green-seco);
+    color: var(--white-seco);
+}
+
 .btn-confirm:hover {
     background-color: transparent;
     color: var(--dark-prim);
     border: 3px solid var(--green-seco);
-    border-radius: 10px;
 }
+
+.btn-primary {
+    background-color: var(--blue-prim);
+    color: var(--white-seco);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--dark-prim);
+    border: 3px solid var(--blue-prim);
+}
+
+.btn-danger {
+    background-color: var(--red-prim);
+    color: var(--white-seco);
+}
+
+.btn-danger:hover {
+    background-color: transparent;
+    color: var(--dark-prim);
+    border: 3px solid var(--red-prim);
+}
+
+
+/*Scrool*/
 
 ::-webkit-scrollbar {
     background-color: rgb(168, 180, 179);

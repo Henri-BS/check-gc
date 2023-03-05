@@ -1,3 +1,6 @@
+ALTER TABLE tb_client_account add constraint fk_client foreign key (client_id) references tb_client;
+
+
 INSERT INTO tb_client(name, phone_number, address) VALUES('Jack', '(99) 98723-3281', 'Bairro Jardim, Rua 22 - 3131');
 INSERT INTO tb_client(name, phone_number, address) VALUES('Anny', '(99) 98644-7553', 'Bairro Aurora, Rua 24 - 6414');
 INSERT INTO tb_client(name, phone_number, address) VALUES('Lucia', '(99) 99457-9145', 'Bairro Bela Noite, Rua 9 - 3131');
@@ -45,3 +48,4 @@ INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, pro
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-05', 2, 0.0, 5, 7, 'Devendo');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-13', 9, 0.0, 7, 2, 'Devendo');
 INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-16', 14, 0.0, 4, 8, 'Pago');
+

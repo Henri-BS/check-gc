@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ClientDTO;
+import com.altercode.checkgc.service.interf.IClientAccountService;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,9 @@ public class ClientController {
 
     @Autowired
     private IClientService clientService;
+
+    @Autowired
+    private ClientAccountController accountController;
 
     @GetMapping("/list")
     public ResponseEntity<Page<ClientDTO>> findAllClients(Pageable pageable) {
@@ -51,5 +55,4 @@ public class ClientController {
     public void deleteClient(@PathVariable Long id){
         this.clientService.deleteClient(id);
     }
-
 }

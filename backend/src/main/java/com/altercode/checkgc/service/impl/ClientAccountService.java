@@ -30,5 +30,8 @@ public class ClientAccountService implements IClientAccountService {
         return new ClientAccountDTO(find);
     }
 
-
+    @Override
+    public void deleteAccount(Long id) {
+        this.accountRepository.deleteById(id);
+    }
 }

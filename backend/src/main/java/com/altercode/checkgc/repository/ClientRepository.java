@@ -1,6 +1,7 @@
 package com.altercode.checkgc.repository;
 
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.ClientAccount;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
