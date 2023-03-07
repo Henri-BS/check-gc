@@ -1,4 +1,3 @@
-ALTER TABLE tb_client_account add constraint fk_client foreign key (client_id) references tb_client;
 
 
 INSERT INTO tb_client(name, phone_number, address) VALUES('Jack', '(99) 98723-3281', 'Bairro Jardim, Rua 22 - 3131');
@@ -33,19 +32,17 @@ INSERT INTO tb_product (description, price) VALUES ('Óleo de Milho Sinhá 1l', 
 INSERT INTO tb_product (description, price) VALUES ('Feijâo Preto Mayara 1kg', 9.80);
 INSERT INTO tb_product (description, price) VALUES ('Sal Cavalinho 1kg', 1.0);
 
-INSERT INTO tb_status(status_id) VALUES('Devendo');
-INSERT INTO tb_status(status_id) VALUES('Pago');
 
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-12', 4, 0.0, 1, 1, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-12', 2, 0.0, 1, 4, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 1, 0.0, 1, 9, 'Pago');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 1, 0.0, 6, 1, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-12', 4, 0.0, 1, 1, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-12', 2, 0.0, 1, 4, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-05', 1, 0.0, 1, 9, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-05', 1, 0.0, 6, 1, 'Pago');
 
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-10', 8, 0.0, 2, 5, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-05', 5, 0.0, 3, 3, 'Pago');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-01-20', 2, 0.0, 2, 6, 'Pago');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-02', 3, 0.0, 6, 11, 'Pago');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-05', 2, 0.0, 5, 7, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-13', 9, 0.0, 7, 2, 'Devendo');
-INSERT INTO tb_debt(debt_date, product_quantity, product_amount, account_id, product_id, status_id) VALUES('2023-02-16', 14, 0.0, 4, 8, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-10', 8, 0.0, 2, 5, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-05', 5, 0.0, 3, 3, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-01-20', 2, 0.0, 2, 6, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-02-02', 3, 0.0, 6, 11, 'Pago');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-02-05', 2, 0.0, 5, 7, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-02-13', 9, 0.0, 7, 2, 'Devendo');
+INSERT INTO tb_debt(debt_date, product_quantity, product_amount, client_id, product_id, status) VALUES('2023-02-16', 14, 0.0, 4, 8, 'Pago');
 

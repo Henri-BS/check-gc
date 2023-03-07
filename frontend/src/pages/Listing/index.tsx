@@ -91,7 +91,7 @@ export function DebtList() {
                 </div>
                 <div className="row">
                     {debtList.content.map(x => (
-                        <div className="col-12 col-md-6 col-xl-4 mb-3">
+                        <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <DebtCard debt={x} />
                         </div>
                     ))}
@@ -105,7 +105,7 @@ export function DebtListByClient({ clientId }: ClientProps) {
 
     const [oweList, setOweList] = useState<Debt[]>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list-account/${clientId}?status=Devendo`)
+        axios.get(`${BASE_URL}/debt/list-client/${clientId}?status=Devendo`)
             .then((response) => {
                 setOweList(response.data);
             })

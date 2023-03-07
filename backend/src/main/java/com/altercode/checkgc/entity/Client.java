@@ -1,6 +1,8 @@
 package com.altercode.checkgc.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_client")
@@ -22,6 +24,9 @@ public class Client {
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private ClientAccount account;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Debt> debts = new HashSet<>();
 
     public Client() {
     }
@@ -73,4 +78,9 @@ public class Client {
     public void setAccount(ClientAccount account) {
         this.account = account;
     }
+
+    public Set<Debt> getDebts() {
+        return debts;
+    }
+
 }

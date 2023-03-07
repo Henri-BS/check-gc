@@ -127,11 +127,11 @@ export function DebtCard({ debt }: DebtCardProps) {
     return (
         <div className="card-md-container">
             <div className="card-md-title">
-                <i className="fa fa-book" />{debt.client}
+                <i className="fa fa-book" />{debt.clientId}
             </div>
             <ul className="card-md-list">
                 <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
-                <li className="card-md-item card-md-content">Produto Solicitado: {debt.productDescription}</li>
+                <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
                 <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
                 <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
                 <li className="card-md-item card-md-content">Situação: {debt.status}</li>

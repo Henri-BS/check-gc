@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Status;
 import com.altercode.checkgc.service.impl.DebtService;
@@ -27,15 +28,9 @@ public class DebtController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/list-account/{account}")
-    public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable ClientAccount account, @RequestParam Status status) {
-        List<DebtDTO> list = debtService.findAllDebtsByAccount(account);
-        return ResponseEntity.ok(list);
-    }
-
-    @GetMapping("/list-status/{status}")
-    public ResponseEntity<List<DebtDTO>> findAllDebtsByStatus(@PathVariable Status status) {
-        List<DebtDTO> list = debtService.findAllDebtsByStatus(status);
+    @GetMapping("/list-client/{clientId}")
+    public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable Client clientId, @RequestParam String status) {
+        List<DebtDTO> list = debtService.findAllDebtsByAccount(clientId);
         return ResponseEntity.ok(list);
     }
 

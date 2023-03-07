@@ -30,9 +30,9 @@ public class ClientAccount {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+ /*   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private Set<Debt> debts = new HashSet<Debt>();
-
+*/
     public ClientAccount() {
     }
 
@@ -84,7 +84,5 @@ public class ClientAccount {
         this.client = client;
     }
 
-    public Set<Debt> getDebts() {
-        return debts;
-    }
+
 }

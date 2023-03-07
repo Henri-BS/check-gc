@@ -14,8 +14,7 @@ public class Status {
 
     private Integer debtQuantity = 0;
 
-    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
-    private Set<Debt> debts = new HashSet<>();
+
 
     public Status() {
     }
@@ -39,9 +38,5 @@ public class Status {
 
     public void setDebtQuantity(Integer debtQuantity) {
         this.debtQuantity = debtQuantity;
-    }
-
-    public Set<Debt> getDebts() {
-        return debts;
     }
 }

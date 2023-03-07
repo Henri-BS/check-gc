@@ -73,7 +73,7 @@ function Home() {
                         <div className="home-bar-list">
                         {debtList.content.map(x => (
                             <ul className="home-bar-item" >
-                                <li className="home-bar-content">Produto: {x.productDescription} ({x.productQuantity})</li>
+                                <li className="home-bar-content">Produto: {x.product} ({x.productQuantity})</li>
                                 <li className="home-bar-content">Situação: {x.status}</li>
                             </ul> 
                             ))}

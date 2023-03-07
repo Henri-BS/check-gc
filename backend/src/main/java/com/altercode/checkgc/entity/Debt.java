@@ -21,28 +21,25 @@ public class Debt {
     @Column(name = "product_amount")
     private Double productAmount = 0.0;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
-    private ClientAccount account;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id")
-    private Status status;
-
+    private String status;
 
     public Debt() {
     }
 
-    public Debt(Long debtId, LocalDate debtDate, Integer productQuantity, Double productAmount, ClientAccount account, Product product, Status status) {
+    public Debt(Long debtId, LocalDate debtDate, Integer productQuantity, Double productAmount, Client client, Product product, String status) {
         this.debtId = debtId;
         this.debtDate = debtDate;
         this.productQuantity = productQuantity;
         this.productAmount = productAmount;
-        this.account = account;
+        this.client = client;
         this.product = product;
         this.status = status;
     }
@@ -79,12 +76,12 @@ public class Debt {
         this.productAmount = productAmount;
     }
 
-    public ClientAccount getAccount() {
-        return account;
+    public Client getClient() {
+        return client;
     }
 
-    public void setAccount(ClientAccount account) {
-        this.account = account;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Product getProduct() {
@@ -95,11 +92,11 @@ public class Debt {
         this.product = product;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

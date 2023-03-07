@@ -1,9 +1,5 @@
 package com.altercode.checkgc.service.impl;
 
-import com.altercode.checkgc.dto.ClientAccountDTO;
-import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.ClientAccount;
-import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.repository.ClientAccountRepository;
 import com.altercode.checkgc.service.interf.IClientAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +11,7 @@ public class ClientAccountService implements IClientAccountService {
     @Autowired
     private ClientAccountRepository accountRepository;
 
+/*
     @Override
     public ClientAccountDTO findAccountByClient(Client client) {
         ClientAccount find = accountRepository.findAccountByClient(client);
@@ -29,6 +26,7 @@ public class ClientAccountService implements IClientAccountService {
 
         return new ClientAccountDTO(find);
     }
+*/
 
     @Override
     public void deleteAccount(Long id) {

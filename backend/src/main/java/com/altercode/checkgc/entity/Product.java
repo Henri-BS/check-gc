@@ -17,7 +17,7 @@ public class Product {
 
     private Double price = 0.0;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product",cascade = CascadeType.REFRESH)
     private Set<Debt> debts = new HashSet<>();
 
     public Product() {

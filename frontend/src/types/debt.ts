@@ -3,10 +3,8 @@ export type Debt = {
   debtDate: string;
   productQuantity: number;
   productAmount: number;
-  client: string;
-  account: number;
+  clientId: number;
   product: number;
-  productDescription: string;
   status: string;
 };
 

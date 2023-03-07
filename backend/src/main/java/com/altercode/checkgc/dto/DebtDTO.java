@@ -16,10 +16,8 @@ public class DebtDTO implements Serializable {
     private Integer productQuantity;
     private Double productAmount;
 
-    private String client;
-    private Long account;
+    private Long clientId;
     private Long product;
-    private String productDescription;
     private String status;
 
     public DebtDTO() {
@@ -30,11 +28,9 @@ public class DebtDTO implements Serializable {
         debtDate = entity.getDebtDate();
         productQuantity = entity.getProductQuantity();
         productAmount = entity.getProductAmount();
-        client = entity.getAccount().getClient().getName();
-        account = entity.getAccount().getAccountId();
+        clientId = entity.getClient().getClientId();
         product = entity.getProduct().getProductId();
-        productDescription = entity.getProduct().getDescription();
-        status = entity.getStatus().getStatusId();
+        status = entity.getStatus();
     }
 
     public Long getDebtId() {
@@ -69,20 +65,12 @@ public class DebtDTO implements Serializable {
         this.productAmount = productAmount;
     }
 
-    public String getClient() {
-        return client;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClient(String client) {
-        this.client = client;
-    }
-
-    public Long getAccount() {
-        return account;
-    }
-
-    public void setAccount(Long account) {
-        this.account = account;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public Long getProduct() {
@@ -91,14 +79,6 @@ public class DebtDTO implements Serializable {
 
     public void setProduct(Long product) {
         this.product = product;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
     }
 
     public String getStatus() {
