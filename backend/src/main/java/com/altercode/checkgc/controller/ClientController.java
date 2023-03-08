@@ -38,6 +38,12 @@ public class ClientController {
         return ResponseEntity.ok(find);
     }
 
+    @GetMapping("/find-by-name/{name}")
+    public ResponseEntity<ClientDTO> findClientByName(@PathVariable String name) {
+        ClientDTO find = clientService.findClientByName(name);
+        return ResponseEntity.ok(find);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ClientDTO> saveClient(@RequestBody ClientDTO dto){
         ClientDTO add = clientService.saveClient(dto);
@@ -48,6 +54,12 @@ public class ClientController {
     public ResponseEntity<ClientDTO> editClient(@RequestBody ClientDTO dto){
         ClientDTO edit = clientService.updateClient(dto);
         return new ResponseEntity<>(edit, HttpStatus.OK);
+    }
+
+    @PutMapping("/update-value/{clientId}")
+    public ResponseEntity<ClientDTO> updateAccountValues( ClientDTO dto, @PathVariable Long clientId){
+        ClientDTO update = clientService.updateAccountValues(dto);
+        return new ResponseEntity<>(update, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

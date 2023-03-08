@@ -26,13 +26,11 @@ public class ClientAccount {
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
 
- /*   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    private Set<Debt> debts = new HashSet<Debt>();
-*/
+
     public ClientAccount() {
     }
 

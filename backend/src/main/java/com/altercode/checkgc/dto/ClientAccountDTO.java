@@ -12,8 +12,8 @@ public class ClientAccountDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long accountId;
-    private Double debtAmount = 0.0;
-    private Integer debtQuantity = 0;
+    private Double debtAmount;
+    private Integer debtQuantity;
     private LocalDateTime lastModifiedDate;
     private String clientName;
 

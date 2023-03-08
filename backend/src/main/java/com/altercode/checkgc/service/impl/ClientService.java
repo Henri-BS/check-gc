@@ -3,6 +3,7 @@ package com.altercode.checkgc.service.impl;
 import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
+import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.repository.ClientAccountRepository;
 import com.altercode.checkgc.repository.ClientRepository;
 import com.altercode.checkgc.service.interf.IClientService;
@@ -41,6 +42,12 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public ClientDTO findClientByName(String name) {
+        Client find = clientRepository.findClientByName(name);
+        return new ClientDTO(find);
+    }
+
+    @Override
     public ClientDTO saveClient(ClientDTO dto) {
 
         Client add = new Client();
@@ -70,7 +77,24 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public ClientDTO updateAccountValues(ClientDTO dto) {
+        Client client = clientRepository.findById(dto.getClientId()).orElseThrow();
+
+        double total = 0.0;
+        for(Debt a : client.getDebts()) {
+            total = a.getProductQuantity() * a.getProduct().getPrice();
+        }
+        client.getAccount().setDebtQuantity(client.getDebts().size());
+        client.getAccount().setDebtAmount(total);
+
+
+        return new ClientDTO(clientRepository.save(client));
+    }
+
+    @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }
+
+
 }

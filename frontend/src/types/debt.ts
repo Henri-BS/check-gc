@@ -4,6 +4,7 @@ export type Debt = {
   productQuantity: number;
   productAmount: number;
   clientId: number;
+  clientName: string;
   product: number;
   status: string;
 };

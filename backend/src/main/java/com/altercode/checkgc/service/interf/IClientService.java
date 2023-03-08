@@ -12,9 +12,15 @@ public interface IClientService {
 
     ClientDTO findClientById(Long id);
 
+    ClientDTO findClientByName(String name);
+
     ClientDTO saveClient(ClientDTO dto);
 
     ClientDTO updateClient(ClientDTO dto);
 
+    ClientDTO updateAccountValues(ClientDTO dto);
+
     void deleteClient(Long id);
+
+
 }

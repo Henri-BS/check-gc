@@ -14,8 +14,6 @@ public class Status {
 
     private Integer debtQuantity = 0;
 
-
-
     public Status() {
     }
 

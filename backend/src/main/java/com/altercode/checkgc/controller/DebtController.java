@@ -2,9 +2,6 @@ package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.ClientAccount;
-import com.altercode.checkgc.entity.Status;
-import com.altercode.checkgc.service.impl.DebtService;
 import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,8 +26,8 @@ public class DebtController {
     }
 
     @GetMapping("/list-client/{clientId}")
-    public ResponseEntity<List<DebtDTO>> findAllDebtsByAccount(@PathVariable Client clientId, @RequestParam String status) {
-        List<DebtDTO> list = debtService.findAllDebtsByAccount(clientId);
+    public ResponseEntity<List<DebtDTO>> findAllDebtsByClient(@PathVariable Client clientId) {
+        List<DebtDTO> list = debtService.findAllDebtsByClient(clientId);
         return ResponseEntity.ok(list);
     }
 

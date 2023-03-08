@@ -16,12 +16,6 @@ public class ClientAccountController {
     @Autowired
     private IClientAccountService accountService;
 
-   /* @GetMapping("/client/{client}")
-    public ResponseEntity<ClientAccountDTO> findAccountByClient(@PathVariable Client client) {
-        ClientAccountDTO find = accountService.findAccountByClient(client);
-        return ResponseEntity.ok(find);
-    }*/
-
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAccount(@PathVariable Long id) {

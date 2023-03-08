@@ -25,7 +25,7 @@ public class Client {
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private ClientAccount account;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Debt> debts = new HashSet<>();
 
     public Client() {

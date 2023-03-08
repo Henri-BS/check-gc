@@ -41,7 +41,7 @@ export function ClientProfile() {
     return (
         <>
             <div className="container ">
-                <div className="pagination-container">
+                <div className="sub-navbar">
                     <Link to={"/client-list"} className="sub-navbar-item">
                         <h2><i className="fa fa-chevron-left" /></h2>
                     </Link>

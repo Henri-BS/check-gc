@@ -28,6 +28,8 @@ export function ClientList() {
             });
     }, [pageNumber]);
 
+    
+
     return (
         <>
             <Navbar />
@@ -77,7 +79,7 @@ export function DebtList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list?page=${pageNumber}}&size=3`)
+        axios.get(`${BASE_URL}/debt/list?page=${pageNumber}&size=3`)
             .then((response) => {
                 setDebtList(response.data);
             });
@@ -90,7 +92,7 @@ export function DebtList() {
                     <Pagination page={debtList} onPageChange={handlePageChange} />
                 </div>
                 <div className="row">
-                    {debtList.content.map(x => (
+                    {debtList.content?.map(x => (
                         <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <DebtCard debt={x} />
                         </div>
@@ -105,7 +107,7 @@ export function DebtListByClient({ clientId }: ClientProps) {
 
     const [oweList, setOweList] = useState<Debt[]>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list-client/${clientId}?status=Devendo`)
+        axios.get(`${BASE_URL}/debt/list-client/${clientId}`)
             .then((response) => {
                 setOweList(response.data);
             })

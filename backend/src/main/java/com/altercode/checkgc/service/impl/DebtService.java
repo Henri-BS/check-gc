@@ -25,7 +25,6 @@ public class DebtService implements IDebtService {
     private ClientRepository clientRepository;
 
 
-
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
         Page<Debt> page = debtRepository.findAll(pageable);
@@ -33,7 +32,7 @@ public class DebtService implements IDebtService {
     }
 
     @Override
-    public List<DebtDTO> findAllDebtsByAccount(Client client) {
+    public List<DebtDTO> findAllDebtsByClient(Client client) {
         List<Debt> list = debtRepository.findAllDebtsByClient(client);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
@@ -47,7 +46,7 @@ public class DebtService implements IDebtService {
     @Override
     public DebtDTO saveDebt(DebtDTO dto) {
         Product product = productRepository.findById(dto.getProduct()).orElseThrow();
-        Client client = clientRepository.findById(dto.getClientId()).orElseThrow();
+        Client client = clientRepository.findClientByName(dto.getClientName());
 
         Debt add = new Debt();
         add.setClient(client);

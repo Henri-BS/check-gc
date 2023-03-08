@@ -4,25 +4,39 @@
     padding: 12px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: last baseline;
     font-size: medium;
+    text-align: center;
+}
+
+.sub-navbar {
+    list-style: none;
+    margin: 0;
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: last baseline;
+    font-size: large;
     text-align: center;
 }
 
 .sub-navbar-item {
     height: 100%;
     width: 40px;
+    padding: 0;
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     color: var(--dark-prim);
 }
 
-.sub-navbar-item h2 {
-    text-align: center;
-    margin: 0;
-    padding: 4px;
+.sub-navbar a {
+    height: 50px;
+    width: max-content;
+    justify-content: flex-end;
+    align-items: baseline;
 }
 
 .horizontal-list-container {

@@ -16,7 +16,7 @@ export function ClientCard({ client }: ClientCardProps) {
 
     const [account, setAccount] = useState<ClientAccount>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/account/client/${client.clientId}`)
+        axios.put(`${BASE_URL}/client/update-value/${client.clientId}`)
             .then((response) => {
                 setAccount(response.data);
             })
@@ -31,7 +31,6 @@ export function ClientCard({ client }: ClientCardProps) {
                 <div className="card-md-container">
                     <nav className="card-md-title">
                         {client.name}
-
                     </nav>
                     <ul className="card-md-list">
                         <li className="card-md-item card-md-content">Endereço: {client.address}</li>
@@ -93,15 +92,12 @@ export function ClientProfileCard({ clientId }: ClientProps) {
             })
     }, [clientId]);
 
-    const [account, setAccount] = useState<ClientAccount>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/account/client/${clientId}`)
+        axios.put(`${BASE_URL}/client/update-value/${client?.clientId}`)
             .then((response) => {
-                setAccount(response.data);
+                setClient(response.data);
             })
-    }, [clientId]);
-
-    
+    }, [client?.clientId]);
 
     return (
         <>
@@ -111,9 +107,9 @@ export function ClientProfileCard({ clientId }: ClientProps) {
                     </div>
                     <li className="card-md-content">Endereço: {client?.address}</li>
                     <li className="card-md-content">Contato: {client?.phoneNumber}</li>
-                    <li className="card-md-content">Valor Total da Conta: {account?.debtAmount}</li>
-                    <li className="card-md-content">Compras Realizadas: {account?.debtQuantity}</li>
-                    <li className="card-md-content">Última Atualização: {account?.lastModifiedDate}</li>
+                    <li className="card-md-content">Valor Total da Conta: {client?.account.debtAmount}</li>
+                    <li className="card-md-content">Compras Realizadas: {client?.account.debtQuantity}</li>
+                    <li className="card-md-content">Última Atualização: {client?.account.lastModifiedDate}</li>
             </nav>
         </>
     );
@@ -127,7 +123,7 @@ export function DebtCard({ debt }: DebtCardProps) {
     return (
         <div className="card-md-container">
             <div className="card-md-title">
-                <i className="fa fa-book" />{debt.clientId}
+                <i className="fa fa-book" />{debt.clientName}
             </div>
             <ul className="card-md-list">
                 <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
