@@ -14,11 +14,11 @@ type ClientCardProps = {
 
 export function ClientCard({ client }: ClientCardProps) {
 
-    const [account, setAccount] = useState<ClientAccount>();
+    const [clientProfile, setClientProfile] = useState<Client>();
     useEffect(() => {
         axios.put(`${BASE_URL}/client/update-value/${client.clientId}`)
             .then((response) => {
-                setAccount(response.data);
+                setClientProfile(response.data);
             })
     }, [client.clientId]);
 
@@ -35,9 +35,9 @@ export function ClientCard({ client }: ClientCardProps) {
                     <ul className="card-md-list">
                         <li className="card-md-item card-md-content">Endereço: {client.address}</li>
                         <li className="card-md-item card-md-content">Contato: {client.phoneNumber}</li>
-                        <li className="card-md-item card-md-content">Valor Total da Conta: {account?.debtAmount}</li>
-                        <li className="card-md-item card-md-content">Compras Realizadas: {account?.debtQuantity}</li>
-                        <li className="card-md-item card-md-content">Última Atualização: {account?.lastModifiedDate}</li>
+                        <li className="card-md-item card-md-content">Valor Total da Conta: {clientProfile?.account.debtAmount}</li>
+                        <li className="card-md-item card-md-content">Compras Realizadas: {clientProfile?.account.debtQuantity}</li>
+                        <li className="card-md-item card-md-content">Última Atualização: {clientProfile?.account.lastModifiedDate}</li>
                     </ul>
                 </div>
             </Link>
@@ -123,7 +123,7 @@ export function DebtCard({ debt }: DebtCardProps) {
     return (
         <div className="card-md-container">
             <div className="card-md-title">
-                <i className="fa fa-book" />{debt.clientName}
+                {debt.clientName}
             </div>
             <ul className="card-md-list">
                 <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
@@ -135,6 +135,21 @@ export function DebtCard({ debt }: DebtCardProps) {
         </div>
     );
 }
+
+export function DebtProfileCard({ debt }: DebtCardProps) {
+    return (
+        <div className="card-md-container">
+            <ul className="card-md-list">
+                <li className="card-md-item card-md-content border-0">Data da Compra: {debt.debtDate}</li>
+                <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
+                <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
+                <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
+                <li className="card-md-item card-md-content">Situação: {debt.status}</li>
+            </ul>
+        </div>
+    );
+}
+
 
 type ProductCardProps = {
     product: Product;

@@ -40,7 +40,7 @@
 }
 
 .horizontal-list-container {
-    height: 440px;
+    height: max-content;
     width: 100%;
     display: flex;
     overflow-x: scroll;

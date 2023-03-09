@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Navbar } from "components/Navbar";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ClientPage } from "types/client";
 import { DebtPage } from "types/debt";
 import { ProductPage } from "types/product";
@@ -52,14 +53,16 @@ function Home() {
                 <div className="home-bar-container">
                     <ul className="home-bar-title">
                         <li><i className="fa fa-user" /> Novos Clientes</li>
-                        <li className="page-link">ver lista completa</li>
+                        <Link to={`/client-list`}><li>ver lista completa</li></Link>
                     </ul>
                     <div className="home-bar-list">
                         {clientList.content.map(x => (
+                            <Link to={`/client/${x.clientId}`} className="text-decoration-none"> 
                             <ul className="home-bar-item" key={x.clientId}>
                                 <li className="home-bar-content">{x.name}</li>
                                 <li className="home-bar-content">Endereço: {x.address}</li>
-                            </ul>
+                                </ul>
+                            </Link>
                         ))}
                     </div>
                 </div>

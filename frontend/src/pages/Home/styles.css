@@ -14,12 +14,14 @@
 
 .home-bar-title {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 12px;
     height: max-content;
     list-style: none;
     font-size: x-large;
     font-weight: 500;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .home-bar-item {
@@ -29,6 +31,7 @@
     height: 80px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    color: var(--dark-prim);
     border: 1px solid #b8b6b6;
     border-radius: 12px;
 }
