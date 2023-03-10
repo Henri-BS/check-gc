@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client, ClientPage, ClientProps } from "types/client";
+import { Debt, DebtProps } from "types/debt";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
@@ -110,8 +111,7 @@ export function ClientEditForm({ clientId }: ClientProps) {
 export function DebtAddForm() {
 
     const navigate = useNavigate();
-    
-   
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const debtDate = (event.target as any).debtDate.value;
         const productQuantity = (event.target as any).productQuantity.value;
@@ -138,10 +138,10 @@ export function DebtAddForm() {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-            <div className="form-group gerencg-form-group">
-            <label htmlFor="clientName">Cliente</label>
+                <div className="form-group gerencg-form-group">
+                    <label htmlFor="clientName">Cliente</label>
                     <input id="clientName" type="text" className="form-control" />
-                    </div>
+                </div>
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
                     <input id="debtDate" type="text" className="form-control" />
@@ -164,5 +164,6 @@ export function DebtAddForm() {
                 <button type="submit" className="btn btn-confirm">Adicionar</button>
             </div>
         </form>
-        );
+    );
 }
+

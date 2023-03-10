@@ -145,7 +145,7 @@ export function DebtListByClient({ clientId }: ClientProps) {
             <div className="horizontal-list-container ">
                 {oweList?.map((x) => (
                         <div key={x.debtId} className="horizontal-list-item">
-                            <DebtProfileCard debt={x} />
+                            <DebtCard debt={x} />
                         </div>
                     ))}
             </div>

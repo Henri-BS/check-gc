@@ -1,30 +1,31 @@
 import axios from "axios";
-import { ClientProfileCard } from "components/Card";
+import { ClientProfileCard, DebtProfileCard } from "components/Card";
 import { ClientEditForm } from "components/Form";
 import { DebtListByClient } from "pages/Listing";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
+import { Debt, DebtProps } from "types/debt";
 import { BASE_URL } from "utils/requests";
 
 export function DeleteClient({ clientId }: ClientProps) {
 
     const navigate = useNavigate();
 
-    const[client, setClient] = useState<Client>();
+    const [client, setClient] = useState<Client>();
     useEffect(() => {
         axios.get((`${BASE_URL}/client/${clientId}`))
-        .then((response) => {
-            setClient(response.data);
-        })
+            .then((response) => {
+                setClient(response.data);
+            })
     }, [clientId])
 
     const deleteClient = () => {
         axios.delete(`${BASE_URL}/client/delete/${clientId}`)
             .then((response) => {
                 navigate("/client-list");
-            }) 
+            })
     }
 
     return (
@@ -87,4 +88,15 @@ export function ClientProfile() {
             </div>
         </>
     );
-} 
+}
+
+export function DebtProfile() {
+
+    const params = useParams();
+    return(
+        <div className="container"> 
+        <DebtProfileCard debtId={`${params.debtId}`}/>
+        <hr />
+        </div>
+    )
+}

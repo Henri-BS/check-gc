@@ -17,7 +17,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: last baseline;
     font-size: large;
     text-align: center;
 }
@@ -34,9 +33,12 @@
 
 .sub-navbar a {
     height: 50px;
-    width: max-content;
+    font-size: 30px;
+    display: flex;
     justify-content: flex-end;
-    align-items: baseline;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
 }
 
 .horizontal-list-container {

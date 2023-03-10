@@ -22,6 +22,10 @@ export type DebtPage = {
   pageNumber?: number;
 };
 
+export type DebtProps = {
+  debtId: string;
+}
+
 export type Status = {
   statusId: string;
 }

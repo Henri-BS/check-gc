@@ -1,7 +1,8 @@
-import { ClientProfile } from "pages/Profile";
+import { ClientProfile, DebtProfile } from "pages/Profile";
 import Home from "pages/Home";
 import { ClientList, DebtList, ProductList } from "pages/Listing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { DebtProfileCard } from "components/Card";
 
 function PageRoutes() {
     return (
@@ -14,6 +15,9 @@ function PageRoutes() {
 
                 <Route path="/client" >
                     <Route path=":clientId" element={<ClientProfile/>}/>
+                    </Route> 
+                    <Route path="/debt" >
+                    <Route path=":debtId" element={<DebtProfile/>}/>
                     </Route> 
             </Routes>
         </BrowserRouter>

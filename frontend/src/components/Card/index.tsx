@@ -1,9 +1,9 @@
 import axios from "axios";
 import { ClientEditForm } from "components/Form";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Client, ClientAccount, ClientProps } from "types/client";
-import { Debt } from "types/debt";
+import { Link, useParams } from "react-router-dom";
+import { Client, ClientProps } from "types/client";
+import { Debt, DebtProps } from "types/debt";
 import { Product } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -102,14 +102,14 @@ export function ClientProfileCard({ clientId }: ClientProps) {
     return (
         <>
             <nav className="card-lg-container">
-                    <div className="card-md-title">
-                        {client?.name}
-                    </div>
-                    <li className="card-md-content">Endereço: {client?.address}</li>
-                    <li className="card-md-content">Contato: {client?.phoneNumber}</li>
-                    <li className="card-md-content">Valor Total da Conta: {client?.account.debtAmount}</li>
-                    <li className="card-md-content">Compras Realizadas: {client?.account.debtQuantity}</li>
-                    <li className="card-md-content">Última Atualização: {client?.account.lastModifiedDate}</li>
+                <div className="card-md-title">
+                    {client?.name}
+                </div>
+                <li className="card-md-content">Endereço: {client?.address}</li>
+                <li className="card-md-content">Contato: {client?.phoneNumber}</li>
+                <li className="card-md-content">Valor Total da Conta: {client?.account.debtAmount}</li>
+                <li className="card-md-content">Compras Realizadas: {client?.account.debtQuantity}</li>
+                <li className="card-md-content">Última Atualização: {client?.account.lastModifiedDate}</li>
             </nav>
         </>
     );
@@ -121,32 +121,64 @@ type DebtCardProps = {
 
 export function DebtCard({ debt }: DebtCardProps) {
     return (
-        <div className="card-md-container">
-            <div className="card-md-title">
-                {debt.clientName}
+        <Link to={`/debt/${debt.debtId}`}>
+            <div className="card-md-container" >
+                <div className="card-md-title">
+                    {debt.clientName}
+                </div>
+                <ul className="card-md-list">
+                    <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
+                    <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
+                    <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
+                    <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
+                    <li className="card-md-item card-md-content">Situação: {debt.status}</li>
+                </ul>
             </div>
-            <ul className="card-md-list">
-                <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
-                <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
-                <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
-                <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
-                <li className="card-md-item card-md-content">Situação: {debt.status}</li>
-            </ul>
-        </div>
+        </Link>
     );
 }
 
-export function DebtProfileCard({ debt }: DebtCardProps) {
+export function DebtProfileCard({ debtId }: DebtProps) {
+    const [debt, setDebt] = useState<Debt>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/${debtId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+    }, [debtId]);
+
     return (
-        <div className="card-md-container">
+        <>
+            <div className="sub-navbar">
+                <Link to={`/client/${debt?.clientId}`} className="sub-navbar-item">
+                    <i className="fa fa-chevron-left" />
+                </Link>
+                <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
+                    <i className="fa fa-edit" /> Editar Compra
+                </button>
+                <button className="btn btn-danger" data-bs-target="#debtDeleteModal" data-bs-toggle="modal">
+                    <i className="fa fa-trash" /> Deletar Compra
+                </button>
+            </div>
+            <hr/>
             <ul className="card-md-list">
-                <li className="card-md-item card-md-content border-0">Data da Compra: {debt.debtDate}</li>
-                <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
-                <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
-                <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
-                <li className="card-md-item card-md-content">Situação: {debt.status}</li>
+                <li className="card-lg-item "> Data da Compra:
+                    <p className="card-lg-content">{debt?.debtDate}</p>
+                </li>
+                <li className=" card-lg-item">Produto Solicitado:
+                    <p className="card-lg-content">{debt?.product}</p>
+                </li>
+                <li className=" card-lg-item">Quantidade do Produto:
+                    <p className="card-lg-content">{debt?.productQuantity}</p>
+                </li>
+                <li className=" card-lg-item">Valor da Compra:
+                    <p className="card-lg-content">{debt?.productAmount}</p>
+                </li>
+                <li className=" card-lg-item">Situação:
+                    <p className="card-lg-content">{debt?.status}</p>
+                </li>
             </ul>
-        </div>
+        </>
     );
 }
 
