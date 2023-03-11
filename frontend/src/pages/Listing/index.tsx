@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ClientCard, DebtCard, ProductCard } from "components/Card";
+import { ClientCard, DebtCard, DebtSmallCard, ProductCard } from "components/Card";
 import { ClientAddForm, DebtAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
@@ -126,11 +126,11 @@ export function DebtList() {
 
 export function DebtListByClient({ clientId }: ClientProps) {
 
-    const [oweList, setOweList] = useState<Debt[]>();
+    const [debtList, setDebtList] = useState<Debt[]>();
     useEffect(() => {
         axios.get(`${BASE_URL}/debt/list-client/${clientId}`)
             .then((response) => {
-                setOweList(response.data);
+                setDebtList(response.data);
             })
     }, [clientId]);
 
@@ -141,9 +141,9 @@ export function DebtListByClient({ clientId }: ClientProps) {
                 
             </ul>
             <div className="horizontal-list-container ">
-                {oweList?.map((x) => (
+                {debtList?.map((x) => (
                         <div key={x.debtId} className="horizontal-list-item">
-                            <DebtCard debt={x} />
+                            <DebtSmallCard debt={x} />
                         </div>
                     ))}
             </div>

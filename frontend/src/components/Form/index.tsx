@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Client, ClientPage, ClientProps } from "types/client";
+import { Client, ClientProps } from "types/client";
 import { Debt, DebtProps } from "types/debt";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
