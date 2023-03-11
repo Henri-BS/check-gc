@@ -1,10 +1,9 @@
 import axios from "axios";
-import { ClientCard, DebtCard, DebtProfileCard, ProductCard } from "components/Card";
+import { ClientCard, DebtCard, ProductCard } from "components/Card";
 import { ClientAddForm, DebtAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { ClientPage, ClientProps } from "types/client";
 import { Debt, DebtPage } from "types/debt";
 import { ProductPage } from "types/product";
@@ -70,7 +69,6 @@ export function ClientList() {
 
 export function DebtList() {
 
-    const params = useParams();
     const [pageNumber, setPageNumber] = useState(0);
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);

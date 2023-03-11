@@ -4,8 +4,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "tb_client_account")
@@ -29,7 +28,6 @@ public class ClientAccount {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
-
 
     public ClientAccount() {
     }

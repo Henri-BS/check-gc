@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
-import { Debt, DebtProps } from "types/debt";
 import { BASE_URL } from "utils/requests";
 
 export function DeleteClient({ clientId }: ClientProps) {
@@ -25,6 +24,7 @@ export function DeleteClient({ clientId }: ClientProps) {
         axios.delete(`${BASE_URL}/client/delete/${clientId}`)
             .then((response) => {
                 navigate("/client-list");
+                console.log(client?.clientId)
             })
     }
 

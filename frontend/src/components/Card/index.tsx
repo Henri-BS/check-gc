@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ClientEditForm } from "components/Form";
+import { ClientEditForm, DebtEditForm } from "components/Form";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
@@ -139,6 +139,8 @@ export function DebtCard({ debt }: DebtCardProps) {
 }
 
 export function DebtProfileCard({ debtId }: DebtProps) {
+
+    const params = useParams();
     const [debt, setDebt] = useState<Debt>();
     useEffect(() => {
         axios.get(`${BASE_URL}/debt/${debtId}`)
@@ -160,7 +162,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     <i className="fa fa-trash" /> Deletar Compra
                 </button>
             </div>
-            <hr/>
+            <hr />
             <ul className="card-md-list">
                 <li className="card-lg-item "> Data da Compra:
                     <p className="card-lg-content">{debt?.debtDate}</p>
@@ -178,6 +180,19 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     <p className="card-lg-content">{debt?.status}</p>
                 </li>
             </ul>
+            <div className="modal fade" role={"dialog"} id={"debtEditModal"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="debtLabel" className="modal-title">Alterar dados da compra</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times"/></span>
+                                </button>                    
+                        </div>
+<div className="modal-body"><DebtEditForm debtId={`${params.debtId}`} /></div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

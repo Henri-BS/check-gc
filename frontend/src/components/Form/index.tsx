@@ -167,3 +167,70 @@ export function DebtAddForm() {
     );
 }
 
+export function DebtEditForm({ debtId }: DebtProps) {
+
+    const navigate = useNavigate();
+
+    const [debt, setDebt] = useState<Debt>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/${debtId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+    }, [debtId]);
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const debtDate = (event.target as any).debtDate.value;
+        const productQuantity = (event.target as any).productQuantity.value;
+        const clientName = (event.target as any).clientName.value;
+        const product = (event.target as any).product.value;
+        const status = (event.target as any).status.value;
+      
+        const config: AxiosRequestConfig = {
+            method: "PUT",
+            baseURL: BASE_URL,
+            url: `/debt/edit`,
+            data: {
+                debtId: debtId,
+                debtDate: debtDate,
+                productQuantity: productQuantity,
+                clientName: clientName,
+                product: product,
+                status: status
+            }
+        }
+        axios(config).then((response) => {
+            navigate("/debt-list");
+        });
+    }
+    return (
+        <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-card">
+                <div className="form-group gerencg-form-group">
+                    <label htmlFor="clientName">Cliente</label>
+                    <input id="clientName" type="text" className="form-control" defaultValue={debt?.clientName}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="debtDate">Data da Compra</label>
+                    <input id="debtDate" type="text" className="form-control" defaultValue={debt?.debtDate}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="productQuantity">Quantidade do Produto</label>
+                    <input id="productQuantity" type="text" className="form-control" defaultValue={debt?.productQuantity}/>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="product">Produto</label>
+                    <input id="product" type="text" className="form-control" defaultValue={debt?.product}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="status">Situtação da Compra</label>
+                    <input id="status" type="text" className="form-control" defaultValue={debt?.status}/>
+                </div>
+            </div>
+            <div className="modal-footer">
+                <button type="submit" className="btn btn-confirm">Editar</button>
+            </div>
+        </form>
+    );
+}

@@ -43,7 +43,7 @@ public class DebtController {
         return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/edit")
     public ResponseEntity<DebtDTO> updateDebt(@RequestBody DebtDTO dto) {
         DebtDTO edit = debtService.updateDebt(dto);
         return new ResponseEntity<>(edit, HttpStatus.OK);
