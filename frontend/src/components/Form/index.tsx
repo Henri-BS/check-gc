@@ -185,7 +185,7 @@ export function DebtEditForm({ debtId }: DebtProps) {
         const clientName = (event.target as any).clientName.value;
         const product = (event.target as any).product.value;
         const status = (event.target as any).status.value;
-      
+
         const config: AxiosRequestConfig = {
             method: "PUT",
             baseURL: BASE_URL,
@@ -208,24 +208,24 @@ export function DebtEditForm({ debtId }: DebtProps) {
             <div className="form-card">
                 <div className="form-group gerencg-form-group">
                     <label htmlFor="clientName">Cliente</label>
-                    <input id="clientName" type="text" className="form-control" defaultValue={debt?.clientName}/>
+                    <input id="clientName" type="text" className="form-control" defaultValue={debt?.clientName} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
-                    <input id="debtDate" type="text" className="form-control" defaultValue={debt?.debtDate}/>
+                    <input id="debtDate" type="date" className="form-control" defaultValue={debt?.debtDate} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
-                    <input id="productQuantity" type="text" className="form-control" defaultValue={debt?.productQuantity}/>
+                    <input id="productQuantity" className="form-control" defaultValue={debt?.productQuantity} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="product">Produto</label>
-                    <input id="product" type="text" className="form-control" defaultValue={debt?.product}/>
+                    <input id="product" className="form-control" defaultValue={debt?.product} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="status">Situtação da Compra</label>
-                    <input id="status" type="text" className="form-control" defaultValue={debt?.status}/>
+                    <input id="status" className="form-control" defaultValue={debt?.status} />
                 </div>
             </div>
             <div className="modal-footer">
@@ -233,4 +233,47 @@ export function DebtEditForm({ debtId }: DebtProps) {
             </div>
         </form>
     );
+}
+
+export function ProductAddForm() {
+
+    const navigate = useNavigate();
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const description = (event.target as any).description.value;
+        const price = (event.target as any).price.value;
+
+        const config: AxiosRequestConfig = {
+            method: "POST",
+            baseURL: BASE_URL,
+            url: "/product/add",
+            data: {
+                description: description,
+                price: price,
+            }
+        }
+        axios(config).then((response) => {
+            navigate(`/product-list`)
+        });
+    }
+    return (
+        <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-card">
+                <div className="form-group">
+                    <label htmlFor="description">Descrição:</label>
+                    <input className="form-control" id="description" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="price">Preço:</label>
+                    <input className="form-control" id="price" />
+                </div>
+            </div>
+            <div className="modal-footer">
+                <button type="submit" className="btn btn-confirm">Adicionar</button>
+            </div>
+        </form>
+    );
+}
+
+export function ProductEditForm({productId}: ProductProps){
+
 }

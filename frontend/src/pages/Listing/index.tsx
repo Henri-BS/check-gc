@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ClientCard, DebtCard, DebtSmallCard, ProductCard } from "components/Card";
-import { ClientAddForm, DebtAddForm } from "components/Form";
+import { ClientAddForm, DebtAddForm, ProductAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ export function ClientList() {
             });
     }, [pageNumber]);
 
-    
+
 
     return (
         <>
@@ -89,15 +89,15 @@ export function DebtList() {
             <Navbar />
             <div className="container">
                 <div className="pagination-container row">
-                <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
                         <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Compra</button>
                     </div>
                     <div className="col-12 col-md-4 col-xl-6 mb-2" >
-                    <Pagination page={debtList} onPageChange={handlePageChange} />
+                        <Pagination page={debtList} onPageChange={handlePageChange} />
                     </div>
                     <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Realizadas: {debtList.totalElements}</div>
-
                 </div>
+
                 <div className="row">
                     {debtList.content?.map(x => (
                         <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
@@ -138,14 +138,14 @@ export function DebtListByClient({ clientId }: ClientProps) {
         <>
             <ul className="home-bar-title">
                 <li><i className="fa fa-book" /> Dívidas</li>
-                
+
             </ul>
             <div className="horizontal-list-container ">
                 {debtList?.map((x) => (
-                        <div key={x.debtId} className="horizontal-list-item">
-                            <DebtSmallCard debt={x} />
-                        </div>
-                    ))}
+                    <div key={x.debtId} className="horizontal-list-item">
+                        <DebtSmallCard debt={x} />
+                    </div>
+                ))}
             </div>
         </>
     );
@@ -173,15 +173,36 @@ export function ProductList() {
         <>
             <Navbar />
             <div className="container">
-                <div className="pagination-container">
-                    <Pagination page={productList} onPageChange={handlePageChange} />
+                <div className="pagination-container row">
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addProductModal" data-bs-toggle="modal">
+                        <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Produto</button>
+                    </div>
+                    <div className="col-12 col-md-4 col-xl-6 mb-2" >
+                        <Pagination page={productList} onPageChange={handlePageChange} />
+                    </div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Produtos Catalogados: {productList.totalElements}</div>
                 </div>
+
                 <div className="row">
                     {productList.content.map(x => (
                         <div className="col-12 col-md-6 col-xl-4">
                             <ProductCard product={x} />
                         </div>
                     ))}
+                </div>
+            </div>
+
+            <div className="modal fade" id="addProductModal" role={"dialog"} >
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="productLabel" className="modal-title">Adicionar um novo produto</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body"><ProductAddForm/></div>
+                    </div>
                 </div>
             </div>
         </>

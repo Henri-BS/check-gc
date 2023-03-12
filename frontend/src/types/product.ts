@@ -16,3 +16,7 @@ export type ProductPage = {
     empty?: boolean;
     pageNumber?: number;
 }
+
+export type ProductProps = {
+    productId: string;
+}
