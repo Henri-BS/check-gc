@@ -330,6 +330,7 @@ export function ProductCard({ product }: ProductCardProps) {
 export function ProductProfileCard({ productId }: ProductProps) {
 
     const params = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState<Product>();
     useEffect(() => {
         axios.get(`${BASE_URL}/product/${productId}`)
@@ -344,6 +345,14 @@ export function ProductProfileCard({ productId }: ProductProps) {
                 setProduct(response.data);
             });
     }, [productId]);
+
+    const deleteProduct = () => {
+        axios.delete(`${BASE_URL}/product/delete/${productId}`)
+        .then((response) => {
+            console.log(response.status);
+            navigate(`/product-list`);
+        })
+    }
 
     return (
         <>
@@ -381,6 +390,22 @@ export function ProductProfileCard({ productId }: ProductProps) {
                             </button>
                         </div>
                         <div className="modal-body"><ProductEditForm productId={`${params.productId}`} /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="productDeleteModal" role={"dialog"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="productLabel" className="modal-title">Deseja deletar este produto ?</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times"/></span>
+                            </button>
+                        </div>
+                        <div className="modal-footer">
+                            <button onClick={() => deleteProduct()} className="btn btn-danger" data-bs-dismiss="modal">Deletar</button>
+                        </div>
                     </div>
                 </div>
             </div>

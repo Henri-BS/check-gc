@@ -276,50 +276,51 @@ export function ProductAddForm() {
     );
 }
 
-export function ProductEditForm({productId}: ProductProps){
-const navigate = useNavigate();
-const [product, setProduct] = useState<Product>();
-useEffect(() => {
-    axios.get(`${BASE_URL}/product/${productId}`)
-    .then((response) => {
-        setProduct(response.data);
-    });
-}, [productId]);
+export function ProductEditForm({ productId }: ProductProps) {
+    const navigate = useNavigate();
+    const [product, setProduct] = useState<Product>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/${productId}`)
+            .then((response) => {
+                setProduct(response.data);
+            });
+    }, [productId]);
 
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const description = (event.target as any).description.value;
-    const price = (event.target as any).price.value;
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const description = (event.target as any).description.value;
+        const price = (event.target as any).price.value;
 
-    const config: AxiosRequestConfig = {
-        method: "PUT",
-        baseURL: BASE_URL,
-        url: "/product/edit",
-        data: {
-            description: description,
-            price: price,
+        const config: AxiosRequestConfig = {
+            method: "PUT",
+            baseURL: BASE_URL,
+            url: "/product/edit",
+            data: {
+                productId: productId,
+                description: description,
+                price: price,
+            }
         }
+        axios(config).then((response) => {
+            navigate(`/product/${productId}`)
+        });
     }
-    axios(config).then((response) => {
-        navigate(`/product/${productId}`)
-    });
-}
 
-return(
-    <form onSubmit={handleSubmit} className="form-container">
-        <div className="form-card">
-            <div className="form-group">
-                <label htmlFor="description">Descrição:</label>
-                <input id="description" className="form-control" defaultValue={product?.description}/>
+    return (
+        <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-card">
+                <div className="form-group">
+                    <label htmlFor="description">Descrição:</label>
+                    <input id="description" className="form-control" defaultValue={product?.description} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="price">Preço:</label>
+                    <input id="price" className="form-control" defaultValue={product?.price} />
+                </div>
             </div>
-            <div className="form-group">
-                <label htmlFor="price">Preço:</label>
-                <input id="price" className="form-control" defaultValue={product?.price}/>
+            <div className="modal-footer">
+                <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" className="btn btn-confirm">Editar</button>
             </div>
-        </div>
-        <div className="modal-footer">
-        <button type="button" className="btn btn-danger" data-bd-dismiss="modal">Cancelar</button>
-            <button type="submit" className="btn btn-confirm">Editar</button>
-        </div>
-    </form>
-);
+        </form>
+    );
 }
