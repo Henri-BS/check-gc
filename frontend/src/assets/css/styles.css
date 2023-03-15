@@ -90,12 +90,16 @@ code {
     border: none;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    border-radius: 100%;
+    border-radius: 8px;
 }
 
 .link-option:hover {
     color: var(--dark-prim);
     background-color: var(--dark-quat);
+}
+
+.link-primary {
+    cursor: pointer;
 }
 
 .blur-container {

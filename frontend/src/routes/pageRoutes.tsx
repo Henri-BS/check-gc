@@ -1,4 +1,4 @@
-import { ClientProfile, DebtProfile } from "pages/Profile";
+import { ClientProfile, DebtProfile, ProductProfile } from "pages/Profile";
 import Home from "pages/Home";
 import { ClientList, DebtList, ProductList } from "pages/Listing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -19,6 +19,11 @@ function PageRoutes() {
                     <Route path="/debt" >
                     <Route path=":debtId" element={<DebtProfile/>}/>
                     </Route> 
+                    <Route path="/product" >
+                    <Route path=":productId" element={<ProductProfile/>}/>
+                    </Route> 
+                    
+
             </Routes>
         </BrowserRouter>
     );

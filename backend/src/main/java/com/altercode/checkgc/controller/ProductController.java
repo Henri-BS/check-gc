@@ -46,6 +46,12 @@ public class ProductController {
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 
+    @PutMapping("/update-value/{productId}")
+    public ResponseEntity<ProductDTO> updateProductValues(ProductDTO dto, @PathVariable Long productId){
+        ProductDTO update = productService.updateProductValues(dto);
+        return new ResponseEntity<>(update, HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Long id){

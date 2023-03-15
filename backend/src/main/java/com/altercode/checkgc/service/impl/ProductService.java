@@ -53,6 +53,15 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public ProductDTO updateProductValues(ProductDTO dto) {
+        Product product = productRepository.findById(dto.getProductId()).orElseThrow();
+
+        product.setDebtQuantity(product.getDebts().size());
+
+        return new ProductDTO(productRepository.save(product));
+    }
+
+    @Override
     public void deleteProduct(Long id) {
         this.productRepository.deleteById(id);
     }

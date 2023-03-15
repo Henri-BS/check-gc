@@ -1,5 +1,5 @@
-import { ClientProfileCard, DebtProfileCard } from "components/Card";
-import { DebtListByClient } from "pages/Listing";
+import { ClientProfileCard, DebtProfileCard, ProductProfileCard } from "components/Card";
+import { DebtListByClient, ProductList } from "pages/Listing";
 import { useParams } from "react-router-dom";
 
 
@@ -28,4 +28,13 @@ export function DebtProfile() {
         <hr />
         </div>
     )
+}
+
+export function ProductProfile(){
+    const params = useParams();
+    return(
+        <div className="container">
+        <ProductProfileCard productId={`${params.productId}`}/>
+        </div>
+    );
 }

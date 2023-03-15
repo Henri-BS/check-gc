@@ -13,6 +13,7 @@ public class ProductDTO  implements Serializable {
     private Long productId;
     private String description;
     private Double price;
+private Integer debtQuantity;
 
     public ProductDTO() {
     }
@@ -21,6 +22,7 @@ public class ProductDTO  implements Serializable {
         productId = entity.getProductId();
         description = entity.getDescription();
         price = entity.getPrice();
+        debtQuantity = entity.getDebtQuantity();
     }
 
     public Long getProductId() {
@@ -45,5 +47,13 @@ public class ProductDTO  implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getDebtQuantity() {
+        return debtQuantity;
+    }
+
+    public void setDebtQuantity(Integer debtQuantity) {
+        this.debtQuantity = debtQuantity;
     }
 }

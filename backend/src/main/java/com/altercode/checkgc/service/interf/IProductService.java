@@ -16,5 +16,7 @@ public interface IProductService {
 
     ProductDTO updateProduct(ProductDTO dto);
 
+    ProductDTO updateProductValues(ProductDTO dto);
+
     void deleteProduct(Long id);
 }

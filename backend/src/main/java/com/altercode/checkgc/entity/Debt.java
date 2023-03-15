@@ -25,7 +25,7 @@ public class Debt {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 

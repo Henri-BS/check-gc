@@ -2,6 +2,7 @@ export type Product = {
     productId: number;
     description: string;
     price: number;
+    debtQuantity: number;
 }
 
 export type ProductPage = {

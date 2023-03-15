@@ -1,7 +1,11 @@
 package com.altercode.checkgc.entity;
 
+import org.hibernate.annotations.LazyCollection;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,16 +21,19 @@ public class Product {
 
     private Double price = 0.0;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.REFRESH)
-    private Set<Debt> debts = new HashSet<>();
+    private Integer debtQuantity;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<Debt> debts = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(Long productId, String description, Double price) {
+    public Product(Long productId, String description, Double price, Integer debtQuantity) {
         this.productId = productId;
         this.description = description;
         this.price = price;
+        this.debtQuantity = debtQuantity;
     }
 
     public Long getProductId() {
@@ -53,7 +60,15 @@ public class Product {
         this.price = price;
     }
 
-    public Set<Debt> getDebts() {
+    public Integer getDebtQuantity() {
+        return debtQuantity;
+    }
+
+    public void setDebtQuantity(Integer debtQuantity) {
+        this.debtQuantity = debtQuantity;
+    }
+
+    public List<Debt> getDebts() {
         return debts;
     }
 }

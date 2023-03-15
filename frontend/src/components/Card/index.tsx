@@ -1,10 +1,11 @@
 import axios from "axios";
-import { ClientEditForm, DebtEditForm } from "components/Form";
+import { ClientEditForm, DebtEditForm, ProductEditForm } from "components/Form";
+import { ProductProfile } from "pages/Profile";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
 import { Debt, DebtProps } from "types/debt";
-import { Product } from "types/product";
+import { Product, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
@@ -178,6 +179,7 @@ export function ClientProfileCard({ clientId }: ClientProps) {
     );
 }
 
+
 type DebtCardProps = {
     debt: Debt;
 }
@@ -200,7 +202,6 @@ export function DebtCard({ debt }: DebtCardProps) {
         </Link>
     );
 }
-
 
 export function DebtSmallCard({ debt }: DebtCardProps) {
     return (
@@ -285,7 +286,6 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     </div>
                 </div>
             </div>
-
             <div className="modal fade" id="debtDeleteModal" role={"dialog"}>
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
@@ -312,11 +312,78 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
     return (
-        <div className="card-md-container">
-            <div className="card-md-title">
-                {product.description}
+        <>
+        <Link to={`/product/${product.productId}`}>
+            <div className="card-md-container">
+                <div className="card-md-title">
+                    <li>{product.description}</li>
+                </div>
+                <div className="card-md-item "> Preço:
+                    <p className="card-md-content">{product.price}</p>
+                </div>
             </div>
-            <div className="card-md-item card-md-content"> Preço: {product.price}</div>
-        </div>
+            </Link>
+        </>
+    );
+}
+
+export function ProductProfileCard({ productId }: ProductProps) {
+
+    const params = useParams();
+    const [product, setProduct] = useState<Product>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/${productId}`)
+            .then((response) => {
+                setProduct(response.data);
+            });
+    }, [productId]);
+
+    useEffect(() => {
+        axios.put(`${BASE_URL}/product/update-value/${productId}`)
+            .then((response) => {
+                setProduct(response.data);
+            });
+    }, [productId]);
+
+    return (
+        <>
+        <div className="sub-navbar">
+                <Link to={`/product-list`} className="sub-navbar-item">
+                    <i className="fa fa-chevron-left" />
+                </Link>
+                <button className="btn btn-primary" data-bs-target="#productEditModal" data-bs-toggle="modal">
+                    <i className="fa fa-edit" /> Editar Produto
+                </button>
+                <button className="btn btn-danger" data-bs-target="#productDeleteModal" data-bs-toggle="modal">
+                    <i className="fa fa-trash" /> Deletar Produto
+                </button>
+            </div>
+            <hr />
+            <ul className="card-md-list">
+                <li className="card-lg-item "> Descrição:
+                    <p className="card-lg-content">{product?.description}</p>
+                </li>
+                <li className=" card-lg-item">Preço:
+                    <p className="card-lg-content">{product?.price}</p>
+                </li>
+                <li className=" card-lg-item">Quantidade de Compras do Produto:
+                    <p className="card-lg-content">{product?.debtQuantity}</p>
+                </li>
+            </ul>
+
+            <div className="modal fade" role={"dialog"} id={"productEditModal"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="productLabel" className="modal-title">Alterar dados da produto</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body"><ProductEditForm productId={`${params.productId}`} /></div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
