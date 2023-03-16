@@ -1,5 +1,5 @@
 import { ClientProfileCard, DebtProfileCard, ProductProfileCard } from "components/Card";
-import { DebtListByClient, ProductList } from "pages/Listing";
+import { DebtListByClient, DebtListByDate, ProductList } from "pages/Listing";
 import { useParams } from "react-router-dom";
 
 
@@ -26,6 +26,7 @@ export function DebtProfile() {
         <div className="container"> 
         <DebtProfileCard debtId={`${params.debtId}`}/>
         <hr />
+        <DebtListByDate debtId={`${params.debtId}`}/>
         </div>
     )
 }

@@ -103,6 +103,14 @@ code {
 }
 
 .blur-container {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: var(--dark-prim);
+    border: 1px solid #b8b6b6;
+}
+
+.blur-container:hover {
+    color: var(--blue-prim);
     max-inline-size: 100%;
     margin: 0;
     backdrop-filter: blur(10px);

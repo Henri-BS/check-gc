@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ClientEditForm, DebtEditForm, ProductEditForm } from "components/Form";
-import { ProductProfile } from "pages/Profile";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
@@ -28,8 +27,8 @@ export function ClientCard({ client }: ClientCardProps) {
 
     return (
         <>
-            <Link to={`/client/${client.clientId}`} className="text-decoration-none text-dark">
-                <div className="card-md-container">
+            <Link to={`/client/${client.clientId}`} >
+                <div className="card-md-container blur-container">
                     <nav className="card-md-title">
                         {client.name}
                     </nav>
@@ -187,7 +186,7 @@ type DebtCardProps = {
 export function DebtCard({ debt }: DebtCardProps) {
     return (
         <Link to={`/debt/${debt.debtId}`}>
-            <div className="card-md-container" >
+            <div className="card-md-container blur-container" >
                 <div className="card-md-title">
                     {debt.clientName}
                 </div>
@@ -205,8 +204,8 @@ export function DebtCard({ debt }: DebtCardProps) {
 
 export function DebtSmallCard({ debt }: DebtCardProps) {
     return (
-        <Link to={`/debt/${debt.debtId}`} className="text-decoration-none text-dark">
-            <div className="card-md-container" >
+        <Link to={`/debt/${debt.debtId}`} >
+            <div className="card-md-container blur-container" >
                 <div className="card-md-title">
                     Produto Solicitado: {debt.product}
                 </div>
@@ -242,6 +241,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                 navigate(`/client/${debt?.clientId}`)
             })
     }
+
     return (
         <>
             <div className="sub-navbar">
@@ -273,6 +273,8 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     <p className="card-lg-content">{debt?.status}</p>
                 </li>
             </ul>
+
+
             <div className="modal fade" role={"dialog"} id={"debtEditModal"}>
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
@@ -314,7 +316,7 @@ export function ProductCard({ product }: ProductCardProps) {
     return (
         <>
         <Link to={`/product/${product.productId}`}>
-            <div className="card-md-container">
+            <div className="card-md-container blur-container">
                 <div className="card-md-title">
                     <li>{product.description}</li>
                 </div>

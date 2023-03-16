@@ -5,7 +5,7 @@ import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { ClientPage, ClientProps } from "types/client";
-import { Debt, DebtPage } from "types/debt";
+import { Debt, DebtPage, DebtProps } from "types/debt";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -137,8 +137,42 @@ export function DebtListByClient({ clientId }: ClientProps) {
     return (
         <>
             <ul className="home-bar-title">
-                <li><i className="fa fa-book" /> Dívidas</li>
+                <li><i className="fa fa-book"/> Dívidas</li>
 
+            </ul>
+            <div className="horizontal-list-container">
+                {debtList?.map((x) => (
+                    <div key={x.debtId} className="horizontal-list-item">
+                        <DebtSmallCard debt={x} />
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}
+
+export function DebtListByDate({ debtId }: DebtProps) {
+
+    const [debt, setDebt] = useState<Debt>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/${debtId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+    }, [debtId]);
+
+    const [debtList, setDebtList] = useState<Debt[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/list-by-date/${debt?.debtDate}`)
+        .then((response) => {
+                setDebtList(response.data);
+            })
+    }, [debt?.debtDate]);
+
+    return (
+        <>
+            <ul className="home-bar-title">
+                <li><i className="fa fa-book" /> Dívidas da data: {debt?.debtDate}</li>
             </ul>
             <div className="horizontal-list-container ">
                 {debtList?.map((x) => (
@@ -150,6 +184,8 @@ export function DebtListByClient({ clientId }: ClientProps) {
         </>
     );
 }
+
+
 
 export function ProductList() {
 

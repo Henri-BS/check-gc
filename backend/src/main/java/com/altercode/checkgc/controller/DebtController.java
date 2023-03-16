@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,12 @@ public class DebtController {
     @GetMapping("/list-client/{clientId}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByClient(@PathVariable Client clientId) {
         List<DebtDTO> list = debtService.findAllDebtsByClient(clientId);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/list-by-date/{debtDate}")
+    public ResponseEntity<List<DebtDTO>> findAllDebtsByDebtDate(@PathVariable String debtDate) {
+        List<DebtDTO> list = debtService.findAllDebtsByDebtDate(debtDate);
         return ResponseEntity.ok(list);
     }
 
