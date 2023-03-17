@@ -1,6 +1,7 @@
 package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.*;
 import com.altercode.checkgc.repository.*;
 import com.altercode.checkgc.service.interf.IDebtService;
@@ -43,6 +44,12 @@ public class DebtService implements IDebtService {
         LocalDate date = LocalDate.parse(debtDate);
         List<Debt> list = debtRepository.findAllDebtsByDebtDate(date);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TotalDebtDateDTO> debtAmountGroupByDate(){
+        List<TotalDebtDateDTO> list = debtRepository.debtAmountGroupByDate();
+        return list.stream().map(x -> new TotalDebtDateDTO()).collect(Collectors.toList());
     }
 
     @Override

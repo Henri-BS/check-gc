@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -35,6 +35,12 @@ public class DebtController {
     @GetMapping("/list-by-date/{debtDate}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByDebtDate(@PathVariable String debtDate) {
         List<DebtDTO> list = debtService.findAllDebtsByDebtDate(debtDate);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/total-values")
+    public ResponseEntity<List<TotalDebtDateDTO>> debtAmountGroupByDate() {
+        List<TotalDebtDateDTO> list = debtService.debtAmountGroupByDate();
         return ResponseEntity.ok(list);
     }
 
