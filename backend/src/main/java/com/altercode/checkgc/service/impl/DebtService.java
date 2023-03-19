@@ -1,5 +1,6 @@
 package com.altercode.checkgc.service.impl;
 
+import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.*;
@@ -30,6 +31,12 @@ public class DebtService implements IDebtService {
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
         Page<Debt> page = debtRepository.findAll(pageable);
+        double total ;
+        for(Debt d: page) {
+            total = d.getProductQuantity() * d.getProduct().getPrice();
+            d.setProductAmount(total);
+            debtRepository.save(d);
+        }
         return page.map(DebtDTO::new);
     }
 
@@ -48,13 +55,16 @@ public class DebtService implements IDebtService {
 
     @Override
     public List<TotalDebtDateDTO> debtAmountGroupByDate(){
-        List<TotalDebtDateDTO> list = debtRepository.debtAmountGroupByDate();
-        return list.stream().map(x -> new TotalDebtDateDTO()).collect(Collectors.toList());
+        return debtRepository.debtAmountGroupByDate();
     }
 
     @Override
     public DebtDTO findDebtById(Long id) {
         Debt find = debtRepository.findById(id).orElseThrow();
+        double total ;
+        total = find.getProductQuantity() * find.getProduct().getPrice();
+        find.setProductAmount(total);
+        debtRepository.save(find);
         return new DebtDTO(find);
     }
 
@@ -87,6 +97,8 @@ public class DebtService implements IDebtService {
 
         return new DebtDTO(debtRepository.save(edit));
     }
+
+
 
     @Override
     public void deleteDebt(Long id) {

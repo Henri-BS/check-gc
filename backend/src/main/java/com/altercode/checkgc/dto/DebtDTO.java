@@ -19,6 +19,7 @@ public class DebtDTO implements Serializable {
     private Long clientId;
     private String clientName;
     private Long product;
+    private String productDescription;
     private String status;
 
     public DebtDTO() {
@@ -32,6 +33,7 @@ public class DebtDTO implements Serializable {
         clientId = entity.getClient().getClientId();
         clientName = entity.getClient().getName();
         product = entity.getProduct().getProductId();
+        productDescription = entity.getProduct().getDescription();
         status = entity.getStatus();
     }
 
@@ -89,6 +91,14 @@ public class DebtDTO implements Serializable {
 
     public void setProduct(Long product) {
         this.product = product;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public String getStatus() {

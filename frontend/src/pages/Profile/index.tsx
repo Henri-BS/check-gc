@@ -1,5 +1,5 @@
 import { ClientProfileCard, DebtProfileCard, ProductProfileCard } from "components/Card";
-import { DebtListByClient, DebtListByDate, ProductList } from "pages/Listing";
+import { DebtListByClient, DebtListByDate } from "pages/Listing";
 import { useParams } from "react-router-dom";
 
 

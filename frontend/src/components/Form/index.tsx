@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Client, ClientProps } from "types/client";
+import { Client, ClientPage, ClientProps } from "types/client";
 import { Debt, DebtProps } from "types/debt";
 import { Product, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
@@ -113,10 +113,22 @@ export function DebtAddForm() {
 
     const navigate = useNavigate();
 
+    const [clientList, setClientList] = useState<ClientPage>({
+        content: [],
+        number: 0
+    });
+    const [value, setValue] = useState("");
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
+            .then((response) => {
+                setClientList(response.data);
+            });
+    }, [value]);
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const clientName = (event.target as any).clientName.value;
         const debtDate = (event.target as any).debtDate.value;
         const productQuantity = (event.target as any).productQuantity.value;
-        const clientName = (event.target as any).clientName.value;
         const product = (event.target as any).product.value;
         const status = (event.target as any).status.value;
 
@@ -125,9 +137,9 @@ export function DebtAddForm() {
             baseURL: BASE_URL,
             url: `/debt/add`,
             data: {
+                clientName: clientName,
                 debtDate: debtDate,
                 productQuantity: productQuantity,
-                clientName: clientName,
                 product: product,
                 status: status
             }
@@ -139,13 +151,29 @@ export function DebtAddForm() {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <div className="form-group gerencg-form-group">
+                <div className="form-group ">
                     <label htmlFor="clientName">Cliente</label>
-                    <input id="clientName" type="text" className="form-control" />
+                    <input
+                        list="clientList"
+                        id="clientName"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                    />
+                    <datalist id="clientList">
+                        {clientList.content?.filter((x) =>
+                            x.name.includes(value))
+                            .map((x) => (
+                                <option id="value" value={x.name} key={x.clientId}>
+                                    {x.name}
+                                </option>
+                            ))
+                        }
+                    </datalist>
                 </div>
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
-                    <input id="debtDate" type="text" className="form-control" />
+                    <input id="debtDate" type="date" className="form-control" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
@@ -180,6 +208,18 @@ export function DebtEditForm({ debtId }: DebtProps) {
             });
     }, [debtId]);
 
+    const [clientList, setClientList] = useState<ClientPage>({
+        content: [],
+        number: 0
+    });
+    const [value, setValue] = useState("");
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
+            .then((response) => {
+                setClientList(response.data);
+            });
+    }, [value]);
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const debtDate = (event.target as any).debtDate.value;
         const productQuantity = (event.target as any).productQuantity.value;
@@ -207,9 +247,26 @@ export function DebtEditForm({ debtId }: DebtProps) {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <div className="form-group gerencg-form-group">
+                <div className="form-group">
                     <label htmlFor="clientName">Cliente</label>
-                    <input id="clientName" type="text" className="form-control" defaultValue={debt?.clientName} />
+                    <input
+                        list="clientList"
+                        id="clientName"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                        defaultValue={debt?.clientName}
+                    />
+                    <datalist id="clientList">
+                        {clientList.content?.filter((x) =>
+                            x.name.includes(value))
+                            .map((x) => (
+                                <option id="value" value={x.name} key={x.clientId}>
+                                    {x.name}
+                                </option>
+                            ))
+                        }
+                    </datalist>
                 </div>
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>

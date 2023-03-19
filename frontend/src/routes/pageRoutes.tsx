@@ -2,7 +2,6 @@ import { ClientProfile, DebtProfile, ProductProfile } from "pages/Profile";
 import Home from "pages/Home";
 import { ClientList, DebtList, ProductList } from "pages/Listing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { DebtProfileCard } from "components/Card";
 
 function PageRoutes() {
     return (

@@ -6,6 +6,7 @@ export type Debt = {
   clientId: number;
   clientName: string;
   product: number;
+  productDescription: string;
   status: string;
 };
 

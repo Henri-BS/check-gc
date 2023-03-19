@@ -191,11 +191,21 @@ export function DebtCard({ debt }: DebtCardProps) {
                     {debt.clientName}
                 </div>
                 <ul className="card-md-list">
-                    <li className="card-md-item card-md-content">Data da Compra: {debt.debtDate}</li>
-                    <li className="card-md-item card-md-content">Produto Solicitado: {debt.product}</li>
-                    <li className="card-md-item card-md-content">Quantidade do Produto: {debt.productQuantity}</li>
-                    <li className="card-md-item card-md-content">Valor da Compra: {debt.productAmount}</li>
-                    <li className="card-md-item card-md-content">Situação: {debt.status}</li>
+                    <li className="card-md-item ">Data da Compra: 
+                    <p className="card-md-content">{debt.debtDate}</p>
+                    </li>
+                    <li className="card-md-item ">Produto Solicitado: 
+                    <p className="card-md-content">{debt.productDescription}</p>
+                    </li>
+                    <li className="card-md-item ">Quantidade do Produto: 
+                    <p className="card-md-content">{debt.productQuantity}</p>
+                    </li>
+                    <li className="card-md-item ">Valor da Compra: 
+                    <p className="card-md-content">{debt.productAmount}</p>
+                    </li>
+                    <li className="card-md-item ">Situação: 
+                    <p className="card-md-content">{debt.status}</p>
+                    </li>
                 </ul>
             </div>
         </Link>
@@ -207,7 +217,7 @@ export function DebtSmallCard({ debt }: DebtCardProps) {
         <Link to={`/debt/${debt.debtId}`} >
             <div className="card-md-container blur-container" >
                 <div className="card-md-title">
-                    Produto Solicitado: {debt.product}
+                    Produto Solicitado: {debt.productDescription}
                 </div>
                 <ul className="card-md-list">
                     <li className="card-md-item">Data da Compra:

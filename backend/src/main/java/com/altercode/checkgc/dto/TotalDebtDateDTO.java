@@ -8,15 +8,14 @@ public class TotalDebtDateDTO {
     private Double productAmount;
     private Long productQuantity;
 
-    public TotalDebtDateDTO() {
 
-    }
 
     public TotalDebtDateDTO(LocalDate debtDate, Double productAmount, Long productQuantity) {
         this.debtDate = debtDate;
         this.productAmount = productAmount;
         this.productQuantity = productQuantity;
     }
+
 
     public LocalDate getDebtDate() {
         return debtDate;

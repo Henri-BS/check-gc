@@ -38,7 +38,7 @@ public class DebtController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/total-values")
+    @GetMapping("/values-by-date")
     public ResponseEntity<List<TotalDebtDateDTO>> debtAmountGroupByDate() {
         List<TotalDebtDateDTO> list = debtService.debtAmountGroupByDate();
         return ResponseEntity.ok(list);
