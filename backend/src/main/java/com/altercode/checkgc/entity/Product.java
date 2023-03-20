@@ -23,7 +23,7 @@ public class Product {
 
     private Integer debtQuantity;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product")
     private List<Debt> debts = new ArrayList<>();
 
     public Product() {

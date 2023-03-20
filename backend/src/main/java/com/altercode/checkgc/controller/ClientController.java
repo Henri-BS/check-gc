@@ -1,7 +1,6 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ClientDTO;
-import com.altercode.checkgc.service.interf.IClientAccountService;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

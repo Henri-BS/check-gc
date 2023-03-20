@@ -70,7 +70,7 @@ public class DebtService implements IDebtService {
 
     @Override
     public DebtDTO saveDebt(DebtDTO dto) {
-        Product product = productRepository.findById(dto.getProduct()).orElseThrow();
+        Product product = productRepository.findByDescription(dto.getProductDescription());
         Client client = clientRepository.findClientByName(dto.getClientName());
 
         Debt add = new Debt();
@@ -86,7 +86,7 @@ public class DebtService implements IDebtService {
     @Override
     public DebtDTO updateDebt(DebtDTO dto) {
         Debt edit = debtRepository.findById(dto.getDebtId()).orElseThrow();
-        Product product = productRepository.findById(dto.getProduct()).orElseThrow();
+        Product product = productRepository.findByDescription(dto.getProductDescription());
 
         edit.setDebtId(edit.getDebtId());
         edit.setDebtDate(dto.getDebtDate());
@@ -97,8 +97,6 @@ public class DebtService implements IDebtService {
 
         return new DebtDTO(debtRepository.save(edit));
     }
-
-
 
     @Override
     public void deleteDebt(Long id) {

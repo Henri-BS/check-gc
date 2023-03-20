@@ -23,7 +23,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Page<ProductDTO> findProductsByDescription(Pageable pageable, String description) {
-        Page<Product>  page = productRepository.findProductsByDescription(pageable, description);
+        Page<Product>  page = productRepository.findAllProductsByDescription(pageable, description);
         return page.map(ProductDTO::new);
     }
 

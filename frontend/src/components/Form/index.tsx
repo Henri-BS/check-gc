@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client, ClientPage, ClientProps } from "types/client";
 import { Debt, DebtProps } from "types/debt";
-import { Product, ProductProps } from "types/product";
+import { Product, ProductPage, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
@@ -112,12 +112,12 @@ export function ClientEditForm({ clientId }: ClientProps) {
 export function DebtAddForm() {
 
     const navigate = useNavigate();
+    const [value, setValue] = useState("");
 
     const [clientList, setClientList] = useState<ClientPage>({
         content: [],
         number: 0
     });
-    const [value, setValue] = useState("");
     useEffect(() => {
         axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
             .then((response) => {
@@ -125,11 +125,22 @@ export function DebtAddForm() {
             });
     }, [value]);
 
+    const [productList, setProductList] = useState<ProductPage>({
+        content: [],
+        number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
+            .then((response) => {
+                setProductList(response.data);
+            });
+    }, [value]);
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const clientName = (event.target as any).clientName.value;
         const debtDate = (event.target as any).debtDate.value;
         const productQuantity = (event.target as any).productQuantity.value;
-        const product = (event.target as any).product.value;
+        const productDescription = (event.target as any).productDescription.value;
         const status = (event.target as any).status.value;
 
         const config: AxiosRequestConfig = {
@@ -140,7 +151,7 @@ export function DebtAddForm() {
                 clientName: clientName,
                 debtDate: debtDate,
                 productQuantity: productQuantity,
-                product: product,
+                productDescription: productDescription,
                 status: status
             }
         }
@@ -182,7 +193,23 @@ export function DebtAddForm() {
 
                 <div className="form-group">
                     <label htmlFor="product">Produto</label>
-                    <input id="product" type="text" className="form-control" />
+                    <input
+                        id="productDescription"
+                        list="productList"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                    />
+                    <datalist id="productList">
+                        {productList.content?.filter(x =>
+                            x.description.toLowerCase().includes(value.toLocaleLowerCase()))
+                            .map(x => (
+                                <option id="value" key={x.productId} value={x.description}>
+                                    {x.description}
+                                </option>
+                            ))
+                        }
+                    </datalist>
                 </div>
                 <div className="form-group">
                     <label htmlFor="status">Situtação da Compra</label>
@@ -208,17 +235,29 @@ export function DebtEditForm({ debtId }: DebtProps) {
             });
     }, [debtId]);
 
+    const [value, setValue] = useState("");
     const [clientList, setClientList] = useState<ClientPage>({
         content: [],
         number: 0
     });
-    const [value, setValue] = useState("");
     useEffect(() => {
         axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
             .then((response) => {
                 setClientList(response.data);
             });
     }, [value]);
+
+    const [productList, setProductList] = useState<ProductPage>({
+        content: [],
+        number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
+            .then((response) => {
+                setProductList(response.data);
+            });
+    }, [value]);
+
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const debtDate = (event.target as any).debtDate.value;
@@ -279,7 +318,24 @@ export function DebtEditForm({ debtId }: DebtProps) {
 
                 <div className="form-group">
                     <label htmlFor="product">Produto</label>
-                    <input id="product" className="form-control" defaultValue={debt?.product} />
+                    <input
+                        id="product"
+                        list="productList"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                        defaultValue={debt?.product}
+                    />
+                    <datalist id="productList">
+                        {productList.content.filter(x =>
+                            x.description.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
+                            .map(x => (
+                                <option id="value" key={x.productId} value={x.description}>
+                                    {x.description}
+                                </option>
+                            ))
+                        }
+                    </datalist>
                 </div>
                 <div className="form-group">
                     <label htmlFor="status">Situtação da Compra</label>
@@ -292,7 +348,6 @@ export function DebtEditForm({ debtId }: DebtProps) {
         </form>
     );
 }
-
 
 export function ProductAddForm() {
 
