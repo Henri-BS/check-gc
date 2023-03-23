@@ -26,6 +26,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Debt> debts = new ArrayList<>();
 
+
     public Product() {
     }
 
@@ -71,4 +72,5 @@ public class Product {
     public List<Debt> getDebts() {
         return debts;
     }
+
 }

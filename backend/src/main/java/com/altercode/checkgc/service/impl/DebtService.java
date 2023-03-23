@@ -1,6 +1,5 @@
 package com.altercode.checkgc.service.impl;
 
-import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.*;
@@ -26,6 +25,9 @@ public class DebtService implements IDebtService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private PaidRepository paidRepository;
 
 
     @Override
@@ -97,6 +99,8 @@ public class DebtService implements IDebtService {
 
         return new DebtDTO(debtRepository.save(edit));
     }
+
+
 
     @Override
     public void deleteDebt(Long id) {

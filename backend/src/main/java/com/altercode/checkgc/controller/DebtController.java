@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.interf.IDebtService;

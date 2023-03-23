@@ -5,7 +5,7 @@ import com.altercode.checkgc.entity.Product;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class ProductDTO  implements Serializable {
+public class ProductDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class ProductDTO  implements Serializable {
     private Long productId;
     private String description;
     private Double price;
-private Integer debtQuantity;
+    private Integer debtQuantity;
 
     public ProductDTO() {
     }
