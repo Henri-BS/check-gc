@@ -100,8 +100,6 @@ public class DebtService implements IDebtService {
         return new DebtDTO(debtRepository.save(edit));
     }
 
-
-
     @Override
     public void deleteDebt(Long id) {
         this.debtRepository.deleteById(id);

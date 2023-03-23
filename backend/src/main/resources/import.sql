@@ -46,3 +46,6 @@ INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  pro
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(7, '2023-02-13', 9, 0.0, 2, 'Devendo');
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(4, '2023-02-16', 14, 0.0, 8, 'Pago');
 
+
+INSERT INTO tb_paid(payment_date, payment_type, product_quantity, product_amount) VALUES('2023-04-12', 'PIX', 2, 0.0);
+

@@ -5,10 +5,7 @@ import com.altercode.checkgc.service.interf.IPaidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +22,8 @@ public class PaidController {
         return ResponseEntity.ok(list);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<PaidDTO> savePaid(PaidDTO dto) {
+    @PostMapping("/add")
+    public ResponseEntity<PaidDTO> savePaid(@RequestBody PaidDTO dto) {
         PaidDTO add = paidService.savePaid(dto);
         return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
