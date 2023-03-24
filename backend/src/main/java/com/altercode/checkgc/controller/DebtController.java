@@ -63,6 +63,12 @@ public class DebtController {
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 
+    @PutMapping("/update-for-paid/{debtId}")
+    public ResponseEntity<PaidDTO> updateDebtForPaid(@RequestBody PaidDTO dto, @PathVariable Long debtId) {
+        PaidDTO update = debtService.updateDebtForPaid(dto, debtId);
+        return new ResponseEntity<>(update, HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDebt(@PathVariable Long id) {

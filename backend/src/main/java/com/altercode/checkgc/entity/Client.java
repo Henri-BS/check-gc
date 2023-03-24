@@ -28,6 +28,9 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Debt> debts = new HashSet<>();
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private Set<Paid> paids = new HashSet<>();
+
     public Client() {
     }
 

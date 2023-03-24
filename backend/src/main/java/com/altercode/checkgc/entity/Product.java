@@ -26,6 +26,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Debt> debts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<Paid> paids = new HashSet<>();
 
     public Product() {
     }

@@ -25,6 +25,8 @@ public interface IDebtService {
 
     DebtDTO updateDebt(DebtDTO dto);
 
+    PaidDTO updateDebtForPaid(PaidDTO dto, Long id);
+
     void deleteDebt(Long id);
 
 

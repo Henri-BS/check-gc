@@ -1,6 +1,7 @@
 package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.*;
 import com.altercode.checkgc.repository.*;
@@ -98,6 +99,26 @@ public class DebtService implements IDebtService {
         edit.setStatus(dto.getStatus());
 
         return new DebtDTO(debtRepository.save(edit));
+    }
+
+    @Override
+    public PaidDTO updateDebtForPaid(PaidDTO dto, Long debtId){
+        Debt debt = debtRepository.findById(debtId).orElseThrow();
+
+        Paid addPaid = new Paid();
+        addPaid.setPaymentType(dto.getPaymentType());
+        addPaid.setPaymentDate(dto.getPaymentDate());
+        addPaid = paidRepository.saveAndFlush(addPaid);
+
+        Paid updatePaid = paidRepository.findById(addPaid.getPaidId()).orElseThrow();
+        updatePaid.setProductQuantity(debt.getProductQuantity());
+        updatePaid.setProductAmount(debt.getProductAmount());
+        updatePaid.setProduct(debt.getProduct());
+        updatePaid.setClient(debt.getClient());
+        updatePaid = paidRepository.save(updatePaid);
+
+        this.debtRepository.deleteById(debt.getDebtId());
+        return new PaidDTO(updatePaid);
     }
 
     @Override

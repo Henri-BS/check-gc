@@ -1,7 +1,9 @@
 package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.PaidDTO;
+import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Paid;
+import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.repository.ClientRepository;
 import com.altercode.checkgc.repository.PaidRepository;
 import com.altercode.checkgc.repository.ProductRepository;
@@ -32,14 +34,15 @@ public class PaidService implements IPaidService {
 
     @Override
     public PaidDTO savePaid(PaidDTO dto) {
+        Product product = productRepository.findByDescription(dto.getProductDescription());
+        Client client = clientRepository.findClientByName(dto.getClientName());
 
         Paid add = new Paid();
         add.setPaymentDate(dto.getPaymentDate());
         add.setPaymentType(dto.getPaymentType());
         add.setProductQuantity(dto.getProductQuantity());
-
+        add.setProduct(product);
+        add.setClient(client);
         return new PaidDTO(paidRepository.saveAndFlush(add));
-
     }
-
 }
