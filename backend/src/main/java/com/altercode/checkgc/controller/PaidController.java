@@ -27,4 +27,11 @@ public class PaidController {
         PaidDTO add = paidService.savePaid(dto);
         return new ResponseEntity<>(add, HttpStatus.CREATED);
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<PaidDTO> updatePaid(@RequestBody PaidDTO dto) {
+        PaidDTO edit = paidService.updatePaid(dto);
+        return new ResponseEntity<>(edit, HttpStatus.OK);
+    }
+
 }

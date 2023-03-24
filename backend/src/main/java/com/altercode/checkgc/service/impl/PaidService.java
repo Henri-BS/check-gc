@@ -45,4 +45,19 @@ public class PaidService implements IPaidService {
         add.setClient(client);
         return new PaidDTO(paidRepository.saveAndFlush(add));
     }
+
+    @Override
+    public PaidDTO updatePaid(PaidDTO dto) {
+        Product product = productRepository.findByDescription(dto.getProductDescription());
+        Client client = clientRepository.findClientByName(dto.getClientName());
+        Paid edit = paidRepository.findById(dto.getPaidId()).orElseThrow();
+
+        edit.setPaidId(edit.getPaidId());
+        edit.setPaymentDate(dto.getPaymentDate());
+        edit.setPaymentType(dto.getPaymentType());
+        edit.setProductQuantity(dto.getProductQuantity());
+        edit.setProduct(product);
+        edit.setClient(client);
+        return new PaidDTO(paidRepository.save(edit));
+    }
 }

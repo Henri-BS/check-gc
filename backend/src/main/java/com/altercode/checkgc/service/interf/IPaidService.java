@@ -8,4 +8,6 @@ public interface IPaidService {
     List<PaidDTO> findAllStatus();
 
     PaidDTO savePaid(PaidDTO dto);
+
+    PaidDTO updatePaid(PaidDTO dto);
 }
