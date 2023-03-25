@@ -10,4 +10,6 @@ public interface IPaidService {
     PaidDTO savePaid(PaidDTO dto);
 
     PaidDTO updatePaid(PaidDTO dto);
+
+    void deletePaid(Long paidId);
 }

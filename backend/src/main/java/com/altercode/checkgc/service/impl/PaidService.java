@@ -60,4 +60,9 @@ public class PaidService implements IPaidService {
         edit.setClient(client);
         return new PaidDTO(paidRepository.save(edit));
     }
+
+    @Override
+    public void deletePaid(Long paidId) {
+        this.paidRepository.deleteById(paidId);
+    }
 }

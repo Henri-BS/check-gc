@@ -34,4 +34,9 @@ public class PaidController {
         return new ResponseEntity<>(edit, HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{paidId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePaid(@PathVariable Long paidId) {
+        this.paidService.deletePaid(paidId);
+    }
 }
