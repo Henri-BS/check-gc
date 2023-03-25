@@ -2,6 +2,7 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.repository.ClientRepository;
@@ -9,6 +10,8 @@ import com.altercode.checkgc.repository.PaidRepository;
 import com.altercode.checkgc.repository.ProductRepository;
 import com.altercode.checkgc.service.interf.IPaidService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,9 +30,21 @@ public class PaidService implements IPaidService {
     private ClientRepository clientRepository;
 
     @Override
-    public List<PaidDTO> findAllStatus() {
-        List<Paid> list = paidRepository.findAll();
-        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
+    public Page<PaidDTO> findAllPaid(Pageable pageable) {
+        Page<Paid> page = paidRepository.findAll(pageable);
+        double total ;
+        for(Paid d: page) {
+            total = d.getProductQuantity() * d.getProduct().getPrice();
+            d.setProductAmount(total);
+            paidRepository.save(d);
+        }
+        return page.map(PaidDTO::new);
+    }
+
+    @Override
+    public PaidDTO findPaidById(Long id) {
+        Paid find = paidRepository.findById(id).orElseThrow();
+        return new PaidDTO(find);
     }
 
     @Override
