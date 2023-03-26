@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_paid")
-public class Paid {
+public class Paid extends Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,31 +18,13 @@ public class Paid {
     @Column(name = "payment_type")
     private String paymentType;
 
-    @Column(name = "product_quantity")
-    private Integer productQuantity = 0;
-
-    @Column(name = "product_amount")
-    private Double productAmount = 0.0;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
     public Paid() {
     }
 
-    public Paid(Long paidId, LocalDate paymentDate, String paymentType, Integer productQuantity, Double productAmount, Product product, Client client) {
-        this.paidId = paidId;
+    public Paid(Integer productQuantity, Double productAmount, Product product, Client client, LocalDate paymentDate, String paymentType) {
+        super(productQuantity, productAmount, product, client);
         this.paymentDate = paymentDate;
         this.paymentType = paymentType;
-        this.productQuantity = productQuantity;
-        this.productAmount = productAmount;
-        this.product = product;
-        this.client = client;
     }
 
     public Long getPaidId() {
@@ -67,37 +49,5 @@ public class Paid {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
-    }
-
-    public Integer getProductQuantity() {
-        return productQuantity;
-    }
-
-    public void setProductQuantity(Integer productQuantity) {
-        this.productQuantity = productQuantity;
-    }
-
-    public Double getProductAmount() {
-        return productAmount;
-    }
-
-    public void setProductAmount(Double productAmount) {
-        this.productAmount = productAmount;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

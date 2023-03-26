@@ -2,7 +2,6 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.repository.ClientRepository;
@@ -13,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PaidService implements IPaidService {
@@ -32,12 +28,7 @@ public class PaidService implements IPaidService {
     @Override
     public Page<PaidDTO> findAllPaid(Pageable pageable) {
         Page<Paid> page = paidRepository.findAll(pageable);
-        double total ;
-        for(Paid d: page) {
-            total = d.getProductQuantity() * d.getProduct().getPrice();
-            d.setProductAmount(total);
-            paidRepository.save(d);
-        }
+
         return page.map(PaidDTO::new);
     }
 
