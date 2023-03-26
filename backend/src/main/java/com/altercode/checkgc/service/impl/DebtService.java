@@ -30,7 +30,6 @@ public class DebtService implements IDebtService {
     @Autowired
     private PaidRepository paidRepository;
 
-
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
         Page<Debt> page = debtRepository.findAll(pageable);

@@ -8,7 +8,6 @@ import javax.persistence.*;
 @MappedSuperclass
 public class Sale {
 
-
     @Column(name = "product_quantity")
     private Integer productQuantity = 0;
 

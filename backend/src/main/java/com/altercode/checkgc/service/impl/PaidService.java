@@ -13,6 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PaidService implements IPaidService {
 
@@ -30,6 +33,12 @@ public class PaidService implements IPaidService {
         Page<Paid> page = paidRepository.findAll(pageable);
 
         return page.map(PaidDTO::new);
+    }
+
+    @Override
+    public List<PaidDTO> findAllPaidByClient(Client client) {
+        List<Paid> list = paidRepository.findAllPaidByClient(client);
+        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
     }
 
     @Override
