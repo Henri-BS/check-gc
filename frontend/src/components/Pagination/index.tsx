@@ -1,9 +1,10 @@
 import { ClientAccountPage, ClientPage } from "types/client";
 import { DebtPage } from "types/debt";
+import { PaidPage } from "types/paid";
 import { ProductPage } from "types/product";
 
 type PageProps = {
-    page: ClientPage | ClientAccountPage | DebtPage | ProductPage;
+    page: ClientPage | ClientAccountPage | DebtPage | ProductPage | PaidPage;
     onPageChange: Function;
 }
 function Pagination({ page, onPageChange }: PageProps) {

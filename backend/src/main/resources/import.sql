@@ -47,5 +47,11 @@ INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  pro
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(4, '2023-02-16', 14, 0.0, 8, 'Pago');
 
 
-INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(5, 2, '2023-04-12', 'PIX', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(5, 2, '2023-04-01', 'PIX', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 4, '2023-04-04', 'Cartão de Crédito', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(2, 5, '2023-04-05', 'Dinhero em Espécie', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(7, 6, '2023-04-10', 'PIX', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(8, 3, '2023-04-12', 'Cartão de Crédito', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(6, 1, '2023-04-14', 'PIX', 2, 0.0);
+
 

@@ -6,6 +6,7 @@ import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { ClientPage, ClientProps } from "types/client";
 import { Debt, DebtPage, DebtProps } from "types/debt";
+import { PaidPage } from "types/paid";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -95,7 +96,7 @@ export function DebtList() {
                     <div className="col-12 col-md-4 col-xl-6 mb-2" >
                         <Pagination page={debtList} onPageChange={handlePageChange} />
                     </div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Realizadas: {debtList.totalElements}</div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pendetes: {debtList.totalElements}</div>
                 </div>
 
                 <div className="row">
@@ -120,6 +121,8 @@ export function DebtList() {
                     </div>
                 </div>
             </div>
+
+
         </>
     );
 }
@@ -137,7 +140,7 @@ export function DebtListByClient({ clientId }: ClientProps) {
     return (
         <>
             <ul className="home-bar-title">
-                <li><i className="fa fa-book"/> Dívidas</li>
+                <li><i className="fa fa-book" /> Dívidas</li>
 
             </ul>
             <div className="horizontal-list-container">
@@ -161,11 +164,11 @@ export function DebtListByDate({ debtId }: DebtProps) {
             });
     }, [debtId]);
 
-    const [debtList, setDebtList] = useState<Debt[]>();
+    const [debtPage, setDebtPage] = useState<Debt[]>();
     useEffect(() => {
         axios.get(`${BASE_URL}/debt/list-by-date/${debt?.debtDate}`)
-        .then((response) => {
-                setDebtList(response.data);
+            .then((response) => {
+                setDebtPage(response.data);
             })
     }, [debt?.debtDate]);
 
@@ -175,7 +178,7 @@ export function DebtListByDate({ debtId }: DebtProps) {
                 <li><i className="fa fa-book" /> Dívidas da data: {debt?.debtDate}</li>
             </ul>
             <div className="horizontal-list-container ">
-                {debtList?.map((x) => (
+                {debtPage?.map((x) => (
                     <div key={x.debtId} className="horizontal-list-item">
                         <DebtSmallCard debt={x} />
                     </div>
@@ -185,7 +188,62 @@ export function DebtListByDate({ debtId }: DebtProps) {
     );
 }
 
+export function PaidList() {
+    const [pageNumber, setPageNumber] = useState(0);
+    const handlePageChange = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
 
+    const [paidPage, setPaidPaid] = useState<PaidPage>({
+        content: [],
+        number: 0
+    });
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/list?page=${pageNumber}`)
+            .then((response) => {
+                setPaidPaid(response.data);
+            });
+    }, [pageNumber])
+
+
+    return (
+        <>
+        <div className="container">
+            <nav className="pagination-container">
+                <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addPaidModal" data-bs-toggle="modal">
+                    <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Pagamento</button>
+                </div>
+                <div className="col-12 col-md-4 col-xl-6 mb-2" >
+                    <Pagination page={paidPage} onPageChange={handlePageChange} />
+                </div>
+                <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pagas: {paidPage.totalElements}</div>
+            </nav>
+            <div className="row">
+                {paidPage.content.map(x => (
+                    <div key={x.paidId} className="col-12 col-md-6 col-xl-4 mb-3">
+                    </div>
+                ))}
+            </div>
+        </div>
+        <div className="modal fade" role={"dialog"} id="addPaidModal">
+            <div className="modal-dialog" role={"document"}>
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <label htmlFor="paidLabel">Adicionar um nova compra paga: </label>
+                    <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i className="fa fa-times"/></span>
+                    </button>
+                    </div>
+                    <div className="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </>
+    );
+}
 
 export function ProductList() {
 
@@ -237,7 +295,7 @@ export function ProductList() {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><ProductAddForm/></div>
+                        <div className="modal-body"><ProductAddForm /></div>
                     </div>
                 </div>
             </div>

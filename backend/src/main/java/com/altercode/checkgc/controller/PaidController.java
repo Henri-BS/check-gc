@@ -2,7 +2,6 @@ package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.service.interf.IPaidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/paid")
@@ -32,7 +30,6 @@ public class PaidController {
         List<PaidDTO> list = paidService.findAllPaidByClient(client);
         return ResponseEntity.ok(list);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<PaidDTO> findPaidById(Long id){
