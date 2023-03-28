@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ClientCard, DebtCard, DebtSmallCard, ProductCard } from "components/Card";
+import { ClientCard, DebtCard, DebtSmallCard, PaidCard, ProductCard } from "components/Card";
 import { ClientAddForm, DebtAddForm, ProductAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
@@ -68,6 +68,16 @@ export function ClientList() {
     );
 }
 
+export function SaleList() {
+return (
+    <div className="container">
+        <DebtList/>
+        <hr/>
+        <PaidList />
+    </div>
+)
+}
+
 export function DebtList() {
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -88,7 +98,6 @@ export function DebtList() {
     return (
         <>
             <Navbar />
-            <div className="container">
                 <div className="pagination-container row">
                     <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
                         <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Compra</button>
@@ -106,7 +115,6 @@ export function DebtList() {
                         </div>
                     ))}
                 </div>
-            </div>
 
             <div className="modal fade" id="addDebtModal" role={"dialog"}>
                 <div className="modal-dialog" role={"document"}>
@@ -209,7 +217,6 @@ export function PaidList() {
 
     return (
         <>
-        <div className="container">
             <nav className="pagination-container">
                 <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addPaidModal" data-bs-toggle="modal">
                     <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Pagamento</button>
@@ -222,10 +229,11 @@ export function PaidList() {
             <div className="row">
                 {paidPage.content.map(x => (
                     <div key={x.paidId} className="col-12 col-md-6 col-xl-4 mb-3">
+                        <PaidCard paid={x}/>
                     </div>
                 ))}
-            </div>
         </div>
+
         <div className="modal fade" role={"dialog"} id="addPaidModal">
             <div className="modal-dialog" role={"document"}>
                 <div className="modal-content">
@@ -236,7 +244,7 @@ export function PaidList() {
                     </button>
                     </div>
                     <div className="modal-body">
-                        
+
                     </div>
                 </div>
             </div>
