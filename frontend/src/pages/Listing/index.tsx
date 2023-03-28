@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ClientCard, DebtCard, DebtSmallCard, PaidCard, ProductCard } from "components/Card";
-import { ClientAddForm, DebtAddForm, ProductAddForm } from "components/Form";
+import { ClientAddForm, DebtAddForm, PaidAddForm, ProductAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
@@ -69,13 +69,13 @@ export function ClientList() {
 }
 
 export function SaleList() {
-return (
-    <div className="container">
-        <DebtList/>
-        <hr/>
-        <PaidList />
-    </div>
-)
+    return (
+        <div className="container">
+            <DebtList />
+            <hr />
+            <PaidList />
+        </div>
+    )
 }
 
 export function DebtList() {
@@ -98,23 +98,23 @@ export function DebtList() {
     return (
         <>
             <Navbar />
-                <div className="pagination-container row">
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
-                        <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Compra</button>
-                    </div>
-                    <div className="col-12 col-md-4 col-xl-6 mb-2" >
-                        <Pagination page={debtList} onPageChange={handlePageChange} />
-                    </div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pendetes: {debtList.totalElements}</div>
+            <div className="pagination-container row">
+                <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
+                    <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Compra</button>
                 </div>
+                <div className="col-12 col-md-4 col-xl-6 mb-2" >
+                    <Pagination page={debtList} onPageChange={handlePageChange} />
+                </div>
+                <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pendetes: {debtList.totalElements}</div>
+            </div>
 
-                <div className="row">
-                    {debtList.content?.map(x => (
-                        <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
-                            <DebtCard debt={x} />
-                        </div>
-                    ))}
-                </div>
+            <div className="row">
+                {debtList.content?.map(x => (
+                    <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
+                        <DebtCard debt={x} />
+                    </div>
+                ))}
+            </div>
 
             <div className="modal fade" id="addDebtModal" role={"dialog"}>
                 <div className="modal-dialog" role={"document"}>
@@ -229,26 +229,26 @@ export function PaidList() {
             <div className="row">
                 {paidPage.content.map(x => (
                     <div key={x.paidId} className="col-12 col-md-6 col-xl-4 mb-3">
-                        <PaidCard paid={x}/>
+                        <PaidCard paid={x} />
                     </div>
                 ))}
-        </div>
+            </div>
 
-        <div className="modal fade" role={"dialog"} id="addPaidModal">
-            <div className="modal-dialog" role={"document"}>
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <label htmlFor="paidLabel">Adicionar um nova compra paga: </label>
-                    <button className="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i className="fa fa-times"/></span>
-                    </button>
-                    </div>
-                    <div className="modal-body">
-
+            <div className="modal fade" role={"dialog"} id="addPaidModal">
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="paidLabel">Adicionar um nova compra paga: </label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <PaidAddForm />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }

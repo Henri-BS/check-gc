@@ -22,5 +22,5 @@ export type PaidPage = {
 };
 
 export type PaidProps = {
-  debtId: string;
+  paidId: string;
 }

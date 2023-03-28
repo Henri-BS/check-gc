@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client, ClientPage, ClientProps } from "types/client";
 import { Debt, DebtProps } from "types/debt";
+import { PaidProps } from "types/paid";
 import { Product, ProductPage, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -344,6 +345,122 @@ export function DebtEditForm({ debtId }: DebtProps) {
             </div>
             <div className="modal-footer">
                 <button type="submit" className="btn btn-confirm">Editar</button>
+            </div>
+        </form>
+    );
+}
+
+export function PaidAddForm() {
+
+    const [value, setValue] = useState("");
+    const [clientList, setClientList] = useState<ClientPage>({
+        content: [],
+        number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
+            .then((response) => {
+                setClientList(response.data);
+            });
+    }, [value]);
+
+    const [productList, setProductList] = useState<ProductPage>({
+        content: [],
+        number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
+            .then((response) => {
+                setProductList(response.data);
+            });
+    }, [value]);
+
+
+    const navigate = useNavigate();
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const clientName = (event.target as any).clientName.value;
+        const paymentDate = (event.target as any).paymentDate.value;
+        const paymentType = (event.target as any).paymentType.value;
+        const productQuantity = (event.target as any).productQuantity.value;
+        const productDescription = (event.target as any).productDescription.value;
+
+        const config: AxiosRequestConfig = {
+            method: "POST",
+            baseURL: BASE_URL,
+            url: `/paid/add`,
+            data: {
+                clientName: clientName,
+                paymentDate: paymentDate,
+                paymentType: paymentType,
+                productDescription: productDescription,
+                productQuantity: productQuantity
+            }
+        }
+        axios(config).then((response) => {
+            navigate(`/debt-list`);
+        })
+    }
+    return (
+        <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-card">
+                <div className="form-group ">
+                    <label htmlFor="clientName">Cliente</label>
+                    <input
+                        list="clientList"
+                        id="clientName"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                    />
+                    <datalist id="clientList">
+                        {clientList.content?.filter((x) =>
+                            x.name.includes(value))
+                            .map((x) => (
+                                <option id="value" value={x.name} key={x.clientId}>
+                                    {x.name}
+                                </option>
+                            ))
+                        }
+                    </datalist>
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="product">Produto</label>
+                    <input
+                        id="productDescription"
+                        list="productList"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="form-control"
+                    />
+                    <datalist id="productList">
+                        {productList.content?.filter(x =>
+                            x.description.toLowerCase().includes(value.toLocaleLowerCase()))
+                            .map(x => (
+                                <option id="value" key={x.productId} value={x.description}>
+                                    {x.description}
+                                </option>
+                            ))
+                        }
+                    </datalist>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="paymentDate">Data do Pagamento</label>
+                    <input id="paymentDate" type="date" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="paymentType">Forma de Pagamento</label>
+                    <input id="paymentType" type="text" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="productQuantity">Quantidade do Produto</label>
+                    <input id="productQuantity" type="text" className="form-control" />
+                </div>
+            </div>
+
+            <div className="modal-footer">
+                <button type="submit" className="btn btn-confirm">Adicionar</button>
             </div>
         </form>
     );
