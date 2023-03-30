@@ -7,7 +7,7 @@ export function Navbar() {
       <nav className="navbar">
         <ul className=" row navbar-menu">
           <li className=" navbar-item">
-            <Link to={`/`} className="navbar-logo">
+            <Link to={`/`} className="navbar-link">
               <i className="fa fa-home" /> Início
             </Link>
           </li>

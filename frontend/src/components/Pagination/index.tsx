@@ -18,21 +18,9 @@ function Pagination({ page, onPageChange }: PageProps) {
                     </button>
                 </li>
 
-                <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 0)}>1</button>
-                </li>
-                <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 1)}>2</button>
-                </li>
-                <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 2)}>3</button>
-                </li>
-                <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 3)}>4</button>
-                </li>
-                <li className={`page-item ${page.number}`}>
-                    <button className="page-link" onClick={() => onPageChange(page.number = 4)}>5</button>
-                </li>
+                <li className={"page-item"}>
+                    <span className="page-link">{page.number} de {page.totalPages} </span>
+                    </li>
 
                 <li className={`page-item ${page.last ? `disabled` : ''}`}>
                     <button className="page-link" onClick={() => onPageChange(page.number + 1)} aria-label="Next">

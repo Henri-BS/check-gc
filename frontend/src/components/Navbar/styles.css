@@ -39,29 +39,13 @@
     padding: 8px 30px;
     transition: all 0.2s ease-in-out;
     border: 3px solid transparent;
-    border-radius: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--green-seco);
 }
 
 .navbar-link:hover {
     color: var(--dark-prim);
-    border: 3px solid var(--green-prim);
-}
-
-.navbar-link:focus {
-    color: var(--dark-prim);
-    border: 3px solid var(--green-prim);
-}
-
-.navbar-logo {
-    color: var(--dark-prim);
-    text-decoration: none;
-    padding: 8px 28px;
-    transition: all 0.2s ease-in-out;
-    border-radius: 20px;
-}
-
-.navbar-logo:hover {
-    color: var(--green-seco);
+    border: 2px solid var(--green-tert);
 }
 
 @media screen and (max-width: 550px) {

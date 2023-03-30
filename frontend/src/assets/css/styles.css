@@ -3,14 +3,15 @@
     --white-prim: #dddde6;
     --white-seco: #eeeeee;
     --dark-prim: #12171a;
-    --dark-seco: #3c4a52;
+    --dark-seco: #3b474e;
     --dark-tert: #606c72;
     --dark-quat: #606c721a;
-    --green-prim: #22d1d3;
+    --green-prim: #469e9e;
     --green-seco: #188f91;
     --green-tert: #0f5c5e;
     --red-prim: #911836;
     --blue-prim: #184891;
+    --blue-seco: #003380;
 }
 
 body {
@@ -53,10 +54,11 @@ code {
     border: 1px solid #463b3b31;
 }
 
-.page-link:hover:focus {
+.page-link:focus {
     background: transparent;
     color: #188f91;
     border: 1px solid #463b3b93;
+    box-shadow: 0 0 0 0.20rem rgba(21, 185, 136, 0.295);
 }
 
 
@@ -119,7 +121,7 @@ code {
 /*Button*/
 
 .btn {
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     border-radius: 10px;
     padding: 6px;
     transition: all 0.2s ease-in-out;
@@ -127,7 +129,6 @@ code {
 
 .btn:hover {
     background-color: transparent;
-    border-radius: 10px;
 }
 
 .btn-confirm {
@@ -138,18 +139,19 @@ code {
 .btn-confirm:hover {
     background-color: transparent;
     color: var(--dark-prim);
-    border: 3px solid var(--green-seco);
+    border-color: var(--green-seco);
 }
 
 .btn-primary {
-    background-color: var(--blue-prim);
-    color: var(--white-seco);
+    background: transparent;
+    border-color: var(--blue-prim);
+    color: var(--dark-seco);
 }
 
 .btn-primary:hover {
-    background-color: transparent;
     color: var(--dark-prim);
-    border: 3px solid var(--blue-prim);
+    border-color: var(--blue-seco);
+    box-shadow: 0px 0px 0px 0.15rem rgba(6, 58, 126, 0.4);
 }
 
 .btn-danger {
@@ -160,7 +162,7 @@ code {
 .btn-danger:hover {
     background-color: transparent;
     color: var(--dark-prim);
-    border: 3px solid var(--red-prim);
+    border-color: var(--red-prim);
 }
 
 
