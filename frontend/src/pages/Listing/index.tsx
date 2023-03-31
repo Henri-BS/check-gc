@@ -1,5 +1,8 @@
 import axios from "axios";
-import { ClientCard, DebtCard, DebtSmallCard, PaidCard, ProductCard } from "components/Card";
+import {PaidCard } from "components/Card/PaidCard";
+import { ClientCard } from "components/Card/ClientCard";
+import { DebtCard, DebtSmallCard } from "components/Card/DebtCard";
+import { ProductCard } from "components/Card/ProductCard";
 import { ClientAddForm, DebtAddForm, PaidAddForm, ProductAddForm } from "components/Form";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
@@ -67,22 +70,6 @@ export function ClientList() {
             </div>
         </>
     );
-}
-
-export function SaleList() {
-    return (
-        <>
-            <Navbar />
-            <div className="container">
-
-
-
-                <DebtList />
-                <hr />
-                <PaidList />
-            </div>
-        </>
-    )
 }
 
 export function DebtList() {

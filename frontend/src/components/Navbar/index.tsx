@@ -12,18 +12,24 @@ export function Navbar() {
             </Link>
           </li>
 
-          <li className="col-12 col-lg-3 navbar-item ">
+          <li className="col-12 col-lg-2 navbar-item ">
             <Link to={`/client-list`} className="navbar-link">
               Clientes
             </Link>
           </li>
 
-          <li className="col-12 col-lg-3 navbar-item">
+          <li className="col-12 col-lg-2 navbar-item">
               <Link to={`/debt-list`} className="navbar-link">
-                Dívidas
+                Devendo
               </Link>
           </li>
-          <li className="col-12 col-lg-3 navbar-item">
+
+          <li className="col-12 col-md-6 col-lg-2 navbar-item">
+              <Link to={`/paid-list`} className="navbar-link">
+                Pago
+              </Link>
+          </li>
+          <li className="col-12 col-md-6 col-lg-2 navbar-item">
             <Link to={`/product-list`} className="navbar-link">
               Produtos
             </Link>
