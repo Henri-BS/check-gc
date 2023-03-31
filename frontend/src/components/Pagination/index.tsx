@@ -2,6 +2,7 @@ import { ClientAccountPage, ClientPage } from "types/client";
 import { DebtPage } from "types/debt";
 import { PaidPage } from "types/paid";
 import { ProductPage } from "types/product";
+import "./styles.css";
 
 type PageProps = {
     page: ClientPage | ClientAccountPage | DebtPage | ProductPage | PaidPage;
@@ -19,7 +20,7 @@ function Pagination({ page, onPageChange }: PageProps) {
                 </li>
 
                 <li className={"page-item"}>
-                    <span className="page-link">{page.number} de {page.totalPages} </span>
+                    <span className="page-link no-hover">{page.number} de {page.totalPages} </span>
                     </li>
 
                 <li className={`page-item ${page.last ? `disabled` : ''}`}>

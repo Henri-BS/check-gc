@@ -115,17 +115,6 @@ export function DebtAddForm() {
     const navigate = useNavigate();
     const [value, setValue] = useState("");
 
-    const [clientList, setClientList] = useState<ClientPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
-            .then((response) => {
-                setClientList(response.data);
-            });
-    }, [value]);
-
     const [productList, setProductList] = useState<ProductPage>({
         content: [],
         number: 0
@@ -163,26 +152,7 @@ export function DebtAddForm() {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <div className="form-group ">
-                    <label htmlFor="clientName">Cliente</label>
-                    <input
-                        list="clientList"
-                        id="clientName"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="clientList">
-                        {clientList.content?.filter((x) =>
-                            x.name.includes(value))
-                            .map((x) => (
-                                <option id="value" value={x.name} key={x.clientId}>
-                                    {x.name}
-                                </option>
-                            ))
-                        }
-                    </datalist>
-                </div>
+                <ClientDatalist />
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
                     <input id="debtDate" type="date" className="form-control" />
@@ -677,4 +647,40 @@ export function ProductEditForm({ productId }: ProductProps) {
             </div>
         </form>
     );
+}
+
+export function ClientDatalist(){
+    const[value, setValue]  = useState("");
+    const[clientPage, setClientPage] = useState<ClientPage>({
+content: [],
+number: 0
+    });
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
+        .then((response) => {
+            setClientPage(response.data);
+        });
+    }, [value]);
+
+return( 
+    <div className="form-group">
+        <label htmlFor="clientName">Cliente</label>
+        <input 
+        id="clientName" 
+        list="clientList"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="form-control"
+        />
+        <datalist id="clientList">
+            {clientPage.content.filter(x =>
+                x.name.includes(value))
+                .map(x => (
+                    <option id="value" value={x.name} key={x.clientId}>
+                        {x.name}
+                    </option>
+                ))}
+        </datalist>
+    </div>
+);
 }

@@ -34,34 +34,6 @@ code {
 }
 
 
-/*Pagination*/
-
-.pagination {
-    justify-content: center;
-    align-items: center;
-}
-
-.page-item::after {
-    background: transparent;
-}
-
-.page-link {
-    background: transparent;
-    color: var(--dark-seco);
-    font-size: large;
-    transition: all 0.3s ease-out;
-    cursor: pointer;
-    border: 1px solid #463b3b31;
-}
-
-.page-link:focus {
-    background: transparent;
-    color: #188f91;
-    border: 1px solid #463b3b93;
-    box-shadow: 0 0 0 0.20rem rgba(21, 185, 136, 0.295);
-}
-
-
 /*Modal*/
 
 .modal-content {
