@@ -113,24 +113,12 @@ export function ClientEditForm({ clientId }: ClientProps) {
 export function DebtAddForm() {
 
     const navigate = useNavigate();
-    const [value, setValue] = useState("");
-
-    const [productList, setProductList] = useState<ProductPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
-            .then((response) => {
-                setProductList(response.data);
-            });
-    }, [value]);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const clientName = (event.target as any).clientName.value;
         const debtDate = (event.target as any).debtDate.value;
-        const productQuantity = (event.target as any).productQuantity.value;
         const productDescription = (event.target as any).productDescription.value;
+        const productQuantity = (event.target as any).productQuantity.value;
         const status = (event.target as any).status.value;
 
         const config: AxiosRequestConfig = {
@@ -140,8 +128,8 @@ export function DebtAddForm() {
             data: {
                 clientName: clientName,
                 debtDate: debtDate,
-                productQuantity: productQuantity,
                 productDescription: productDescription,
+                productQuantity: productQuantity,
                 status: status
             }
         }
@@ -152,7 +140,9 @@ export function DebtAddForm() {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <ClientDatalist />
+                <div className="form-group">
+                    <ClientDatalist />
+                </div>
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
                     <input id="debtDate" type="date" className="form-control" />
@@ -161,26 +151,8 @@ export function DebtAddForm() {
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
                     <input id="productQuantity" type="text" className="form-control" />
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="product">Produto</label>
-                    <input
-                        id="productDescription"
-                        list="productList"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="productList">
-                        {productList.content?.filter(x =>
-                            x.description.toLowerCase().includes(value.toLocaleLowerCase()))
-                            .map(x => (
-                                <option id="value" key={x.productId} value={x.description}>
-                                    {x.description}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+                    <ProductDatalist />
                 </div>
                 <div className="form-group">
                     <label htmlFor="status">Situtação da Compra</label>
@@ -649,38 +621,76 @@ export function ProductEditForm({ productId }: ProductProps) {
     );
 }
 
-export function ClientDatalist(){
-    const[value, setValue]  = useState("");
-    const[clientPage, setClientPage] = useState<ClientPage>({
-content: [],
-number: 0
+export function ClientDatalist() {
+    const [value, setValue] = useState("");
+    const [clientPage, setClientPage] = useState<ClientPage>({
+        content: [],
+        number: 0
     });
     useEffect(() => {
         axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
-        .then((response) => {
-            setClientPage(response.data);
-        });
+            .then((response) => {
+                setClientPage(response.data);
+            });
     }, [value]);
 
-return( 
-    <div className="form-group">
-        <label htmlFor="clientName">Cliente</label>
-        <input 
-        id="clientName" 
-        list="clientList"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        className="form-control"
-        />
-        <datalist id="clientList">
-            {clientPage.content.filter(x =>
-                x.name.includes(value))
-                .map(x => (
-                    <option id="value" value={x.name} key={x.clientId}>
-                        {x.name}
-                    </option>
-                ))}
-        </datalist>
-    </div>
-);
+    return (
+        <>
+            <label htmlFor="clientName">Cliente</label>
+            <input
+                id="clientName"
+                list="clientList"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                className="form-control"
+            />
+            <datalist id="clientList">
+                {clientPage.content.filter(x =>
+                    x.name.includes(value))
+                    .map(x => (
+                        <option id="value" value={x.name} key={x.clientId}>
+                            {x.name}
+                        </option>
+                    ))}
+            </datalist>
+        </>
+    );
+}
+
+export function ProductDatalist() {
+    const [value, setValue] = useState("");
+    const [productPage, setProductPage] = useState<ProductPage>({
+        content: [],
+        number: 0
+    })
+    useEffect(() => {
+        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
+            .then((response) => {
+                setProductPage(response.data);
+            })
+    }, [value]);
+
+    return (
+        <>
+            <label htmlFor="productDescription">Produto</label>
+            <input
+                id="productDescription"
+                list="productList"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                className="form-control"
+            />
+            <datalist id="productlist">
+                {productPage.content.filter(x =>
+                    x.description.includes(value))
+                    .map(x => (
+                        <option id="value" value={x.description} key={x.productId}>
+                            {x.description}
+                        </option>
+                    ))
+                }
+            </datalist>
+        </>
+    );
+
 }
