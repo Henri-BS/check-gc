@@ -1,4 +1,4 @@
-import { ClientProfile, DebtProfile, ProductProfile } from "pages/Profile";
+import { ClientProfile, DebtProfile, PaidProfile, ProductProfile } from "pages/Profile";
 import Home from "pages/Home";
 import { ClientList, DebtList, PaidList, ProductList } from "pages/Listing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -19,12 +19,13 @@ function PageRoutes() {
                     </Route> 
                     <Route path="/debt" >
                     <Route path=":debtId" element={<DebtProfile/>}/>
+                    </Route>
+                    <Route path="/paid" >
+                    <Route path=":paidId" element={<PaidProfile/>}/>
                     </Route> 
                     <Route path="/product" >
                     <Route path=":productId" element={<ProductProfile/>}/>
                     </Route> 
-                    
-
             </Routes>
         </BrowserRouter>
     );

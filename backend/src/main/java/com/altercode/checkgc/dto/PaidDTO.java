@@ -16,6 +16,9 @@ public class PaidDTO implements Serializable {
     private LocalDate paymentDate;
     private Integer productQuantity;
     private Double productAmount;
+
+    private Long clientId;
+    private Long productId;
     private String clientName;
     private String productDescription;
 
@@ -28,6 +31,8 @@ public class PaidDTO implements Serializable {
         paymentDate = entity.getPaymentDate();
         productQuantity = entity.getProductQuantity();
         productAmount = entity.getProductAmount();
+        productId = entity.getProduct().getProductId();
+        clientId = entity.getClient().getClientId();
         productDescription = entity.getProduct().getDescription();
         clientName = entity.getClient().getName();
     }
@@ -70,6 +75,22 @@ public class PaidDTO implements Serializable {
 
     public void setProductAmount(Double productAmount) {
         this.productAmount = productAmount;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getClientName() {

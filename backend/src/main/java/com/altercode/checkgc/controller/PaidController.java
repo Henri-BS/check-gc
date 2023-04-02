@@ -32,7 +32,7 @@ public class PaidController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaidDTO> findPaidById(Long id){
+    public ResponseEntity<PaidDTO> findPaidById(@PathVariable Long id){
         PaidDTO find = paidService.findPaidById(id);
         return ResponseEntity.ok(find);
     }

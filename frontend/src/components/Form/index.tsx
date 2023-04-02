@@ -178,30 +178,6 @@ export function DebtEditForm({ debtId }: DebtProps) {
             });
     }, [debtId]);
 
-    const [value, setValue] = useState("");
-    const [clientList, setClientList] = useState<ClientPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
-            .then((response) => {
-                setClientList(response.data);
-            });
-    }, [value]);
-
-    const [productList, setProductList] = useState<ProductPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
-            .then((response) => {
-                setProductList(response.data);
-            });
-    }, [value]);
-
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const debtDate = (event.target as any).debtDate.value;
         const productQuantity = (event.target as any).productQuantity.value;
@@ -229,27 +205,14 @@ export function DebtEditForm({ debtId }: DebtProps) {
     return (
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
-                <div className="form-group">
-                    <label htmlFor="clientName">Cliente</label>
-                    <input
-                        list="clientList"
-                        id="clientName"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                        defaultValue={debt?.clientName}
-                    />
-                    <datalist id="clientList">
-                        {clientList.content?.filter((x) =>
-                            x.name.includes(value))
-                            .map((x) => (
-                                <option id="value" value={x.name} key={x.clientId}>
-                                    {x.name}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+            <div className="form-group ">
+                    <ClientDatalist/>
                 </div>
+
+                <div className="form-group">
+                    <ProductDatalist/>
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
                     <input id="debtDate" type="date" className="form-control" defaultValue={debt?.debtDate} />
@@ -259,27 +222,6 @@ export function DebtEditForm({ debtId }: DebtProps) {
                     <input id="productQuantity" className="form-control" defaultValue={debt?.productQuantity} />
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="product">Produto</label>
-                    <input
-                        id="product"
-                        list="productList"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                        defaultValue={debt?.product}
-                    />
-                    <datalist id="productList">
-                        {productList.content.filter(x =>
-                            x.description.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-                            .map(x => (
-                                <option id="value" key={x.productId} value={x.description}>
-                                    {x.description}
-                                </option>
-                            ))
-                        }
-                    </datalist>
-                </div>
                 <div className="form-group">
                     <label htmlFor="status">Situtação da Compra</label>
                     <input id="status" className="form-control" defaultValue={debt?.status} />
@@ -293,30 +235,6 @@ export function DebtEditForm({ debtId }: DebtProps) {
 }
 
 export function PaidAddForm() {
-
-    const [value, setValue] = useState("");
-    const [clientList, setClientList] = useState<ClientPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
-            .then((response) => {
-                setClientList(response.data);
-            });
-    }, [value]);
-
-    const [productList, setProductList] = useState<ProductPage>({
-        content: [],
-        number: 0
-    });
-    useEffect(() => {
-        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
-            .then((response) => {
-                setProductList(response.data);
-            });
-    }, [value]);
-
 
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -347,45 +265,11 @@ export function PaidAddForm() {
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
                 <div className="form-group ">
-                    <label htmlFor="clientName">Cliente</label>
-                    <input
-                        list="clientList"
-                        id="clientName"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="clientList">
-                        {clientList.content?.filter((x) =>
-                            x.name.includes(value))
-                            .map((x) => (
-                                <option id="value" value={x.name} key={x.clientId}>
-                                    {x.name}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+                    <ClientDatalist/>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="product">Produto</label>
-                    <input
-                        id="productDescription"
-                        list="productList"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="productList">
-                        {productList.content?.filter(x =>
-                            x.description.toLowerCase().includes(value.toLocaleLowerCase()))
-                            .map(x => (
-                                <option id="value" key={x.productId} value={x.description}>
-                                    {x.description}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+                    <ProductDatalist/>
                 </div>
 
                 <div className="form-group">
@@ -419,29 +303,6 @@ export function PaidEditForm({ paidId }: PaidProps) {
             })
     }, [paidId]);
 
-    const [value, setValue] = useState("");
-    const [clientPage, setClientPage] = useState<ClientPage>({
-        content: [],
-        number: 0
-    })
-    useEffect(() => {
-        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
-            .then((response) => {
-                setClientPage(response.data);
-            })
-    }, [value])
-
-    const [productPage, setProductPage] = useState<ProductPage>({
-        content: [],
-        number: 0
-    })
-    useEffect(() => {
-        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
-            .then((response) => {
-                setProductPage(response.data);
-            })
-    }, [value])
-
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         const clientName = (event.target as any).clientName.value;
@@ -472,46 +333,11 @@ export function PaidEditForm({ paidId }: PaidProps) {
         <form onSubmit={handleSubmit} className="form-container">
             <div className="form-card">
                 <div className="form-group">
-                    <label htmlFor="clientName">Cliente</label>
-                    <input
-                        id="clientName"
-                        list="clientList"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="clientList">
-                        {clientPage.content.filter(x =>
-                            x.name.includes(value))
-                            .map(x => (
-                                <option id="value" value={x.name} key={x.clientId}>
-                                    {x.name}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+                    <ClientDatalist/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="product">Produto</label>
-                    <input
-                        id="productDescription"
-                        list="productList"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        className="form-control"
-                    />
-                    <datalist id="productList">
-                        {productPage.content?.filter(x =>
-                            x.description.toLowerCase().includes(value.toLocaleLowerCase()))
-                            .map(x => (
-                                <option id="value" key={x.productId} value={x.description}>
-                                    {x.description}
-                                </option>
-                            ))
-                        }
-                    </datalist>
+                    <ProductDatalist />
                 </div>
-
                 <div className="form-group">
                     <label htmlFor="paymentDate">Data do Pagamento</label>
                     <input id="paymentDate" type="date" className="form-control" />

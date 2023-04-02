@@ -7,7 +7,7 @@ import "./styles.css";
 type PageProps = {
     page: ClientPage | ClientAccountPage | DebtPage | ProductPage | PaidPage;
     onPageChange: Function;
-}
+} 
 function Pagination({ page, onPageChange }: PageProps) {
 
     return (
@@ -20,7 +20,7 @@ function Pagination({ page, onPageChange }: PageProps) {
                 </li>
 
                 <li className={"page-item"}>
-                    <span className="page-link no-hover">{page.number} de {page.totalPages} </span>
+                    <span className="page-link no-hover">{page.number + 1} de {page.totalPages} </span>
                     </li>
 
                 <li className={`page-item ${page.last ? `disabled` : ''}`}>
