@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ClientAccountDTO;
+import com.altercode.checkgc.dto.SumDebtQuantityDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.impl.ClientAccountService;
 import com.altercode.checkgc.service.interf.IClientAccountService;
@@ -15,6 +16,11 @@ public class ClientAccountController {
 
     @Autowired
     private IClientAccountService accountService;
+
+    @GetMapping("/total-value")
+    public SumDebtQuantityDTO totalDebtQuantity(){
+        return accountService.totalDebtQuantity();
+    }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
