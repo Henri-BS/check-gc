@@ -11,15 +11,6 @@ type ClientCardProps = {
 
 export function ClientCard({ client }: ClientCardProps) {
 
-    const [clientProfile, setClientProfile] = useState<Client>();
-    useEffect(() => {
-        axios.put(`${BASE_URL}/client/update-value/${client.clientId}`)
-            .then((response) => {
-                setClientProfile(response.data);
-            })
-    }, [client.clientId]);
-
-
     const params = useParams();
 
     return (
@@ -32,9 +23,9 @@ export function ClientCard({ client }: ClientCardProps) {
                     <ul className="card-md-list">
                         <li className="card-md-item card-md-content">Endereço: {client.address}</li>
                         <li className="card-md-item card-md-content">Contato: {client.phoneNumber}</li>
-                        <li className="card-md-item card-md-content">Valor Total da Conta: {clientProfile?.account.debtAmount}</li>
-                        <li className="card-md-item card-md-content">Compras Realizadas: {clientProfile?.account.debtQuantity}</li>
-                        <li className="card-md-item card-md-content">Última Atualização: {clientProfile?.account.lastModifiedDate}</li>
+                        <li className="card-md-item card-md-content">Valor Total da Conta: {client.account.debtAmount}</li>
+                        <li className="card-md-item card-md-content">Compras Realizadas: {client.account.debtQuantity}</li>
+                        <li className="card-md-item card-md-content">Última Atualização: {client.account.lastModifiedDate}</li>
                     </ul>
                 </div>
             </Link>

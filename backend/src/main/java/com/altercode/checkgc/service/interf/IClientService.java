@@ -18,7 +18,6 @@ public interface IClientService {
 
     ClientDTO updateClient(ClientDTO dto);
 
-    ClientDTO updateAccountValues(ClientDTO dto);
 
     void deleteClient(Long id);
 

@@ -7,7 +7,6 @@ import { ClientAddForm, DebtAddForm, PaidAddForm, ProductAddForm } from "compone
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ClientPage, ClientProps } from "types/client";
 import { Debt, DebtPage, DebtProps } from "types/debt";
 import { PaidPage } from "types/paid";
@@ -32,8 +31,6 @@ export function ClientList() {
                 setClientList(response.data);
             });
     }, [pageNumber]);
-
-
 
     return (
         <>
@@ -103,11 +100,6 @@ export function DebtList() {
                     </div>
                     <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pendetes: {debtList.totalElements}</div>
                 </div>
-
-                <ul className="d-flex justify-content-center">
-                    <Link to={"/debt-list"}><li className="btn btn-primary m-2">Devendo</li></Link>
-                    <Link to={"/paid-list"}><li className="btn btn-primary m-2">Pago</li></Link>
-                </ul>
 
                 <div className="row">
                     {debtList.content?.map(x => (
@@ -230,11 +222,6 @@ export function PaidList() {
                     </div>
                     <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pagas: {paidPage.totalElements}</div>
                 </nav>
-
-                <ul className="d-flex justify-content-center">
-                    <Link to={"/debt-list"}><li className="btn btn-primary m-2">Devendo</li></Link>
-                    <Link to={"/paid-list"}><li className="btn btn-primary m-2">Pago</li></Link>
-                </ul>
 
                 <div className="row">
                     {paidPage.content.map(x => (

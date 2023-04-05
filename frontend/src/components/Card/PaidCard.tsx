@@ -75,7 +75,7 @@ navigate(`/paid-list`);
                 <button className="btn btn-danger" data-bs-target="#paidDeleteModal" data-bs-toggle="modal">
                     <i className="fa fa-trash" /> Deletar Compra
                 </button>
-            </div>
+            </div>  
             <hr />
             <ul className="card-md-list">
                 <li className="card-lg-item "> Data do Pagamento:

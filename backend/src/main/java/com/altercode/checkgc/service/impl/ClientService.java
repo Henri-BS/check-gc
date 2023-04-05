@@ -6,6 +6,7 @@ import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.repository.ClientAccountRepository;
 import com.altercode.checkgc.repository.ClientRepository;
+import com.altercode.checkgc.repository.DebtRepository;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,9 +24,19 @@ public class ClientService implements IClientService {
     @Autowired
     private ClientAccountRepository accountRepository;
 
+    @Autowired
+    private DebtRepository debtRepository;
+
     @Override
     public Page<ClientDTO> findAllClients(Pageable pageable) {
         Page<Client> list = clientRepository.findAll(pageable);
+        double total;
+        for(Debt debt : debtRepository.findAll()) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
+            debt.getClient().getAccount().setDebtAmount(total);
+            debtRepository.save(debt);
+        }
         return list.map(ClientDTO::new);
     }
 
@@ -37,8 +48,15 @@ public class ClientService implements IClientService {
 
     @Override
     public ClientDTO findClientById(Long id) {
-        Client find = clientRepository.findById(id).orElseThrow();
-        return new ClientDTO(find);
+        Client client = clientRepository.findById(id).orElseThrow();
+        double total;
+        for(Debt debt : client.getDebts()) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
+            debt.getClient().getAccount().setDebtAmount(total);
+            debtRepository.save(debt);
+        }
+        return new ClientDTO(client);
     }
 
     @Override
@@ -77,24 +95,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public ClientDTO updateAccountValues(ClientDTO dto) {
-        Client client = clientRepository.findById(dto.getClientId()).orElseThrow();
-
-        double total = 0.0;
-        for(Debt a : client.getDebts()) {
-            total = a.getProductQuantity() * a.getProduct().getPrice();
-        }
-        client.getAccount().setDebtQuantity(client.getDebts().size());
-        client.getAccount().setDebtAmount(total);
-
-
-        return new ClientDTO(clientRepository.save(client));
-    }
-
-    @Override
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }
-
-
 }
