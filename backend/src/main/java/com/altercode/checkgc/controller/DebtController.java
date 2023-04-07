@@ -2,6 +2,7 @@ package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
+import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.interf.IDebtService;
@@ -44,6 +45,13 @@ public class DebtController {
         List<TotalDebtDateDTO> list = debtService.debtAmountGroupByDate();
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/values-by-client")
+    public ResponseEntity<List<TotalDebtClientDTO>> debtAmountGroupByClient() {
+        List<TotalDebtClientDTO> list = debtService.debtAmountGroupByClient();
+        return ResponseEntity.ok(list);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<DebtDTO> findDebtById(@PathVariable Long id) {

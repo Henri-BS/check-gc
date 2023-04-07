@@ -4,24 +4,33 @@ import com.altercode.checkgc.entity.Client;
 
 import java.time.LocalDate;
 
-public class TotalDebtDateDTO {
+public class TotalDebtClientDTO {
 
     private String clientName;
-    private LocalDate debtDate;
+    private Long debtDate;
     private Double productAmount;
     private Long productQuantity;
 
-    public TotalDebtDateDTO( LocalDate debtDate, Double productAmount, Long productQuantity) {
+    public TotalDebtClientDTO(Client client, Long debtDate, Double productAmount, Long productQuantity) {
+        clientName = client.getName();
         this.debtDate = debtDate;
         this.productAmount = productAmount;
         this.productQuantity = productQuantity;
     }
 
-    public LocalDate getDebtDate() {
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public Long getDebtDate() {
         return debtDate;
     }
 
-    public void setDebtDate(LocalDate debtDate) {
+    public void setDebtDate(Long debtDate) {
         this.debtDate = debtDate;
     }
 

@@ -2,6 +2,7 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
+import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.*;
 import com.altercode.checkgc.repository.*;
@@ -58,6 +59,11 @@ public class DebtService implements IDebtService {
     @Override
     public List<TotalDebtDateDTO> debtAmountGroupByDate(){
         return debtRepository.debtAmountGroupByDate();
+    }
+
+    @Override
+    public List<TotalDebtClientDTO> debtAmountGroupByClient(){
+        return debtRepository.debtAmountGroupByClient();
     }
 
     @Override

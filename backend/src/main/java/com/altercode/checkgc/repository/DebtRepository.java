@@ -1,5 +1,6 @@
 package com.altercode.checkgc.repository;
 
+import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Debt;
@@ -13,9 +14,15 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     List<Debt> findAllDebtsByDebtDate(LocalDate debtDate);
 
-    @Query("SELECT new com.altercode.checkgc.dto.TotalDebtDateDTO(obj.debtDate, SUM(obj.productAmount), SUM(obj.productQuantity))" +
-            "FROM Debt AS obj GROUP BY obj.debtDate ORDER BY obj.debtDate")
+    @Query("SELECT new com.altercode.checkgc.dto.TotalDebtDateDTO(  obj.debtDate, SUM(obj.productAmount), SUM(obj.productQuantity)) " +
+            "FROM Debt AS obj " +
+            "GROUP BY obj.debtDate " )
     List<TotalDebtDateDTO> debtAmountGroupByDate();
+
+    @Query("SELECT new com.altercode.checkgc.dto.TotalDebtClientDTO( obj.client, COUNT(obj.debtDate), SUM(obj.productAmount), SUM(obj.productQuantity)) " +
+            "FROM Debt AS obj " +
+            "GROUP BY obj.client " )
+    List<TotalDebtClientDTO> debtAmountGroupByClient();
 
     List<Debt> findAllDebtsByClient(Client client);
 

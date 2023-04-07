@@ -2,6 +2,7 @@ package com.altercode.checkgc.service.interf;
 
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
+import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
 
@@ -15,7 +16,10 @@ public interface IDebtService {
 
     List<DebtDTO> findAllDebtsByDebtDate(String debtDate);
 
+
     List<TotalDebtDateDTO> debtAmountGroupByDate();
+
+    List<TotalDebtClientDTO> debtAmountGroupByClient();
 
     DebtDTO findDebtById(Long id);
 
