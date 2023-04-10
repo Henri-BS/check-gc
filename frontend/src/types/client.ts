@@ -27,6 +27,8 @@ export type ClientAccount = {
   accountId: number;
   debtAmount: number;
   debtQuantity: number;
+  paidAmount: number;
+  paidQuantity: number;
   lastModifiedDate: string;
   clientName: string;
 };

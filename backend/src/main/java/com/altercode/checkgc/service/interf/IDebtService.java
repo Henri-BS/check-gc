@@ -16,7 +16,6 @@ public interface IDebtService {
 
     List<DebtDTO> findAllDebtsByDebtDate(String debtDate);
 
-
     List<TotalDebtDateDTO> debtAmountGroupByDate();
 
     List<TotalDebtClientDTO> debtAmountGroupByClient();
@@ -32,6 +31,5 @@ public interface IDebtService {
     PaidDTO updateDebtForPaid(PaidDTO dto, Long id);
 
     void deleteDebt(Long id);
-
 
 }

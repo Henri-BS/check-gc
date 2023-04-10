@@ -2,6 +2,7 @@ package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.ClientAccount;
 
+import javax.persistence.Column;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,6 +15,8 @@ public class ClientAccountDTO implements Serializable {
     private Long accountId;
     private Double debtAmount;
     private Integer debtQuantity;
+    private Double paidAmount;
+    private Integer paidQuantity;
     private LocalDateTime lastModifiedDate;
     private String clientName;
 
@@ -24,6 +27,8 @@ public class ClientAccountDTO implements Serializable {
         accountId = entity.getAccountId();
         debtAmount = entity.getDebtAmount();
         debtQuantity = entity.getDebtQuantity();
+        paidAmount = entity.getDebtAmount();
+        paidQuantity = entity.getDebtQuantity();
         lastModifiedDate = entity.getLastModifiedDate();
         clientName = entity.getClient().getName();
     }
@@ -50,6 +55,22 @@ public class ClientAccountDTO implements Serializable {
 
     public void setDebtQuantity(Integer debtQuantity) {
         this.debtQuantity = debtQuantity;
+    }
+
+    public Double getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(Double paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public Integer getPaidQuantity() {
+        return paidQuantity;
+    }
+
+    public void setPaidQuantity(Integer paidQuantity) {
+        this.paidQuantity = paidQuantity;
     }
 
     public LocalDateTime getLastModifiedDate() {

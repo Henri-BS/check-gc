@@ -128,6 +128,12 @@ export function ClientProfileCard({ clientId }: ClientProps) {
                 <li className="card-lg-item">Valor Total das Compras:
                     <p className="card-lg-content">{client?.account.debtAmount}</p>
                 </li>
+                <li className="card-lg-item">Compras Realizadas:
+                    <p className="card-lg-content">{client?.account.paidQuantity}</p>
+                </li>
+                <li className="card-lg-item">Valor Total das Compras:
+                    <p className="card-lg-content">{client?.account.paidAmount}</p>
+                </li>
                 <li className="card-lg-item">Última Alteração:
                     <p className="card-lg-content">{client?.account.lastModifiedDate}</p>
                 </li>

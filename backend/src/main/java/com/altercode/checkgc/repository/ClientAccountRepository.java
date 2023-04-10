@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ClientAccountRepository extends JpaRepository<ClientAccount, Long> {
 
-    @Query("SELECT new com.altercode.checkgc.dto.SumDebtQuantityDTO (SUM(obj.debtAmount), SUM(obj.debtQuantity))" +
+    @Query("SELECT new com.altercode.checkgc.dto.SumDebtQuantityDTO (SUM(obj.debtAmount), MAX(obj.debtAmount), SUM(obj.debtQuantity), SUM(obj.paidAmount), MAX(obj.paidAmount), SUM(obj.paidQuantity))" +
             " FROM ClientAccount AS obj")
     SumDebtQuantityDTO totalDebtQuantity();
 

@@ -21,6 +21,12 @@ public class ClientAccount {
     @Column(name = "debt_quantity")
     private Integer debtQuantity = 0;
 
+    @Column(name = "paid_amount")
+    private Double paidAmount = 0.0;
+
+    @Column(name = "paid_quantity")
+    private Integer paidQuantity = 0;
+
     @LastModifiedDate
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
@@ -64,6 +70,22 @@ public class ClientAccount {
         this.debtQuantity = debtQuantity;
     }
 
+    public Double getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(Double paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public Integer getPaidQuantity() {
+        return paidQuantity;
+    }
+
+    public void setPaidQuantity(Integer paidQuantity) {
+        this.paidQuantity = paidQuantity;
+    }
+
     public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
@@ -79,6 +101,4 @@ public class ClientAccount {
     public void setClient(Client client) {
         this.client = client;
     }
-
-
 }

@@ -52,7 +52,6 @@ public class DebtController {
         return ResponseEntity.ok(list);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<DebtDTO> findDebtById(@PathVariable Long id) {
         DebtDTO find = debtService.findDebtById(id);

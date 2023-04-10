@@ -4,9 +4,11 @@ import com.altercode.checkgc.dto.ClientDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Debt;
+import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.repository.ClientAccountRepository;
 import com.altercode.checkgc.repository.ClientRepository;
 import com.altercode.checkgc.repository.DebtRepository;
+import com.altercode.checkgc.repository.PaidRepository;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +29,9 @@ public class ClientService implements IClientService {
     @Autowired
     private DebtRepository debtRepository;
 
+    @Autowired
+    private PaidRepository paidRepository;
+
     @Override
     public Page<ClientDTO> findAllClients(Pageable pageable) {
         Page<Client> list = clientRepository.findAll(pageable);
@@ -36,6 +41,12 @@ public class ClientService implements IClientService {
             debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
             debt.getClient().getAccount().setDebtAmount(total);
             debtRepository.save(debt);
+        }
+        for(Paid paid : paidRepository.findAll()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getDebts().size());
+            paid.getClient().getAccount().setPaidAmount(total);
+            paidRepository.save(paid);
         }
         return list.map(ClientDTO::new);
     }
@@ -56,6 +67,7 @@ public class ClientService implements IClientService {
             debt.getClient().getAccount().setDebtAmount(total);
             debtRepository.save(debt);
         }
+
         return new ClientDTO(client);
     }
 
