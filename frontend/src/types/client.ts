@@ -45,3 +45,12 @@ export type ClientAccountPage = {
   empty?: boolean;
   pageNumber?: number;
 };
+
+export type AccountTotalValues = {
+  debtAmount: number;
+  debtMaxValue: number;
+  debtQuantity: number;
+  paidAmount: number;
+  paidMaxValue: number;
+  paidQuantity: number;
+}

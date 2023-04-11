@@ -2,7 +2,6 @@ package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.ClientAccount;
 
-import javax.persistence.Column;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;

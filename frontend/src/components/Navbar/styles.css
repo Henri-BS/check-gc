@@ -38,14 +38,13 @@
     text-decoration: none;
     padding: 8px 30px;
     transition: all 0.2s ease-in-out;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     border-radius: 10px;
-    border: 2px solid var(--green-seco);
 }
 
 .navbar-link:hover {
     color: var(--dark-prim);
-    border: 2px solid var(--green-tert);
+    border: 2px solid var(--green-seco);
 }
 
 @media screen and (max-width: 650px) {
