@@ -2,7 +2,7 @@ import axios from "axios";
 import { Navbar } from "components/Navbar";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ClientAccount, ClientPage } from "types/client";
+import { AccountTotalValues, ClientPage } from "types/client";
 import { DebtPage } from "types/debt";
 import { PaidPage } from "types/paid";
 import { ProductPage } from "types/product";
@@ -59,22 +59,36 @@ function Home() {
             });
     }, []);
 
-    const [account, setAccount] = useState<ClientAccount>();
-
+    const [value, setValue] = useState<AccountTotalValues>();
     useEffect(() => {
         axios.get(`${BASE_URL}/account/total-value`)
             .then((response) => {
-                setProductList(response.data);
-            });
+                setValue(response.data);
+            })
     }, []);
 
     return (
         <>
             <Navbar />
             <div className="container">
-                <nav className="sub-navbar">
-                    <div className="sub-navbar-item">
-
+                <nav className="sub-navbar row">
+                    <div className=" col-4">
+                        Valor das Dívidas Pendentes: {value?.debtAmount.toFixed(2)}
+                    </div>
+                    <div className=" col-4">
+                        Maior Dívida Pendente: {value?.debtMaxValue}
+                    </div>
+                    <div className=" col-4">
+                        Quantitdade de Dívidas Pendentes: {value?.debtQuantity}
+                    </div>
+                    <div className=" col-4">
+                        Valor das Dívidas Paga: {value?.paidAmount.toFixed(2)}
+                    </div>
+                    <div className=" col-4">
+                        Maior Dívida Paga: {value?.paidMaxValue}
+                    </div>
+                    <div className=" col-4">
+                        Quantitdade de Dívidas Pagas: {value?.paidQuantity}
                     </div>
                 </nav>
                 <div className="row">
@@ -105,10 +119,10 @@ function Home() {
                             <div className="home-bar-list">
                                 {productList.content.map(x => (
                                     <Link to={`/product/${x.productId}`} className="text-decoration-none">
-                                    <ul className="home-bar-item">
-                                        <li className="home-bar-content">Produto: {x.description}</li>
-                                        <li className="home-bar-content">Preço: {x.price.toFixed(2)}</li>
-                                    </ul>
+                                        <ul className="home-bar-item">
+                                            <li className="home-bar-content">Produto: {x.description}</li>
+                                            <li className="home-bar-content">Preço: {x.price.toFixed(2)}</li>
+                                        </ul>
                                     </Link>
                                 ))}
                             </div>
@@ -123,10 +137,10 @@ function Home() {
                             <div className="home-bar-list">
                                 {debtList.content.map(x => (
                                     <Link to={`/debt/${x.debtId}`} className="text-decoration-none">
-                                    <ul className="home-bar-item" >
-                                        <li className="home-bar-content">Produto: {x.product} ({x.productQuantity} unidades)</li>
-                                        <li className="home-bar-content">Situação: {x.status}</li>
-                                    </ul>
+                                        <ul className="home-bar-item" >
+                                            <li className="home-bar-content">Produto: {x.product} ({x.productQuantity} unidades)</li>
+                                            <li className="home-bar-content">Situação: {x.status}</li>
+                                        </ul>
                                     </Link>
                                 ))}
                             </div>
@@ -141,16 +155,16 @@ function Home() {
                             <div className="home-bar-list">
                                 {paidList.content.map(x => (
                                     <Link to={`/paid/${x.paidId}`} className="text-decoration-none">
-                                    <ul className="home-bar-item" >
-                                        <li className="home-bar-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
-                                        <li className="home-bar-content">Data do Pagamento: {x.paymentDate}</li>
-                                    </ul>
+                                        <ul className="home-bar-item" >
+                                            <li className="home-bar-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
+                                            <li className="home-bar-content">Data do Pagamento: {x.paymentDate}</li>
+                                        </ul>
                                     </Link>
                                 ))}
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </>
