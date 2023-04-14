@@ -21,11 +21,15 @@ export function ClientCard({ client }: ClientCardProps) {
                         {client.name}
                     </nav>
                     <ul className="card-md-list">
-                        <li className="card-md-item card-md-content">Endereço: {client.address}</li>
-                        <li className="card-md-item card-md-content">Contato: {client.phoneNumber}</li>
-                        <li className="card-md-item card-md-content">Valor Total da Conta: {client.account.debtAmount}</li>
-                        <li className="card-md-item card-md-content">Compras Realizadas: {client.account.debtQuantity}</li>
-                        <li className="card-md-item card-md-content">Última Atualização: {client.account.lastModifiedDate}</li>
+                        <li className="card-md-item ">Endereço: 
+                        <p className="card-md-content">{client.address}</p>
+                        </li>
+                        <li className="card-md-item ">Contato: 
+                        <p className="card-md-content">{client.phoneNumber}</p>
+                        </li>
+                        <li className="card-md-item">Última Atualização: 
+                        <p className="card-md-content">{client.account.lastModifiedDate}</p>
+                        </li>
                     </ul>
                 </div>
             </Link>

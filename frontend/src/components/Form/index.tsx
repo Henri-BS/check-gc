@@ -154,10 +154,6 @@ export function DebtAddForm() {
                 <div className="form-group">
                     <ProductDatalist />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="status">Situtação da Compra</label>
-                    <input id="status" type="text" className="form-control" />
-                </div>
             </div>
             <div className="modal-footer">
                 <button type="submit" className="btn btn-confirm">Adicionar</button>
@@ -222,10 +218,7 @@ export function DebtEditForm({ debtId }: DebtProps) {
                     <input id="productQuantity" className="form-control" defaultValue={debt?.productQuantity} />
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="status">Situtação da Compra</label>
-                    <input id="status" className="form-control" defaultValue={debt?.status} />
-                </div>
+              
             </div>
             <div className="modal-footer">
                 <button type="submit" className="btn btn-confirm">Editar</button>

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_debt")
-public class Debt  extends Sale{
+public class Debt extends Sale{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,16 +15,14 @@ public class Debt  extends Sale{
     @Column(name = "debt_date")
     private LocalDate debtDate;
 
-    private String status;
 
     public Debt() {
     }
 
-    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate, String status) {
+    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate) {
         super(productQuantity, productAmount, product, client);
         this.debtId = debtId;
         this.debtDate = debtDate;
-        this.status = status;
     }
 
     public Long getDebtId() {
@@ -43,11 +41,5 @@ public class Debt  extends Sale{
         this.debtDate = debtDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

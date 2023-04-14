@@ -7,7 +7,6 @@ export type Debt = {
   clientName: string;
   product: number;
   productDescription: string;
-  status: string;
 };
 
 export type DebtPage = {

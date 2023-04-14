@@ -33,18 +33,18 @@ INSERT INTO tb_product (description, price) VALUES ('Feijâo Preto Mayara 1kg', 
 INSERT INTO tb_product (description, price) VALUES ('Sal Cavalinho 1kg', 1.0);
 
 
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(1, '2023-01-12', 4, 0.0, 1, 'Devendo');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(1, '2023-01-12', 2, 0.0, 4, 'Devendo');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(1, '2023-01-05', 1, 0.0, 9, 'Pago');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(6, '2023-01-05', 1, 0.0, 1, 'Pago');
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(1, '2023-01-12', 4, 0.0, 1);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(1, '2023-01-12', 2, 0.0, 4);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(1, '2023-01-05', 1, 0.0, 9);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(6, '2023-01-05', 1, 0.0, 1);
 
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(2, '2023-01-10', 8, 0.0, 5, 'Devendo');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(3, '2023-01-05', 5, 0.0, 3, 'Pago');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(2, '2023-01-20', 2, 0.0, 6, 'Pago');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(6, '2023-02-02', 3, 0.0, 11, 'Pago');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(5, '2023-02-05', 2, 0.0, 7, 'Devendo');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(7, '2023-02-13', 9, 0.0, 2, 'Devendo');
-INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id, status) VALUES(4, '2023-02-16', 14, 0.0, 8, 'Pago');
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(2, '2023-01-10', 8, 0.0, 5);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(3, '2023-01-05', 5, 0.0, 3);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(2, '2023-01-20', 2, 0.0, 6);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(6, '2023-02-02', 3, 0.0, 11);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(5, '2023-02-05', 2, 0.0, 7);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(7, '2023-02-13', 9, 0.0, 2);
+INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(4, '2023-02-16', 14, 0.0, 8);
 
 
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(5, 2, '2023-04-01', 'PIX', 2, 0.0);

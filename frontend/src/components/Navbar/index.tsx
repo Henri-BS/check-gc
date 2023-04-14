@@ -14,24 +14,24 @@ export function Navbar() {
 
           <li className="col-12 col-lg-2 navbar-item ">
             <Link to={`/client-list`} className="navbar-link">
-              Clientes
+              <i className="fa fa-user" /> Clientes
             </Link>
           </li>
 
           <li className="col-12 col-lg-2 navbar-item">
-              <Link to={`/debt-list`} className="navbar-link">
-                Devendo
-              </Link>
+            <Link to={`/debt-list`} className="navbar-link">
+              <i className="fa fa-book" /> Devendo
+            </Link>
           </li>
 
-          <li className="col-12 col-md-6 col-lg-2 navbar-item">
-              <Link to={`/paid-list`} className="navbar-link">
-                Pago
-              </Link>
+          <li className="col-12 col-lg-2 navbar-item">
+            <Link to={`/paid-list`} className="navbar-link">
+              <i className="fa fa-bookmark" /> Pago
+            </Link>
           </li>
-          <li className="col-12 col-md-6 col-lg-2 navbar-item">
+          <li className="col-12 col-lg-2 navbar-item">
             <Link to={`/product-list`} className="navbar-link">
-              Produtos
+              <i className="fa fa-cart-plus" /> Produtos
             </Link>
           </li>
         </ul>

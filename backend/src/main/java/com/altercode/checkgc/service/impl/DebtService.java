@@ -86,7 +86,6 @@ public class DebtService implements IDebtService {
         add.setDebtDate(dto.getDebtDate());
         add.setProductQuantity(dto.getProductQuantity());
         add.setProduct(product);
-        add.setStatus(dto.getStatus());
 
         return new DebtDTO(debtRepository.saveAndFlush(add));
     }
@@ -101,7 +100,6 @@ public class DebtService implements IDebtService {
         edit.setProductQuantity(dto.getProductQuantity());
         edit.setProductAmount(dto.getProductAmount());
         edit.setProduct(product);
-        edit.setStatus(dto.getStatus());
 
         return new DebtDTO(debtRepository.save(edit));
     }
@@ -113,17 +111,14 @@ public class DebtService implements IDebtService {
         Paid addPaid = new Paid();
         addPaid.setPaymentType(dto.getPaymentType());
         addPaid.setPaymentDate(dto.getPaymentDate());
-        addPaid = paidRepository.saveAndFlush(addPaid);
-
-        Paid updatePaid = paidRepository.findById(addPaid.getPaidId()).orElseThrow();
-        updatePaid.setProductQuantity(debt.getProductQuantity());
-        updatePaid.setProductAmount(debt.getProductAmount());
-        updatePaid.setProduct(debt.getProduct());
-        updatePaid.setClient(debt.getClient());
-        updatePaid = paidRepository.save(updatePaid);
+        addPaid.setProductQuantity(debt.getProductQuantity());
+        addPaid.setProductAmount(debt.getProductAmount());
+        addPaid.setProduct(debt.getProduct());
+        addPaid.setClient(debt.getClient());
+        addPaid = paidRepository.save(addPaid);
 
         this.debtRepository.deleteById(debt.getDebtId());
-        return new PaidDTO(updatePaid);
+        return new PaidDTO(addPaid);
     }
 
     @Override

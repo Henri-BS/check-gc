@@ -71,7 +71,7 @@ public class DebtController {
     }
 
     @PutMapping("/update-for-paid/{debtId}")
-    public ResponseEntity<PaidDTO> updateDebtForPaid(@RequestBody PaidDTO dto, @PathVariable Long debtId) {
+    public ResponseEntity<PaidDTO> updateDebtForPaid( PaidDTO dto, @PathVariable Long debtId) {
         PaidDTO update = debtService.updateDebtForPaid(dto, debtId);
         return new ResponseEntity<>(update, HttpStatus.OK);
     }

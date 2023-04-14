@@ -17,21 +17,19 @@ export function DebtCard({ debt }: DebtCardProps) {
                     {debt.clientName}
                 </div>
                 <ul className="card-md-list">
-                    <li className="card-md-item ">Data da Compra: 
-                    <p className="card-md-content">{debt.debtDate}</p>
+                    <li className="card-md-item ">Data da Compra:
+                        <p className="card-md-content">{debt.debtDate}</p>
                     </li>
-                    <li className="card-md-item ">Produto Solicitado: 
-                    <p className="card-md-content">{debt.productDescription}</p>
+                    <li className="card-md-item ">Produto Solicitado:
+                        <p className="card-md-content">{debt.productDescription}</p>
                     </li>
-                    <li className="card-md-item ">Quantidade do Produto: 
-                    <p className="card-md-content">{debt.productQuantity}</p>
+                    <li className="card-md-item ">Quantidade do Produto:
+                        <p className="card-md-content">{debt.productQuantity}</p>
                     </li>
-                    <li className="card-md-item ">Valor da Compra: 
-                    <p className="card-md-content">{debt.productAmount}</p>
+                    <li className="card-md-item ">Valor da Compra:
+                        <p className="card-md-content">{debt.productAmount}</p>
                     </li>
-                    <li className="card-md-item ">Situação: 
-                    <p className="card-md-content">{debt.status}</p>
-                    </li>
+
                 </ul>
             </div>
         </Link>
@@ -49,8 +47,8 @@ export function DebtSmallCard({ debt }: DebtCardProps) {
                     <li className="card-md-item">Data da Compra:
                         <p className="card-md-content">{debt.debtDate}</p>
                     </li>
-                    <li className="card-md-item">Situação:
-                        <p className="card-md-content">{debt.status}</p>
+                    <li className="card-md-item">Valor:
+                        <p className="card-md-content">{debt.productAmount}</p>
                     </li>
                 </ul>
             </div>
@@ -78,10 +76,17 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             })
     }
 
+    const updateDebtForPaid = () => {
+    axios.put(`${BASE_URL}/debt/update-for-paid/${debtId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+            navigate(`/paid-list`)
+        }
     return (
         <>
             <div className="sub-navbar">
-                <Link to={`/client/${debt?.clientId}`} className="sub-navbar-item">
+                <Link to={`/debt-list`} className="sub-navbar-item">
                     <i className="fa fa-chevron-left" />
                 </Link>
                 <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
@@ -97,7 +102,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     <p className="card-lg-content">{debt?.debtDate}</p>
                 </li>
                 <li className=" card-lg-item">Produto Solicitado:
-                    <p className="card-lg-content">{debt?.product}</p>
+                    <p className="card-lg-content">{debt?.productDescription}</p>
                 </li>
                 <li className=" card-lg-item">Quantidade do Produto:
                     <p className="card-lg-content">{debt?.productQuantity}</p>
@@ -105,8 +110,11 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                 <li className=" card-lg-item">Valor da Compra:
                     <p className="card-lg-content">{debt?.productAmount}</p>
                 </li>
-                <li className=" card-lg-item">Situação:
-                    <p className="card-lg-content">{debt?.status}</p>
+
+                <li className=" card-lg-item">
+                    <button className="btn btn-primary" data-bs-target="#debtUpdatePaidModal" data-bs-toggle="modal">
+                        <i className="fa fa-edit" /> Atutalizar como Paga
+                    </button>
                 </li>
             </ul>
 
@@ -135,6 +143,22 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                         </div>
                         <div className="modal-footer">
                             <button onClick={() => deleteDebt()} data-bs-dismiss="modal" className="btn btn-danger" >Deletar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="debtUpdatePaidModal" role={"dialog"}>
+                <div className="modal-dialog" role={"document"}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <label htmlFor="clientLabel" className="modal-title">Deseja atualizar a dívida pendente para paga ?</label>
+                            <button className="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
+                            </button>
+                        </div>
+                        <div className="modal-footer">
+                            <button onClick={() => updateDebtForPaid()} data-bs-dismiss="modal" className="btn btn-primary" >Atualizar</button>
                         </div>
                     </div>
                 </div>

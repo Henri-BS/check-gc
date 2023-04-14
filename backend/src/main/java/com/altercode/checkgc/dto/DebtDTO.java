@@ -18,7 +18,6 @@ public class DebtDTO implements Serializable {
 
     private String clientName;
     private String productDescription;
-    private String status;
 
     public DebtDTO() {
     }
@@ -30,7 +29,6 @@ public class DebtDTO implements Serializable {
         productAmount = entity.getProductAmount();
         clientName = entity.getClient().getName();
         productDescription = entity.getProduct().getDescription();
-        status = entity.getStatus();
     }
 
     public Long getDebtId() {
@@ -81,11 +79,5 @@ public class DebtDTO implements Serializable {
         this.productDescription = productDescription;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
