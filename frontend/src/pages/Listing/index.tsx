@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PaidCard } from "components/Card/PaidCard";
+import {PaidCard, PaidSmallCard } from "components/Card/PaidCard";
 import { ClientCard } from "components/Card/ClientCard";
 import { DebtCard, DebtSmallCard } from "components/Card/DebtCard";
 import { ProductCard } from "components/Card/ProductCard";
@@ -9,7 +9,7 @@ import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { ClientPage, ClientProps } from "types/client";
 import { Debt, DebtPage, DebtProps } from "types/debt";
-import { PaidPage } from "types/paid";
+import { Paid, PaidPage, PaidProps } from "types/paid";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
@@ -246,6 +246,40 @@ export function PaidList() {
                         </div>
                     </div>
                 </div>
+            </div>
+        </>
+    );
+}
+
+export function PaidListByDate({ paidId }: PaidProps) {
+
+    const [paid, setPaid] = useState<Paid>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/${paidId}`)
+            .then((response) => {
+                setPaid(response.data);
+            });
+    }, [paidId]);
+
+    const [paidPage, setPaidPage] = useState<Paid[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/list-by-date/${paid?.paymentDate}`)
+            .then((response) => {
+                setPaidPage(response.data);
+            })
+    }, [paid?.paymentDate]);
+
+    return (
+        <>
+            <ul className="home-bar-title">
+                <li><i className="fa fa-book" /> Dívidas da data: {paid?.paymentDate}</li>
+            </ul>
+            <div className="horizontal-list-container ">
+                {paidPage?.map((x) => (
+                    <div key={x.paidId} className="horizontal-list-item">
+                        <PaidSmallCard paid={x} />
+                    </div>
+                ))}
             </div>
         </>
     );
