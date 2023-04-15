@@ -7,8 +7,6 @@ import { BASE_URL } from "utils/requests";
 import "./styles.css"
 
 
-
-
 type PaidCardProps = {
     paid: Paid
 }
@@ -40,6 +38,24 @@ export function PaidCard({ paid }: PaidCardProps) {
                 </ul>
             </div>
         </Link>
+    );
+}
+
+export function PaidSmallCard({paid}: PaidCardProps) {
+    return (
+<Link to={`/paid/${paid.paidId}`}>
+    <div className="card-md-container blur-container">
+        <div className="card-md-title">
+            Produto Solicitado: {paid.productDescription}
+        </div>
+            <li className="card-md-item">Data do Pagamento: 
+                <p className="card-md-content">{paid.paymentDate}</p>
+            </li>
+            <li className="card-md-item">Valor: 
+                <p className="card-md-content">{paid.productAmount}</p>
+            </li>
+    </div>
+</Link>
     );
 }
 
