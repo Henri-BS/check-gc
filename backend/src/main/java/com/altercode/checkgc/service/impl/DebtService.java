@@ -12,7 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +55,8 @@ public class DebtService implements IDebtService {
     @Override
     public List<DebtDTO> findAllDebtsByDebtDate(String debtDate) {
         LocalDate date = LocalDate.parse(debtDate);
+
+
         List<Debt> list = debtRepository.findAllDebtsByDebtDate(date);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
@@ -72,7 +77,13 @@ public class DebtService implements IDebtService {
         double total ;
         total = find.getProductQuantity() * find.getProduct().getPrice();
         find.setProductAmount(total);
+
+        LocalDate debtDate = find.getDebtDate();
+        LocalDate now = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        Period period = Period.between(debtDate, now);
+        find.setDebtDays(period.getDays());
         debtRepository.save(find);
+
         return new DebtDTO(find);
     }
 

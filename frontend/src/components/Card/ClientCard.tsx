@@ -126,16 +126,16 @@ export function ClientProfileCard({ clientId }: ClientProps) {
                 <li className="card-lg-item">Contato:
                     <p className="card-lg-content">{client?.phoneNumber}</p>
                 </li>
-                <li className="card-lg-item">Compras Realizadas:
+                <li className="card-lg-item">Dívidas Pendentes:
                     <p className="card-lg-content">{client?.account.debtQuantity}</p>
                 </li>
-                <li className="card-lg-item">Valor Total das Compras:
+                <li className="card-lg-item">Valor Total das Compras Pendentes:
                     <p className="card-lg-content">{client?.account.debtAmount}</p>
                 </li>
-                <li className="card-lg-item">Compras Realizadas:
+                <li className="card-lg-item">Compras Pagas:
                     <p className="card-lg-content">{client?.account.paidQuantity}</p>
                 </li>
-                <li className="card-lg-item">Valor Total das Compras:
+                <li className="card-lg-item">Valor Total das Compras Pagas:
                     <p className="card-lg-content">{client?.account.paidAmount}</p>
                 </li>
                 <li className="card-lg-item">Última Alteração:

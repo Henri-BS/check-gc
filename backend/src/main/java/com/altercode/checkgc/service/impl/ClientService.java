@@ -35,17 +35,19 @@ public class ClientService implements IClientService {
     @Override
     public Page<ClientDTO> findAllClients(Pageable pageable) {
         Page<Client> list = clientRepository.findAll(pageable);
-        double total;
+
+        double totalDebt;
         for(Debt debt : debtRepository.findAll()) {
-            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            totalDebt = debt.getProductQuantity() * debt.getProduct().getPrice();
             debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
-            debt.getClient().getAccount().setDebtAmount(total);
+            debt.getClient().getAccount().setDebtAmount(totalDebt);
             debtRepository.save(debt);
         }
+        double totalPaid;
         for(Paid paid : paidRepository.findAll()) {
-            total = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getDebts().size());
-            paid.getClient().getAccount().setPaidAmount(total);
+            totalPaid = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
+            paid.getClient().getAccount().setPaidAmount(totalPaid);
             paidRepository.save(paid);
         }
         return list.map(ClientDTO::new);
@@ -67,7 +69,12 @@ public class ClientService implements IClientService {
             debt.getClient().getAccount().setDebtAmount(total);
             debtRepository.save(debt);
         }
-
+        for(Paid paid : paidRepository.findAll()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
+            paid.getClient().getAccount().setPaidAmount(total);
+            paidRepository.save(paid);
+        }
         return new ClientDTO(client);
     }
 

@@ -140,10 +140,9 @@ export function DebtListByClient({ clientId }: ClientProps) {
 
     return (
         <>
-            <ul className="home-bar-title">
-                <li><i className="fa fa-book" /> Dívidas</li>
-
-            </ul>
+            <div className="home-title">
+                <div><i className="fa fa-book" /> Dívidas Pendentes</div>
+            </div>
             <div className="horizontal-list-container">
                 {debtList?.map((x) => (
                     <div key={x.debtId} className="horizontal-list-item">
@@ -154,6 +153,8 @@ export function DebtListByClient({ clientId }: ClientProps) {
         </>
     );
 }
+
+
 
 export function DebtListByDate({ debtId }: DebtProps) {
 
@@ -175,9 +176,9 @@ export function DebtListByDate({ debtId }: DebtProps) {
 
     return (
         <>
-            <ul className="home-bar-title">
-                <li><i className="fa fa-book" /> Dívidas da data: {debt?.debtDate}</li>
-            </ul>
+            <div className="home-bar-title">
+                <i className="fa fa-book" /> Dívidas feitas em: {debt?.debtDate}
+            </div>
             <div className="horizontal-list-container ">
                 {debtPage?.map((x) => (
                     <div key={x.debtId} className="horizontal-list-item">
@@ -251,6 +252,32 @@ export function PaidList() {
     );
 }
 
+export function PaidListByClient({ clientId }: ClientProps) {
+
+    const [paidList, setPaidList] = useState<Paid[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/list-client/${clientId}`)
+            .then((response) => {
+                setPaidList(response.data);
+            })
+    }, [clientId]);
+
+    return (
+        <>
+            <div className="home-title">
+                <div><i className="fa fa-bookmark" /> Dívidas Pagas</div>
+            </div>
+            <div className="horizontal-list-container">
+                {paidList?.map((x) => (
+                    <div key={x.paidId} className="horizontal-list-item">
+                        <PaidSmallCard paid={x} />
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}
+
 export function PaidListByDate({ paidId }: PaidProps) {
 
     const [paid, setPaid] = useState<Paid>();
@@ -271,9 +298,9 @@ export function PaidListByDate({ paidId }: PaidProps) {
 
     return (
         <>
-            <ul className="home-bar-title">
-                <li><i className="fa fa-book" /> Dívidas da data: {paid?.paymentDate}</li>
-            </ul>
+            <div className="home-title">
+                <i className="fa fa-book" /> Dívidas pagas em: {paid?.paymentDate}
+            </div>
             <div className="horizontal-list-container ">
                 {paidPage?.map((x) => (
                     <div key={x.paidId} className="horizontal-list-item">

@@ -2,6 +2,7 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.repository.ClientRepository;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,12 @@ public class PaidService implements IPaidService {
     @Override
     public Page<PaidDTO> findAllPaid(Pageable pageable) {
         Page<Paid> page = paidRepository.findAll(pageable);
-
+        double total ;
+        for(Paid paid: page) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.setProductAmount(total);
+            paidRepository.save(paid);
+        }
         return page.map(PaidDTO::new);
     }
 
@@ -44,6 +51,12 @@ public class PaidService implements IPaidService {
     @Override
     public PaidDTO findPaidById(Long id) {
         Paid find = paidRepository.findById(id).orElseThrow();
+        double total ;
+        for(Paid paid: paidRepository.findAll()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.setProductAmount(total);
+            paidRepository.save(paid);
+        }
         return new PaidDTO(find);
     }
 
@@ -79,5 +92,12 @@ public class PaidService implements IPaidService {
     @Override
     public void deletePaid(Long paidId) {
         this.paidRepository.deleteById(paidId);
+    }
+
+    @Override
+    public List<PaidDTO> findAllPaidByPaymentDate(String paymentDate) {
+        LocalDate date = LocalDate.parse(paymentDate);
+        List<Paid> list = paidRepository.findAllPaidByPaymentDate(date);
+        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
     }
 }

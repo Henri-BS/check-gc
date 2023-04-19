@@ -29,7 +29,7 @@ public class Client {
     private Set<Debt> debts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Paid> paids = new HashSet<>();
+    private Set<Paid> paid = new HashSet<>();
 
     public Client() {
     }
@@ -86,4 +86,7 @@ public class Client {
         return debts;
     }
 
+    public Set<Paid> getPaid() {
+        return paid;
+    }
 }

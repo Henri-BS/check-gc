@@ -26,8 +26,8 @@ public class ClientAccountDTO implements Serializable {
         accountId = entity.getAccountId();
         debtAmount = entity.getDebtAmount();
         debtQuantity = entity.getDebtQuantity();
-        paidAmount = entity.getDebtAmount();
-        paidQuantity = entity.getDebtQuantity();
+        paidAmount = entity.getPaidAmount();
+        paidQuantity = entity.getPaidQuantity();
         lastModifiedDate = entity.getLastModifiedDate();
         clientName = entity.getClient().getName();
     }

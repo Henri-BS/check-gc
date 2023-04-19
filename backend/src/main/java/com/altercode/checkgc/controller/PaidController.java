@@ -1,5 +1,6 @@
 package com.altercode.checkgc.controller;
 
+import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.service.interf.IPaidService;
@@ -28,6 +29,12 @@ public class PaidController {
     @GetMapping("/list-client/{client}")
     public ResponseEntity<List<PaidDTO>> findAllPaidByClient(@PathVariable Client client) {
         List<PaidDTO> list = paidService.findAllPaidByClient(client);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/paid/list-by-date/{paymentDate}")
+    public ResponseEntity<List<PaidDTO>> findAllPaidByPaymentDate(@PathVariable String paymentDate) {
+        List<PaidDTO> list = paidService.findAllPaidByPaymentDate(paymentDate);
         return ResponseEntity.ok(list);
     }
 

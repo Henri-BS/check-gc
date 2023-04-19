@@ -15,14 +15,17 @@ public class Debt extends Sale{
     @Column(name = "debt_date")
     private LocalDate debtDate;
 
+    @Column(name = "debt_days")
+    private Integer debtDays;
 
     public Debt() {
     }
 
-    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate) {
+    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate, Integer debtDays) {
         super(productQuantity, productAmount, product, client);
         this.debtId = debtId;
         this.debtDate = debtDate;
+        this.debtDays = debtDays;
     }
 
     public Long getDebtId() {
@@ -41,5 +44,11 @@ public class Debt extends Sale{
         this.debtDate = debtDate;
     }
 
+    public Integer getDebtDays() {
+        return debtDays;
+    }
 
+    public void setDebtDays(Integer debtDays) {
+        this.debtDays = debtDays;
+    }
 }

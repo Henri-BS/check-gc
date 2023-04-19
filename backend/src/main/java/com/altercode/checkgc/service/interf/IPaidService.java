@@ -20,4 +20,5 @@ public interface IPaidService {
 
     void deletePaid(Long paidId);
 
+    List<PaidDTO> findAllPaidByPaymentDate(String paymentDate);
 }
