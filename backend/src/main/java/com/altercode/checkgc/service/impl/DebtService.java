@@ -81,7 +81,7 @@ public class DebtService implements IDebtService {
         LocalDate debtDate = find.getDebtDate();
         LocalDate now = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
         Period period = Period.between(debtDate, now);
-        find.setDebtDays(period.getDays());
+        find.setDebtDays(period.getMonths() + " meses e " + period.getDays() + " dias" );
         debtRepository.save(find);
 
         return new DebtDTO(find);

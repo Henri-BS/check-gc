@@ -13,7 +13,7 @@ public class DebtDTO implements Serializable {
 
     private Long debtId;
     private LocalDate debtDate;
-    private Integer debtDays;
+    private String debtDays;
     private Integer productQuantity;
     private Double productAmount;
 
@@ -49,11 +49,11 @@ public class DebtDTO implements Serializable {
         this.debtDate = debtDate;
     }
 
-    public Integer getDebtDays() {
+    public String getDebtDays() {
         return debtDays;
     }
 
-    public void setDebtDays(Integer debtDays) {
+    public void setDebtDays(String debtDays) {
         this.debtDays = debtDays;
     }
 

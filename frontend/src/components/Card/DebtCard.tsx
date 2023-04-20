@@ -101,6 +101,9 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                 <li className="card-lg-item "> Data da Compra:
                     <p className="card-lg-content">{debt?.debtDate}</p>
                 </li>
+                <li className=" card-lg-item">Devendo Há:
+                    <p className="card-lg-content">{debt?.debtDays}</p>
+                </li>
                 <li className=" card-lg-item">Produto Solicitado:
                     <p className="card-lg-content">{debt?.productDescription}</p>
                 </li>
@@ -113,7 +116,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
 
                 <li className=" card-lg-item">
                     <button className="btn btn-primary" data-bs-target="#debtUpdatePaidModal" data-bs-toggle="modal">
-                        <i className="fa fa-edit" /> Atutalizar como Paga
+                        <i className="fa fa-edit" /> Atualizar para Paga
                     </button>
                 </li>
             </ul>

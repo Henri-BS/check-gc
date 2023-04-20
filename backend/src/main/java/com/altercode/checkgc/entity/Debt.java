@@ -16,12 +16,12 @@ public class Debt extends Sale{
     private LocalDate debtDate;
 
     @Column(name = "debt_days")
-    private Integer debtDays;
+    private String debtDays;
 
     public Debt() {
     }
 
-    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate, Integer debtDays) {
+    public Debt(Integer productQuantity, Double productAmount, Product product, Client client, Long debtId, LocalDate debtDate, String debtDays) {
         super(productQuantity, productAmount, product, client);
         this.debtId = debtId;
         this.debtDate = debtDate;
@@ -44,11 +44,11 @@ public class Debt extends Sale{
         this.debtDate = debtDate;
     }
 
-    public Integer getDebtDays() {
+    public String getDebtDays() {
         return debtDays;
     }
 
-    public void setDebtDays(Integer debtDays) {
+    public void setDebtDays(String debtDays) {
         this.debtDays = debtDays;
     }
 }
