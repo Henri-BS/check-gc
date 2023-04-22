@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface PaidRepository extends JpaRepository<Paid, Long> {
 
-
     List<Paid> findAllPaidByClient(Client client);
 
     List<Paid> findAllPaidByPaymentDate(LocalDate date);

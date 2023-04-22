@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ProductEditForm } from "components/Form";
+import { ProductEditForm } from "components/Form/ProductForm";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Product, ProductProps } from "types/product";

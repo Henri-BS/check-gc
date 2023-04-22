@@ -1,5 +1,6 @@
 import axios from "axios";
-import { PaidEditForm } from "components/Form";
+import moment from "moment";
+import { PaidEditForm } from "components/Form/PaidForm";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Paid, PaidProps } from "types/paid";
@@ -20,7 +21,7 @@ export function PaidCard({ paid }: PaidCardProps) {
                 </div>
                 <ul className="card-md-list">
                     <li className="card-md-item"> Data do Pagamento:
-                        <p className="card-md-content">{paid.paymentDate}</p>
+                        <p className="card-md-content">{moment(paid.paymentDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className="card-md-item"> Tipo de Pagamento:
                         <p className="card-md-content">{paid.paymentType}</p>
@@ -41,21 +42,21 @@ export function PaidCard({ paid }: PaidCardProps) {
     );
 }
 
-export function PaidSmallCard({paid}: PaidCardProps) {
+export function PaidSmallCard({ paid }: PaidCardProps) {
     return (
-<Link to={`/paid/${paid.paidId}`}>
-    <div className="card-md-container blur-container">
-        <div className="card-md-title">
-            Produto Solicitado: {paid.productDescription}
-        </div>
-            <li className="card-md-item">Data do Pagamento: 
-                <p className="card-md-content">{paid.paymentDate}</p>
-            </li>
-            <li className="card-md-item">Valor: 
-                <p className="card-md-content">{paid.productAmount}</p>
-            </li>
-    </div>
-</Link>
+        <Link to={`/paid/${paid.paidId}`}>
+            <div className="card-md-container blur-container">
+                <div className="card-md-title">
+                    Produto Solicitado: {paid.productDescription}
+                </div>
+                <li className="card-md-item">Data do Pagamento:
+                    <p className="card-md-content">{moment(paid.paymentDate).format("DD/MM/YYYY")}</p>
+                </li>
+                <li className="card-md-item">Valor:
+                    <p className="card-md-content">{paid.productAmount}</p>
+                </li>
+            </div>
+        </Link>
     );
 }
 
@@ -74,9 +75,9 @@ export function PaidProfileCard({ paidId }: PaidProps) {
 
     const deletePaid = () => {
         axios.delete(`${BASE_URL}/paid/delete/${paidId}`)
-        .then((response) => {
-navigate(`/paid-list`);
-        })
+            .then((response) => {
+                navigate(`/paid-list`);
+            })
     }
 
     return (
@@ -91,11 +92,11 @@ navigate(`/paid-list`);
                 <button className="btn btn-danger" data-bs-target="#paidDeleteModal" data-bs-toggle="modal">
                     <i className="fa fa-trash" /> Deletar Compra
                 </button>
-            </div>  
+            </div>
             <hr />
             <ul className="card-md-list">
                 <li className="card-lg-item "> Data do Pagamento:
-                    <p className="card-lg-content">{paid?.paymentDate}</p>
+                    <p className="card-lg-content">{moment(paid?.paymentDate).format("DD/MM/YYYY")}</p>
                 </li>
                 <li className=" card-lg-item">Produto Solicitado:
                     <p className="card-lg-content">{paid?.productDescription}</p>
@@ -117,7 +118,7 @@ navigate(`/paid-list`);
                         <div className="modal-header">
                             <label htmlFor="paid">Alterar informações sobre a compra paga</label>
                             <button className="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"><i className="fa fa-times"/></span>
+                                <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
                         <div className="modal-body"><PaidEditForm paidId={`${params.paidId}`} /></div>

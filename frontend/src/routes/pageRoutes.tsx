@@ -1,7 +1,10 @@
 import { ClientProfile, DebtProfile, PaidProfile, ProductProfile } from "pages/Profile";
 import Home from "pages/Home";
-import { ClientList, DebtList, PaidList, ProductList } from "pages/Listing";
+import { ClientList} from "pages/Listing/ClientListing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { DebtList } from "pages/Listing/DebtListing";
+import { PaidList } from "pages/Listing/PaidListing";
+import { ProductList } from "pages/Listing/ProductListing";
 
 function PageRoutes() {
     return (

@@ -37,14 +37,14 @@
     color: var(--dark-seco);
     text-decoration: none;
     padding: 8px 30px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
     border: 2px solid transparent;
     border-radius: 10px;
 }
 
 .navbar-link:hover {
     color: var(--dark-prim);
-    border: 2px solid var(--green-seco);
+    border: 2px solid var(--green-prim);
 }
 
 @media screen and (max-width: 650px) {

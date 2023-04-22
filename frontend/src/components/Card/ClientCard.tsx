@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ClientEditForm } from "components/Form";
+import moment from "moment";
+import { ClientEditForm } from "components/Form/ClientForm";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
@@ -28,7 +29,7 @@ export function ClientCard({ client }: ClientCardProps) {
                         <p className="card-md-content">{client.phoneNumber}</p>
                         </li>
                         <li className="card-md-item">Última Atualização: 
-                        <p className="card-md-content">{client.account.lastModifiedDate}</p>
+                        <p className="card-md-content">{moment(client.account.lastModifiedDate).format("DD/MM/YYYY")}</p>
                         </li>
                     </ul>
                 </div>
@@ -87,13 +88,6 @@ export function ClientProfileCard({ clientId }: ClientProps) {
             })
     }, [clientId]);
 
-    useEffect(() => {
-        axios.put(`${BASE_URL}/client/update-value/${client?.clientId}`)
-            .then((response) => {
-                setClient(response.data);
-            })
-    }, [client?.clientId]);
-
     const deleteClient = () => {
         axios.delete(`${BASE_URL}/client/delete/${clientId}`)
             .then((response) => {
@@ -139,7 +133,7 @@ export function ClientProfileCard({ clientId }: ClientProps) {
                     <p className="card-lg-content">{client?.account.paidAmount}</p>
                 </li>
                 <li className="card-lg-item">Última Alteração:
-                    <p className="card-lg-content">{client?.account.lastModifiedDate}</p>
+                    <p className="card-lg-content">{moment(client?.account.lastModifiedDate).format("DD/MM/YYYY")}</p>
                 </li>
             </nav>
 

@@ -28,7 +28,7 @@ public class DebtController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/list-client/{clientId}")
+    @GetMapping("/list-by-client/{clientId}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByClient(@PathVariable Client clientId) {
         List<DebtDTO> list = debtService.findAllDebtsByClient(clientId);
         return ResponseEntity.ok(list);

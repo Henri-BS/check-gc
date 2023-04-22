@@ -70,8 +70,7 @@ function Home() {
     return (
         <>
             <Navbar />
-            <div className="container">
-                <nav className="bar-container row">
+            <nav className="bar-container row">
                     <div className="bar-item col-6">
                         <b>Valor das Dívidas Pendentes:</b> {value?.debtAmount.toFixed(2)}
                     </div>
@@ -84,25 +83,27 @@ function Home() {
                         <b>Quantidade de Dívidas Pagas:</b> {value?.paidQuantity}
                     </div>
                     <div className="bar-item col-6">
-                        <b>Maior Dívida Pendente:</b> {value?.debtMaxValue}
+                        <b>Maior Dívida Pendente:</b> {value?.debtMaxValue.toFixed(2)}
                     </div>
                     <div className="bar-item col-6">
-                        <b>Maior Dívida Paga:</b> {value?.paidMaxValue}
+                        <b>Maior Dívida Paga:</b> {value?.paidMaxValue.toFixed(2)}
                     </div>
                 </nav>
+            <div className="container">
+                
                 <div className="row">
                     <div className="col-12 col-lg-6">
-                        <div className="home-container">
-                            <ul className="home-title">
+                        <div className="homelist-container">
+                            <ul className="homelist-title">
                                 <li><i className="fa fa-user" /> Novos Clientes</li>
                                 <Link to={`/client-list`}><li>ver lista completa</li></Link>
                             </ul>
-                            <div className="home-list">
+                            <div>
                                 {clientList.content.map(x => (
                                     <Link to={`/client/${x.clientId}`} className="text-decoration-none">
-                                        <ul className="home-item" key={x.clientId}>
-                                            <li className="home-content">{x.name}</li>
-                                            <li className="home-content">Endereço: {x.address}</li>
+                                        <ul className="homelist-item" key={x.clientId}>
+                                            <li className="homelist-content">{x.name}</li>
+                                            <li className="homelist-content">Endereço: {x.address}</li>
                                         </ul>
                                     </Link>
                                 ))}
@@ -110,17 +111,17 @@ function Home() {
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div className="home-container">
-                            <ul className="home-title">
+                        <div className="homelist-container">
+                            <ul className="homelist-title">
                                 <li><i className="fa fa-cart-plus" /> Novos Produtos</li>
                                 <Link to={`/product-list}`} className="text-decoration-none">ver lista completa</Link>
                             </ul>
-                            <div className="home-list">
+                            <div >
                                 {productList.content.map(x => (
                                     <Link to={`/product/${x.productId}`} className="text-decoration-none">
-                                        <ul className="home-item">
-                                            <li className="home-content">Produto: {x.description}</li>
-                                            <li className="home-content">Preço: {x.price.toFixed(2)}</li>
+                                        <ul className="homelist-item">
+                                            <li className="homelist-content">Produto: {x.description}</li>
+                                            <li className="homelist-content">Preço: {x.price.toFixed(2)}</li>
                                         </ul>
                                     </Link>
                                 ))}
@@ -128,17 +129,17 @@ function Home() {
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div className="home-container">
-                            <ul className="home-title">
+                        <div className="homelist-container">
+                            <ul className="homelist-title">
                                 <li><i className="fa fa-book" /> Dívidas Pendentes </li>
                                 <Link to={`/debt-list`} className="text-decoration-none">ver lista completa</Link>
                             </ul>
-                            <div className="home-list">
+                            <div>
                                 {debtList.content.map(x => (
                                     <Link to={`/debt/${x.debtId}`} className="text-decoration-none">
-                                        <ul className="home-item" >
-                                            <li className="home-content">Produto: {x.product} ({x.productQuantity} unidades)</li>
-                                            <li className="home-content">Data da Compra: {x.debtDate}</li>
+                                        <ul className="homelist-item" >
+                                            <li className="homelist-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
+                                            <li className="homelist-content">Data da Compra: {x.debtDate}</li>
                                         </ul>
                                     </Link>
                                 ))}
@@ -146,17 +147,17 @@ function Home() {
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div className="home-container">
-                            <ul className="home-title">
+                        <div className="homelist-container">
+                            <ul className="homelist-title">
                                 <li><i className="fa fa-book" aria-hidden="true" /> Dívidas Pagas </li>
                                 <Link to={`/paid-list`} className="text-decoration-none">ver lista completa</Link>
                             </ul>
-                            <div className="home-list">
+                            <div>
                                 {paidList.content.map(x => (
                                     <Link to={`/paid/${x.paidId}`} className="text-decoration-none">
-                                        <ul className="home-item" >
-                                            <li className="home-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
-                                            <li className="home-content">Data do Pagamento: {x.paymentDate}</li>
+                                        <ul className="homelist-item" >
+                                            <li className="homelist-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
+                                            <li className="homelist-content">Data do Pagamento: {x.paymentDate}</li>
                                         </ul>
                                     </Link>
                                 ))}

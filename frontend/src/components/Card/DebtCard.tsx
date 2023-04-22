@@ -1,5 +1,6 @@
 import axios from "axios";
-import { DebtEditForm } from "components/Form";
+import { DebtEditForm } from "components/Form/DebtForm";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Debt, DebtProps } from "types/debt";
@@ -18,7 +19,7 @@ export function DebtCard({ debt }: DebtCardProps) {
                 </div>
                 <ul className="card-md-list">
                     <li className="card-md-item ">Data da Compra:
-                        <p className="card-md-content">{debt.debtDate}</p>
+                        <p className="card-md-content">{moment(debt.debtDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className="card-md-item ">Produto Solicitado:
                         <p className="card-md-content">{debt.productDescription}</p>
@@ -45,7 +46,7 @@ export function DebtSmallCard({ debt }: DebtCardProps) {
                 </div>
                 <ul className="card-md-list">
                     <li className="card-md-item">Data da Compra:
-                        <p className="card-md-content">{debt.debtDate}</p>
+                        <p className="card-md-content">{moment(debt.debtDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className="card-md-item">Valor:
                         <p className="card-md-content">{debt.productAmount}</p>
@@ -72,17 +73,17 @@ export function DebtProfileCard({ debtId }: DebtProps) {
     const deleteDebt = () => {
         axios.delete(`${BASE_URL}/debt/delete/${debtId}`)
             .then((response) => {
-                navigate(`/client/${debt?.clientId}`)
+                navigate(`/debt-list`)
             })
     }
 
     const updateDebtForPaid = () => {
-    axios.put(`${BASE_URL}/debt/update-for-paid/${debtId}`)
+        axios.put(`${BASE_URL}/debt/update-for-paid/${debtId}`)
             .then((response) => {
                 setDebt(response.data);
             });
-            navigate(`/paid-list`)
-        }
+        navigate(`/paid-list`)
+    }
     return (
         <>
             <div className="sub-navbar">
@@ -98,8 +99,11 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             </div>
             <hr />
             <ul className="card-md-list">
+                <li className="card-lg-item "> Cliente:
+                    <p className="card-lg-content">{debt?.clientName}</p>
+                </li>
                 <li className="card-lg-item "> Data da Compra:
-                    <p className="card-lg-content">{debt?.debtDate}</p>
+                    <p className="card-lg-content">{moment(debt?.debtDate).format("DD/MM/YYYY")}</p>
                 </li>
                 <li className=" card-lg-item">Devendo Há:
                     <p className="card-lg-content">{debt?.debtDays}</p>

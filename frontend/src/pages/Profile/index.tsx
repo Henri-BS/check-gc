@@ -2,7 +2,8 @@ import { ClientProfileCard } from "components/Card/ClientCard";
 import { DebtProfileCard } from "components/Card/DebtCard";
 import { PaidProfileCard } from "components/Card/PaidCard";
 import { ProductProfileCard } from "components/Card/ProductCard";
-import { DebtListByClient, DebtListByDate, PaidListByClient, PaidListByDate } from "pages/Listing";
+import { DebtListByClient, DebtListByDate } from "pages/Listing/DebtListing";
+import { PaidListByClient, PaidListByDate } from "pages/Listing/PaidListing";
 import { useParams } from "react-router-dom";
 
 export function ClientProfile() {
@@ -16,7 +17,6 @@ export function ClientProfile() {
                 <ClientProfileCard clientId={`${params.clientId}`} />
                 <hr />
                 <DebtListByClient clientId={`${params.clientId}`} />
-                <hr />
                 <PaidListByClient clientId={`${params.clientId}`} />
             </div>            
         </>

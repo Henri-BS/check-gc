@@ -45,6 +45,12 @@ public class PaidService implements IPaidService {
     @Override
     public List<PaidDTO> findAllPaidByClient(Client client) {
         List<Paid> list = paidRepository.findAllPaidByClient(client);
+        double total;
+        for(Paid paid : list) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.setProductAmount(total);
+            paidRepository.save(paid);
+        }
         return list.stream().map(PaidDTO::new).collect(Collectors.toList());
     }
 

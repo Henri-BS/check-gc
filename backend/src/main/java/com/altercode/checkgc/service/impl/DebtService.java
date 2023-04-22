@@ -49,6 +49,12 @@ public class DebtService implements IDebtService {
     @Override
     public List<DebtDTO> findAllDebtsByClient(Client client) {
         List<Debt> list = debtRepository.findAllDebtsByClient(client);
+        double total;
+        for(Debt debt : list) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.setProductAmount(total);
+            debtRepository.save(debt);
+        }
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
