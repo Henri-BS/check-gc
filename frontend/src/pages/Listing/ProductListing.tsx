@@ -9,6 +9,8 @@ import { BASE_URL } from "utils/requests";
 
 export function ProductList() {
 
+    const [value, setValue] = useState("");
+
     const [pageNumber, setPageNumber] = useState(0);
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
@@ -19,11 +21,11 @@ export function ProductList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&size=3`)
+        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&description=${value}&size=3`)
             .then((response) => {
                 setProductList(response.data);
             });
-    }, [pageNumber]);
+    }, [pageNumber, value]);
 
     return (
         <>
@@ -36,11 +38,23 @@ export function ProductList() {
                     <div className="col-12 col-md-4 col-xl-6 mb-2" >
                         <Pagination page={productList} onPageChange={handlePageChange} />
                     </div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Produtos Catalogados: {productList.totalElements}</div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >
+                        <div className="form-group">
+                            <input type="text"
+                                id="value"
+                                value={value}
+                                onChange={e => setValue(e.target.value)}
+                                className="form-control"
+                                placeholder="buscar produto..."
+                            />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="row">
-                    {productList.content.map(x => (
+                    {productList.content.filter((x) =>
+                        x.description.toUpperCase().includes(value.toLocaleUpperCase()))
+                    .map((x) => (
                         <div className="col-12 col-md-6 col-xl-4">
                             <ProductCard product={x} />
                         </div>

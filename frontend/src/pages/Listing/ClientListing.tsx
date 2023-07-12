@@ -10,6 +10,7 @@ import "./styles.css"
 
 export function ClientList() {
 
+    const[value, setValue] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
@@ -20,11 +21,11 @@ export function ClientList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/client/list?page=${pageNumber}&size=3`)
+        axios.get(`${BASE_URL}/client/list?page=${pageNumber}&name=${value}`)
             .then((response) => {
                 setClientList(response.data);
             });
-    }, [pageNumber]);
+    }, [pageNumber, value]);
 
     return (
         <>
@@ -36,10 +37,23 @@ export function ClientList() {
                         <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Cliente</button>
                     </div>
                     <div className="col-12 col-md-4 col-xl-6 mb-2" ><Pagination page={clientList} onPageChange={handlePageChange} /></div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Clientes Cadastrados: {clientList.totalElements}</div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >
+                        <div className="form-group">
+                            <input 
+                            type="text" 
+                            id="value"
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                            className="form-control"
+                            placeholder="buscar clientes..."
+                            />
+                        </div>
+                    </div>
                 </nav>
                 <div className="row">
-                    {clientList.content?.map(x => (
+                    {clientList.content?.filter((x) =>
+                    x.name.toUpperCase().includes(value.toLocaleUpperCase()))
+                    .map(x => (
                         <div key={x.clientId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <ClientCard client={x} />
                         </div>
