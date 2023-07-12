@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    @Query("SELECT obj FROM Client obj WHERE obj.name LIKE %?1% ORDER BY obj.name DESC")
+    @Query("SELECT obj FROM Client obj WHERE UPPER(obj.name) " +
+            "LIKE UPPER(concat('%', ?1, '%')) ORDER BY obj.name DESC")
     Page<Client> findAllClients(Pageable pageable, String name);
 
     Client findClientByName(String name);

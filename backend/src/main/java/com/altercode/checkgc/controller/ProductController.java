@@ -17,13 +17,7 @@ public class ProductController {
     private IProductService productService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<ProductDTO>> findAllProducts(Pageable pageable) {
-        Page<ProductDTO> list = productService.findAllProducts(pageable);
-        return ResponseEntity.ok(list);
-    }
-
-    @GetMapping("/list-by-description")
-    public ResponseEntity<Page<ProductDTO>> findProductsByDescription(Pageable pageable, @RequestParam String description) {
+    public ResponseEntity<Page<ProductDTO>> findProductsByDescription(Pageable pageable, @RequestParam(defaultValue = "") String description) {
         Page<ProductDTO> list = productService.findProductsByDescription(pageable, description);
         return ResponseEntity.ok(list);
     }

@@ -20,13 +20,7 @@ public class ClientController {
     private ClientAccountController accountController;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<ClientDTO>> findAllClients(Pageable pageable) {
-        Page<ClientDTO> page = clientService.findAllClients(pageable);
-        return ResponseEntity.ok(page);
-    }
-
-    @GetMapping("/list-by-name")
-    public ResponseEntity<Page<ClientDTO>> findClientsByName(Pageable pageable, String name) {
+    public ResponseEntity<Page<ClientDTO>> findClientsByName( @RequestParam(defaultValue = "") String name, Pageable pageable ) {
         Page<ClientDTO> page = clientService.findClientsByName(pageable, name);
         return ResponseEntity.ok(page);
     }

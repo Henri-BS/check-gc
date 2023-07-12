@@ -8,8 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT obj FROM Product obj WHERE obj.description LIKE %?1% ORDER BY obj.description")
-    Page<Product> findAllProductsByDescription(Pageable pageable, String description);
+    @Query("SELECT obj FROM Product obj WHERE UPPER(obj.description) " +
+            "LIKE UPPER(concat('%', ?1, '%')) ORDER BY (obj.description)")
+    Page<Product> findAllByDescriptionLikeIgnoreCase(Pageable pageable, String description);
 
     Product findByDescription(String description);
 
