@@ -36,7 +36,8 @@ public class DebtService implements IDebtService {
 
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
-        Page<Debt> page = debtRepository.findAll(pageable);
+        Page<Debt> page = debtRepository.findAll( pageable);
+
         double total ;
         for(Debt d: page) {
             total = d.getProductQuantity() * d.getProduct().getPrice();

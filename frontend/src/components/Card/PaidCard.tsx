@@ -26,8 +26,7 @@ export function PaidCard({ paid }: PaidCardProps) {
                     <li className="card-md-item"> Tipo de Pagamento:
                         <p className="card-md-content">{paid.paymentType}</p>
                     </li>
-
-                    <li className="card-md-item"> Producto Comprado:
+                    <li className="card-md-item"> Produto Comprado:
                         <p className="card-md-content">{paid.productDescription}</p>
                     </li>
                     <li className="card-md-item"> Quantidade:

@@ -5,6 +5,7 @@ import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.service.interf.IDebtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public class DebtController {
     private IDebtService debtService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<DebtDTO>> findAllDebts(Pageable pageable) {
+    public ResponseEntity<Page<DebtDTO>> findAllDebts(@RequestParam(defaultValue = "") String product, Pageable pageable) {
         Page<DebtDTO> list = debtService.findAllDebts(pageable);
         return ResponseEntity.ok(list);
     }

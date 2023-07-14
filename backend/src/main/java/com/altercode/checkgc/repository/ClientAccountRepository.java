@@ -9,7 +9,7 @@ public interface ClientAccountRepository extends JpaRepository<ClientAccount, Lo
 
     @Query("SELECT new com.altercode.checkgc.dto.SumDebtQuantityDTO (SUM(obj.debtAmount), MAX(obj.debtAmount), SUM(obj.debtQuantity), SUM(obj.paidAmount), MAX(obj.paidAmount), SUM(obj.paidQuantity))" +
             " FROM ClientAccount AS obj")
-    SumDebtQuantityDTO totalDebtQuantity();
+    SumDebtQuantityDTO totalValuesOfSales();
 
 
 }

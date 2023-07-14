@@ -28,7 +28,7 @@ export function DebtCard({ debt }: DebtCardProps) {
                         <p className="card-md-content">{debt.productQuantity}</p>
                     </li>
                     <li className="card-md-item ">Valor da Compra:
-                        <p className="card-md-content">{debt.productAmount}</p>
+                        <p className="card-md-content">R$ {debt.productAmount.toFixed(2)}</p>
                     </li>
 
                 </ul>
@@ -115,7 +115,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                     <p className="card-lg-content">{debt?.productQuantity}</p>
                 </li>
                 <li className=" card-lg-item">Valor da Compra:
-                    <p className="card-lg-content">{debt?.productAmount}</p>
+                    <p className="card-lg-content">R${debt?.productAmount.toFixed(2)}</p>
                 </li>
 
                 <li className=" card-lg-item">

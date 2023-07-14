@@ -4,6 +4,7 @@ import com.altercode.checkgc.dto.SumDebtQuantityDTO;
 import com.altercode.checkgc.service.interf.IClientAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +15,9 @@ public class ClientAccountController {
     private IClientAccountService accountService;
 
     @GetMapping("/total-value")
-    public SumDebtQuantityDTO totalDebtQuantity(){
-        return accountService.totalDebtQuantity();
+    public ResponseEntity<SumDebtQuantityDTO> totalValuesOfSales(){
+        SumDebtQuantityDTO sum = accountService.totalValuesOfSales();
+        return ResponseEntity.ok(sum);
     }
 
     @DeleteMapping("/delete/{id}")

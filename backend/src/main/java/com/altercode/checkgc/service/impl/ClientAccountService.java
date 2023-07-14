@@ -17,8 +17,8 @@ public class ClientAccountService implements IClientAccountService {
     private ClientRepository clientRepository;
 
     @Override
-    public SumDebtQuantityDTO totalDebtQuantity(){
-        return accountRepository.totalDebtQuantity();
+    public SumDebtQuantityDTO totalValuesOfSales(){
+        return accountRepository.totalValuesOfSales();
     }
 
     @Override

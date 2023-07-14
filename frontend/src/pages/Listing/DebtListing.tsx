@@ -11,21 +11,20 @@ import { BASE_URL } from "utils/requests";
 
 export function DebtList() {
 
+    const [value, setValue] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
     }
 
-    const [debtList, setDebtList] = useState<DebtPage>({
-        content: [],
-        number: 0
-    });
+    const [debtList, setDebtList] = useState<DebtPage>({ content: [], number: 0 });
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list?page=${pageNumber}&size=3`)
+        axios.get(`${BASE_URL}/debt/list?product=${value}&page=${pageNumber}`)
             .then((response) => {
                 setDebtList(response.data);
             });
-    }, [pageNumber]);
+    }, [value, pageNumber]);
+
     return (
         <>
             <Navbar />
@@ -38,11 +37,20 @@ export function DebtList() {
                     <div className="col-12 col-md-4 col-xl-6 mb-2" >
                         <Pagination page={debtList} onPageChange={handlePageChange} />
                     </div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pendetes: {debtList.totalElements}</div>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >
+                        <div className="form-group">
+                            <input id="value" type="text" value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                                className="form-control" placeholder="busque dívidas pelos produtos..."
+                            />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="row">
-                    {debtList.content?.map(x => (
+                    {debtList.content?.filter((x) => (
+                        x.productDescription.toUpperCase().includes(value.toLocaleUpperCase()))
+                        ).map(x => (
                         <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <DebtCard debt={x} />
                         </div>
