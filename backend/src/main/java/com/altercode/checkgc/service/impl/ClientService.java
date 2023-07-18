@@ -1,6 +1,7 @@
 package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.ClientDTO;
+import com.altercode.checkgc.dto.StatsSalesDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.ClientAccount;
 import com.altercode.checkgc.entity.Debt;
@@ -41,15 +42,20 @@ public class ClientService implements IClientService {
             totalDebt = debt.getProductQuantity() * debt.getProduct().getPrice();
             debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
             debt.getClient().getAccount().setDebtAmount(totalDebt);
+            accountRepository.totalValuesOfSales();
             debtRepository.save(debt);
+
         }
         double totalPaid;
         for(Paid paid : paidRepository.findAll()) {
             totalPaid = paid.getProductQuantity() * paid.getProduct().getPrice();
             paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
             paid.getClient().getAccount().setPaidAmount(totalPaid);
+            accountRepository.totalValuesOfSales();
             paidRepository.save(paid);
         }
+
+
         return list.map(ClientDTO::new);
     }
 
@@ -82,6 +88,11 @@ public class ClientService implements IClientService {
     public ClientDTO findClientByName(String name) {
         Client find = clientRepository.findClientByName(name);
         return new ClientDTO(find);
+    }
+
+    @Override
+    public StatsSalesDTO totalValuesOfSales(){
+        return accountRepository.totalValuesOfSales();
     }
 
     @Override

@@ -15,6 +15,10 @@ public class Debt extends Sale{
     @Column(name = "debt_date")
     private LocalDate debtDate;
 
+
+
+
+
     @Column(name = "debt_days")
     private String debtDays;
 

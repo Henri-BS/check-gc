@@ -2,7 +2,6 @@ package com.altercode.checkgc.service.impl;
 
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.entity.Debt;
 import com.altercode.checkgc.entity.Paid;
 import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.repository.ClientRepository;

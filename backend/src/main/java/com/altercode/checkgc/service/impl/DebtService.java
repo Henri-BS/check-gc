@@ -34,6 +34,9 @@ public class DebtService implements IDebtService {
     @Autowired
     private PaidRepository paidRepository;
 
+    @Autowired
+    private ClientAccountRepository account;
+
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
         Page<Debt> page = debtRepository.findAll( pageable);
@@ -44,6 +47,7 @@ public class DebtService implements IDebtService {
             d.setProductAmount(total);
             debtRepository.save(d);
         }
+
         return page.map(DebtDTO::new);
     }
 

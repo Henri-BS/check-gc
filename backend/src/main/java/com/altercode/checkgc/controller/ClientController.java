@@ -1,6 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ClientDTO;
+import com.altercode.checkgc.dto.StatsSalesDTO;
 import com.altercode.checkgc.service.interf.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,12 @@ public class ClientController {
     public ResponseEntity<ClientDTO> findClientByName(@PathVariable String name) {
         ClientDTO find = clientService.findClientByName(name);
         return ResponseEntity.ok(find);
+    }
+
+    @GetMapping("/total-value")
+    public ResponseEntity<StatsSalesDTO> totalValuesOfSales(){
+        StatsSalesDTO sum = clientService.totalValuesOfSales();
+        return ResponseEntity.ok(sum);
     }
 
     @PostMapping("/add")

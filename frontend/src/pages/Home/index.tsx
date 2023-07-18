@@ -61,7 +61,7 @@ function Home() {
 
     const [value, setValue] = useState<AccountTotalValues>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/account/total-value`)
+        axios.get(`${BASE_URL}/client/total-value`)
             .then((response) => {
                 setValue(response.data);
             })

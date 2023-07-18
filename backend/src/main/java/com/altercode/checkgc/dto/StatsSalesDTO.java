@@ -3,7 +3,7 @@ package com.altercode.checkgc.dto;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class SumDebtQuantityDTO implements Serializable {
+public class StatsSalesDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class SumDebtQuantityDTO implements Serializable {
     private Double paidMaxValue;
     private Long paidQuantity;
 
-    public SumDebtQuantityDTO(Double debtAmount, Double debtMaxValue, Long debtQuantity, Double paidAmount, Double paidMaxValue, Long paidQuantity) {
+    public StatsSalesDTO(Double debtAmount, Double debtMaxValue, Long debtQuantity, Double paidAmount, Double paidMaxValue, Long paidQuantity) {
         this.debtAmount = debtAmount;
         this.debtMaxValue = debtMaxValue;
         this.debtQuantity = debtQuantity;
