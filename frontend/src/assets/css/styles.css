@@ -81,7 +81,7 @@ code {
     transition: all 0.2s ease-in;
     cursor: pointer;
     color: var(--dark-prim);
-    border: 1px solid #b8b6b6;
+    border: 2px solid #b8b6b6;
 }
 
 .blur-container:hover {

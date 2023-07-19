@@ -11,23 +11,24 @@ import "./styles.css"
 
 function Home() {
 
-    const [clientList, setClientList] = useState<ClientPage>({
-        content: [],
-        number: 0
-    });
-
+  const [value, setValue] = useState<AccountTotalValues>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/client/total-value`)
+            .then((response) => {
+                setValue(response.data);
+            })
+    }, []);
+    
+    const [clientList, setClientList] = useState<ClientPage>({content: [], number: 0});
     useEffect(() => {
         axios.get(`${BASE_URL}/client/list?size=8&sort=clientId,desc`)
             .then((response) => {
                 setClientList(response.data);
             });
     }, []);
-
-    const [debtList, setDebtList] = useState<DebtPage>({
-        content: [],
-        number: 0
-    });
-
+    
+  
+    const [debtList, setDebtList] = useState<DebtPage>({content: [], number: 0});
     useEffect(() => {
         axios.get(`${BASE_URL}/debt/list?size=8&sort=debtId,desc`)
             .then((response) => {
@@ -35,11 +36,7 @@ function Home() {
             });
     }, []);
 
-    const [paidList, setPaidList] = useState<PaidPage>({
-        content: [],
-        number: 0
-    });
-
+    const [paidList, setPaidList] = useState<PaidPage>({content: [], number: 0});
     useEffect(() => {
         axios.get(`${BASE_URL}/paid/list?size=8&sort=paidId,desc`)
             .then((response) => {
@@ -47,11 +44,7 @@ function Home() {
             });
     }, []);
 
-    const [productList, setProductList] = useState<ProductPage>({
-        content: [],
-        number: 0
-    });
-
+    const [productList, setProductList] = useState<ProductPage>({content: [], number: 0});
     useEffect(() => {
         axios.get(`${BASE_URL}/product/list?size=8&sort=productId,desc`)
             .then((response) => {
@@ -59,13 +52,6 @@ function Home() {
             });
     }, []);
 
-    const [value, setValue] = useState<AccountTotalValues>();
-    useEffect(() => {
-        axios.get(`${BASE_URL}/client/total-value`)
-            .then((response) => {
-                setValue(response.data);
-            })
-    }, []);
 
     return (
         <>

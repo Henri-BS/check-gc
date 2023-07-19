@@ -17,12 +17,9 @@ public class ClientController {
     @Autowired
     private IClientService clientService;
 
-    @Autowired
-    private ClientAccountController accountController;
-
     @GetMapping("/list")
-    public ResponseEntity<Page<ClientDTO>> findClientsByName( @RequestParam(defaultValue = "") String name, Pageable pageable ) {
-        Page<ClientDTO> page = clientService.findClientsByName(pageable, name);
+    public ResponseEntity<Page<ClientDTO>> findAllClients(@RequestParam(defaultValue = "") String name, Pageable pageable ) {
+        Page<ClientDTO> page = clientService.findAllClients(pageable, name);
         return ResponseEntity.ok(page);
     }
 

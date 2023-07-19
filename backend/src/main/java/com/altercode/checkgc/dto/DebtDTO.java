@@ -13,6 +13,8 @@ public class DebtDTO implements Serializable {
 
     private Long debtId;
     private LocalDate debtDate;
+    private LocalDate chargeDate;
+    private Double discount;
     private String debtDays;
     private Integer productQuantity;
     private Double productAmount;
@@ -26,6 +28,8 @@ public class DebtDTO implements Serializable {
     public DebtDTO(Debt entity) {
         debtId = entity.getDebtId();
         debtDate = entity.getDebtDate();
+        chargeDate = entity.getChargeDate();
+        discount = entity.getDiscount();
         debtDays = entity.getDebtDays();
         productQuantity = entity.getProductQuantity();
         productAmount = entity.getProductAmount();

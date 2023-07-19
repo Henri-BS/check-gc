@@ -21,7 +21,7 @@ export function ProductList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&description=${value}&size=3`)
+        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&description=${value}`)
             .then((response) => {
                 setProductList(response.data);
             });
@@ -55,7 +55,7 @@ export function ProductList() {
                     {productList.content.filter((x) =>
                         x.description.toUpperCase().includes(value.toLocaleUpperCase()))
                     .map((x) => (
-                        <div className="col-12 col-md-6 col-xl-4">
+                        <div className="col-12 col-md-6 col-xl-4 mb-3">
                             <ProductCard product={x} />
                         </div>
                     ))}

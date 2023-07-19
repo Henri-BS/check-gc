@@ -33,7 +33,7 @@ export function PaidCard({ paid }: PaidCardProps) {
                         <p className="card-md-content">{paid.productQuantity}</p>
                     </li>
                     <li className="card-md-item"> Valor da Compra:
-                        <p className="card-md-content">{paid.productAmount}</p>
+                        <p className="card-md-content">{paid.productAmount.toFixed(2)}</p>
                     </li>
                 </ul>
             </div>

@@ -14,9 +14,9 @@ export function DebtCard({ debt }: DebtCardProps) {
     return (
         <Link to={`/debt/${debt.debtId}`}>
             <div className="card-md-container blur-container" >
-                <div className="card-md-title">
+                <Link to={`/client/${debt.clientId}`} className="card-md-title">
                     {debt.clientName}
-                </div>
+                </Link>
                 <ul className="card-md-list">
                     <li className="card-md-item ">Data da Compra:
                         <p className="card-md-content">{moment(debt.debtDate).format("DD/MM/YYYY")}</p>
@@ -84,12 +84,20 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             });
         navigate(`/paid-list`)
     }
+
     return (
         <>
             <div className="sub-navbar">
-                <Link to={`/debt-list`} className="sub-navbar-item">
-                    <i className="fa fa-chevron-left" />
+            <li className="navbar-item">
+            <Link to={`/`}>
+                    <h5><i className="fa fa-home" /> Início</h5>
                 </Link>
+                </li>
+                <li className="navbar-item">
+            <Link to={`/client-list`} >
+                    <h5><i className="fa fa-user" /> Clientes</h5>
+                </Link>
+                </li>
                 <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Compra
                 </button>
@@ -99,8 +107,10 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             </div>
             <hr />
             <ul className="card-md-list">
-                <li className="card-lg-item "> Cliente:
-                    <p className="card-lg-content">{debt?.clientName}</p>
+                <li className="card-lg-item "> Cliente:            
+
+                    <p className="card-lg-content">{debt?.clientName}</p>                
+
                 </li>
                 <li className="card-lg-item "> Data da Compra:
                     <p className="card-lg-content">{moment(debt?.debtDate).format("DD/MM/YYYY")}</p>

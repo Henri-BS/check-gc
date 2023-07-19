@@ -18,7 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     <li>{product.description}</li>
                 </div>
                 <div className="card-md-item "> Preço:
-                    <p className="card-md-content">{product.price}</p>
+                    <p className="card-md-content">{product.price.toFixed(2)}</p>
                 </div>
             </div>
             </Link>

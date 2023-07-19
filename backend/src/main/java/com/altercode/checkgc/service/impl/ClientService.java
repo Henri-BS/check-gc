@@ -33,54 +33,19 @@ public class ClientService implements IClientService {
     @Autowired
     private PaidRepository paidRepository;
 
-    @Override
-    public Page<ClientDTO> findAllClients(Pageable pageable) {
-        Page<Client> list = clientRepository.findAll(pageable);
-
-        double totalDebt;
-        for(Debt debt : debtRepository.findAll()) {
-            totalDebt = debt.getProductQuantity() * debt.getProduct().getPrice();
-            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
-            debt.getClient().getAccount().setDebtAmount(totalDebt);
-            accountRepository.totalValuesOfSales();
-            debtRepository.save(debt);
-
-        }
-        double totalPaid;
-        for(Paid paid : paidRepository.findAll()) {
-            totalPaid = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
-            paid.getClient().getAccount().setPaidAmount(totalPaid);
-            accountRepository.totalValuesOfSales();
-            paidRepository.save(paid);
-        }
-
-
-        return list.map(ClientDTO::new);
-    }
 
     @Override
-    public Page<ClientDTO> findClientsByName(Pageable pageable, String name) {
+    public Page<ClientDTO> findAllClients(Pageable pageable, String name) {
         Page<Client> list = clientRepository.findAllClients(pageable, name);
+
+
         return list.map(ClientDTO::new);
     }
 
     @Override
     public ClientDTO findClientById(Long id) {
         Client client = clientRepository.findById(id).orElseThrow();
-        double total;
-        for(Debt debt : client.getDebts()) {
-            total = debt.getProductQuantity() * debt.getProduct().getPrice();
-            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
-            debt.getClient().getAccount().setDebtAmount(total);
-            debtRepository.save(debt);
-        }
-        for(Paid paid : paidRepository.findAll()) {
-            total = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
-            paid.getClient().getAccount().setPaidAmount(total);
-            paidRepository.save(paid);
-        }
+
         return new ClientDTO(client);
     }
 
@@ -92,6 +57,20 @@ public class ClientService implements IClientService {
 
     @Override
     public StatsSalesDTO totalValuesOfSales(){
+        double total;
+        for(Debt debt : debtRepository.findAll()) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
+            debt.getClient().getAccount().setDebtAmount(total);
+            debtRepository.save(debt);
+        }
+        for(Paid paid : paidRepository.findAll()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
+            paid.getClient().getAccount().setPaidAmount(total);
+            paidRepository.save(paid);
+        }
+
         return accountRepository.totalValuesOfSales();
     }
 
