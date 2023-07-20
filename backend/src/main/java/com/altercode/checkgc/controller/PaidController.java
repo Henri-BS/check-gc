@@ -1,8 +1,8 @@
 package com.altercode.checkgc.controller;
 
-import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
+import com.altercode.checkgc.entity.Product;
 import com.altercode.checkgc.service.interf.IPaidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +29,12 @@ public class PaidController {
     @GetMapping("/list-client/{client}")
     public ResponseEntity<List<PaidDTO>> findAllPaidByClient(@PathVariable Client client) {
         List<PaidDTO> list = paidService.findAllPaidByClient(client);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/list-product/{product}")
+    public ResponseEntity<List<PaidDTO>> findPaidByProduct(@PathVariable Product product) {
+        List<PaidDTO> list = paidService.findPaidByProduct(product);
         return ResponseEntity.ok(list);
     }
 

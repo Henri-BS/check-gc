@@ -18,7 +18,7 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
     List<Debt> findAllDebtsByDebtDate(LocalDate debtDate);
 
     @Query("SELECT obj FROM Debt obj WHERE UPPER(obj.product) " +
-            "LIKE UPPER(concat('%', ?1, '%')) ORDER BY obj.product DESC")
+            "LIKE UPPER(CONCAT('%', ?1, '%')) ORDER BY obj.product DESC")
     Page<Debt> findAllDebts(Product product, Pageable pageable);
 
     @Query("SELECT new com.altercode.checkgc.dto.TotalDebtDateDTO(  obj.debtDate, SUM(obj.productAmount), SUM(obj.productQuantity)) " +

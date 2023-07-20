@@ -9,14 +9,14 @@ INSERT INTO tb_client(name, phone_number, address) VALUES('Anton', '(99) 96764-2
 INSERT INTO tb_client(name, phone_number, address) VALUES('Helena', '(99) 99507-8355', 'Bairro Novo Norte, Rua 45 - 7154');
 INSERT INTO tb_client(name, phone_number, address) VALUES('Wallace', '(99) 93002-6043', 'Bairro Aurora, Rua 30 - 6894');
 
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(1, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(2, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(3, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(4, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(5, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(6, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(7, 0, 0.0, 0, 0.0, now());
-INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount, last_modified_date) VALUES(8, 0, 0.0, 0, 0.0, now());
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(1, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(2, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(3, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(4, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(5, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(6, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(7, 0, 0.0, 0, 0.0);
+INSERT INTO tb_client_account(client_id, debt_quantity, debt_amount, paid_quantity, paid_amount) VALUES(8, 0, 0.0, 0, 0.0);
 
 INSERT INTO tb_product (description, price) VALUES ('Chocolate Amargo 200g', 3.80);
 INSERT INTO tb_product (description, price) VALUES ('Refrigerante Fanta Laranja Mini Pet 250ml', 1.75);

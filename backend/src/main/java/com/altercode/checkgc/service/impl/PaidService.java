@@ -54,6 +54,19 @@ public class PaidService implements IPaidService {
     }
 
     @Override
+    public List<PaidDTO> findAllPaidByPaymentDate(String paymentDate) {
+        LocalDate date = LocalDate.parse(paymentDate);
+        List<Paid> list = paidRepository.findAllPaidByPaymentDate(date);
+        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PaidDTO> findPaidByProduct(Product product) {
+        List<Paid> list = paidRepository.findPaidByProduct(product);
+        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
     public PaidDTO findPaidById(Long id) {
         Paid find = paidRepository.findById(id).orElseThrow();
         double total ;
@@ -99,10 +112,5 @@ public class PaidService implements IPaidService {
         this.paidRepository.deleteById(paidId);
     }
 
-    @Override
-    public List<PaidDTO> findAllPaidByPaymentDate(String paymentDate) {
-        LocalDate date = LocalDate.parse(paymentDate);
-        List<Paid> list = paidRepository.findAllPaidByPaymentDate(date);
-        return list.stream().map(PaidDTO::new).collect(Collectors.toList());
-    }
+
 }

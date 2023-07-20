@@ -45,9 +45,11 @@ public class DebtService implements IDebtService {
         for(Debt d: page) {
             total = d.getProductQuantity() * d.getProduct().getPrice();
             d.setProductAmount(total);
+            if (d.getChargeDate() == null) {
+                d.setChargeDate(d.getDebtDate().plusMonths(1));
+            }
             debtRepository.save(d);
         }
-
         return page.map(DebtDTO::new);
     }
 
