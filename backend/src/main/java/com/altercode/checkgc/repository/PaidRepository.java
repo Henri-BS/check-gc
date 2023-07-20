@@ -17,4 +17,6 @@ public interface PaidRepository extends JpaRepository<Paid, Long> {
     List<Paid> findAllPaidByPaymentDate(LocalDate date);
 
     List<Paid> findPaidByProduct(Product product);
+
+
 }

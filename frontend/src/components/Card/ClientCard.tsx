@@ -98,9 +98,6 @@ export function ClientProfileCard({ clientId }: ClientProps) {
     return (
         <>
             <div className="sub-navbar">
-                <Link to={"/client-list"} className="sub-navbar-item">
-                    <h2><i className="fa fa-chevron-left" /></h2>
-                </Link>
                 <button className="btn btn-primary" data-bs-target="#clientEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Cliente
                 </button>

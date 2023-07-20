@@ -29,9 +29,7 @@ export function PaidList() {
 
     return (
         <>
-            <Navbar />
             <div className="container">
-
                 <nav className="pagination-container">
                     <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addPaidModal" data-bs-toggle="modal">
                         <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Pagamento</button>

@@ -4,6 +4,7 @@ import { PaidProfileCard } from "components/Card/PaidCard";
 import { ProductProfileCard } from "components/Card/ProductCard";
 import { DebtListByClient, DebtListByDate } from "pages/Listing/DebtListing";
 import { PaidListByClient, PaidListByDate } from "pages/Listing/PaidListing";
+import { PaidListByProduct } from "pages/Listing/ProductListing";
 import { useParams } from "react-router-dom";
 
 export function ClientProfile() {
@@ -13,12 +14,12 @@ export function ClientProfile() {
     return (
         <>
             <div className="container ">
-                
+
                 <ClientProfileCard clientId={`${params.clientId}`} />
                 <hr />
                 <DebtListByClient clientId={`${params.clientId}`} />
                 <PaidListByClient clientId={`${params.clientId}`} />
-            </div>            
+            </div>
         </>
     );
 }
@@ -26,11 +27,11 @@ export function ClientProfile() {
 export function DebtProfile() {
 
     const params = useParams();
-    return(
-        <div className="container"> 
-        <DebtProfileCard debtId={`${params.debtId}`}/>
-        <hr />
-        <DebtListByDate debtId={`${params.debtId}`}/>
+    return (
+        <div className="container">
+            <DebtProfileCard debtId={`${params.debtId}`} />
+            <hr />
+            <DebtListByDate debtId={`${params.debtId}`} />
         </div>
     )
 }
@@ -38,20 +39,22 @@ export function DebtProfile() {
 export function PaidProfile() {
 
     const params = useParams();
-    return(
-        <div className="container"> 
-        <PaidProfileCard paidId={`${params.paidId}`}/>
-        <hr/>
-        <PaidListByDate  paidId={`${params.paidId}`}/>
+    return (
+        <div className="container">
+            <PaidProfileCard paidId={`${params.paidId}`} />
+            <hr />
+            <PaidListByDate paidId={`${params.paidId}`} />
         </div>
     )
 }
 
-export function ProductProfile(){
+export function ProductProfile() {
     const params = useParams();
-    return(
+    return (
         <div className="container">
-        <ProductProfileCard productId={`${params.productId}`}/>
+            <ProductProfileCard productId={`${params.productId}`} />
+            <hr />
+            <PaidListByProduct productId={`${params.productId}`} />
         </div>
     );
 }

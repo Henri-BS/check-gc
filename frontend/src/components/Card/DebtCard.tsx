@@ -88,16 +88,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
     return (
         <>
             <div className="sub-navbar">
-            <li className="navbar-item">
-            <Link to={`/`}>
-                    <h5><i className="fa fa-home" /> Início</h5>
-                </Link>
-                </li>
-                <li className="navbar-item">
-            <Link to={`/client-list`} >
-                    <h5><i className="fa fa-user" /> Clientes</h5>
-                </Link>
-                </li>
+           
                 <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Compra
                 </button>

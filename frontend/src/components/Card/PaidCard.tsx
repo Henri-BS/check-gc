@@ -82,9 +82,6 @@ export function PaidProfileCard({ paidId }: PaidProps) {
     return (
         <>
             <div className="sub-navbar">
-                <Link to={`/paid-list`} className="sub-navbar-item">
-                    <i className="fa fa-chevron-left" />
-                </Link>
                 <button className="btn btn-primary" data-bs-target="#paidEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Compra
                 </button>

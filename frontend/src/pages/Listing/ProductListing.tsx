@@ -1,10 +1,12 @@
 import axios from "axios";
+import { PaidSmallCard } from "components/Card/PaidCard";
 import { ProductCard } from "components/Card/ProductCard";
 import { ProductAddForm } from "components/Form/ProductForm";
 import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
-import { ProductPage } from "types/product";
+import { Paid } from "types/paid";
+import { ProductPage, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
 
 export function ProductList() {
@@ -29,7 +31,6 @@ export function ProductList() {
 
     return (
         <>
-            <Navbar />
             <div className="container">
                 <div className="pagination-container row">
                     <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addProductModal" data-bs-toggle="modal">
@@ -74,6 +75,32 @@ export function ProductList() {
                         <div className="modal-body"><ProductAddForm /></div>
                     </div>
                 </div>
+            </div>
+        </>
+    );
+}
+
+export function PaidListByProduct({ productId }: ProductProps) {
+
+    const [paidList, setPaidList] = useState<Paid[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/list-product/${productId}`)
+            .then((response) => {
+                setPaidList(response.data);
+            })
+    }, [productId]);
+
+    return (
+        <>
+            <div className="homelist-title">
+                <div><i className="fa fa-bookmark" /> Compras Pagas do Produto</div>
+            </div>
+            <div className="horizontal-list-container">
+                {paidList?.map((x) => (
+                    <div key={x.paidId} className="horizontal-list-item">
+                        <PaidSmallCard paid={x} />
+                    </div>
+                ))}
             </div>
         </>
     );

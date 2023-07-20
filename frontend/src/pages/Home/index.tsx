@@ -8,6 +8,7 @@ import { PaidPage } from "types/paid";
 import { ProductPage } from "types/product";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
+import moment from "moment";
 
 function Home() {
 
@@ -55,7 +56,6 @@ function Home() {
 
     return (
         <>
-            <Navbar />
             <nav className="bar-container row">
                     <div className="bar-item col-6">
                         <b>Valor das Dívidas Pendentes:</b> {value?.debtAmount.toFixed(2)}
@@ -125,7 +125,7 @@ function Home() {
                                     <Link to={`/debt/${x.debtId}`} className="text-decoration-none">
                                         <ul className="homelist-item" >
                                             <li className="homelist-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
-                                            <li className="homelist-content">Data da Compra: {x.debtDate}</li>
+                                            <li className="homelist-content">Data da Compra: {moment(x.debtDate).format('DD/MM/YYYY')}</li>
                                         </ul>
                                     </Link>
                                 ))}
@@ -143,7 +143,7 @@ function Home() {
                                     <Link to={`/paid/${x.paidId}`} className="text-decoration-none">
                                         <ul className="homelist-item" >
                                             <li className="homelist-content">Produto: {x.productDescription} ({x.productQuantity} unidades)</li>
-                                            <li className="homelist-content">Data do Pagamento: {x.paymentDate}</li>
+                                            <li className="homelist-content">Data do Pagamento: {moment(x.paymentDate).format('DD/MM/YYYY')}</li>
                                         </ul>
                                     </Link>
                                 ))}

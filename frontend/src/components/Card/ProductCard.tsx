@@ -56,9 +56,7 @@ export function ProductProfileCard({ productId }: ProductProps) {
     return (
         <>
         <div className="sub-navbar">
-                <Link to={`/product-list`} className="sub-navbar-item">
-                    <i className="fa fa-chevron-left" />
-                </Link>
+
                 <button className="btn btn-primary" data-bs-target="#productEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Produto
                 </button>
@@ -73,9 +71,6 @@ export function ProductProfileCard({ productId }: ProductProps) {
                 </li>
                 <li className=" card-lg-item">Preço:
                     <p className="card-lg-content">{product?.price}</p>
-                </li>
-                <li className=" card-lg-item">Quantidade de Compras do Produto:
-                    <p className="card-lg-content">{product?.debtQuantity}</p>
                 </li>
             </ul>
 

@@ -27,7 +27,6 @@ export function DebtList() {
 
     return (
         <>
-            <Navbar />
             <div className="container">
 
                 <div className="pagination-container row">

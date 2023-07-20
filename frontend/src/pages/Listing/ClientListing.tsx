@@ -29,7 +29,6 @@ export function ClientList() {
 
     return (
         <>
-            <Navbar />
             <div className="container">
 
                 <nav className="pagination-container row">

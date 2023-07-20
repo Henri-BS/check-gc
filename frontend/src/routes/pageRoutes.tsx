@@ -5,10 +5,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DebtList } from "pages/Listing/DebtListing";
 import { PaidList } from "pages/Listing/PaidListing";
 import { ProductList } from "pages/Listing/ProductListing";
+import { Navbar } from "components/Navbar";
 
 function PageRoutes() {
     return (
         <BrowserRouter>
+        <Navbar/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/client-list" element={<ClientList />} />
