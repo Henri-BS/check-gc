@@ -38,9 +38,15 @@ public class PaidController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/paid/list-by-date/{paymentDate}")
+    @GetMapping("/list-by-date/{paymentDate}")
     public ResponseEntity<List<PaidDTO>> findAllPaidByPaymentDate(@PathVariable String paymentDate) {
         List<PaidDTO> list = paidService.findAllPaidByPaymentDate(paymentDate);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/group-by-client")
+    public ResponseEntity<List<PaidDTO>> paidGroupByClient(){
+        List<PaidDTO> list = paidService.paidGroupByClient();
         return ResponseEntity.ok(list);
     }
 

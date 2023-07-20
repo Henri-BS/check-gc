@@ -13,6 +13,8 @@ public interface IPaidService {
 
     List<PaidDTO> findAllPaidByClient(Client client);
 
+    List<PaidDTO> paidGroupByClient();
+
     PaidDTO findPaidById(Long id);
 
     PaidDTO savePaid(PaidDTO dto);

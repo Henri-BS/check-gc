@@ -1,5 +1,6 @@
 package com.altercode.checkgc.dto;
 
+import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Paid;
 
 import java.io.Serial;
@@ -35,6 +36,12 @@ public class PaidDTO implements Serializable {
         clientId = entity.getClient().getClientId();
         productDescription = entity.getProduct().getDescription();
         clientName = entity.getClient().getName();
+    }
+
+    public PaidDTO(Client client, Long productQuantity, Double productAmount) {
+        clientName = client.getName();
+        this.productQuantity = Math.toIntExact(productQuantity);
+        this.productAmount = productAmount;
     }
 
     public Long getPaidId() {

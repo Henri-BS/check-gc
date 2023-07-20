@@ -73,6 +73,17 @@ public class PaidService implements IPaidService {
     }
 
     @Override
+    public List<PaidDTO> paidGroupByClient(){
+        double total;
+        for(Paid paid : paidRepository.findAll()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.setProductAmount(total);
+            paidRepository.save(paid);
+        }
+      return  paidRepository.paidGroupByClient();
+    }
+
+    @Override
     public PaidDTO findPaidById(Long id) {
         Paid find = paidRepository.findById(id).orElseThrow();
         double total ;
@@ -83,6 +94,8 @@ public class PaidService implements IPaidService {
         }
         return new PaidDTO(find);
     }
+
+
 
     @Override
     public PaidDTO savePaid(PaidDTO dto) {
