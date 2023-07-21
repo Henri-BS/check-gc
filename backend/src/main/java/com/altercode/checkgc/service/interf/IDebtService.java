@@ -32,4 +32,5 @@ public interface IDebtService {
 
     void deleteDebt(Long id);
 
+    List<DebtDTO> debtGroupByDate(Client client);
 }

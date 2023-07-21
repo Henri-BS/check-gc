@@ -2,11 +2,14 @@ package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Paid;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class PaidDTO implements Serializable {
 
     @Serial
@@ -40,6 +43,13 @@ public class PaidDTO implements Serializable {
 
     public PaidDTO(Client client, Long productQuantity, Double productAmount) {
         clientName = client.getName();
+        this.productQuantity = Math.toIntExact(productQuantity);
+        this.productAmount = productAmount;
+    }
+
+    public PaidDTO(Client client, LocalDate paymentDate, Long productQuantity, Double productAmount) {
+        clientName = client.getName();
+        this.paymentDate = paymentDate;
         this.productQuantity = Math.toIntExact(productQuantity);
         this.productAmount = productAmount;
     }

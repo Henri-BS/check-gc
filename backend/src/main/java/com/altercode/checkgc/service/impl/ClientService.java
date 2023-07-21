@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 public class ClientService implements IClientService {
@@ -33,27 +35,41 @@ public class ClientService implements IClientService {
     @Autowired
     private PaidRepository paidRepository;
 
+public void clientBaseValue() {
+    for(Client c :  clientRepository.findAll()) {
+        if (c.getAccount().getLastModifiedDate() == null) {
+            c.getAccount().setLastModifiedDate(LocalDateTime.now());
+        }
+    }
+
+}
 
     @Override
     public Page<ClientDTO> findAllClients(Pageable pageable, String name) {
         Page<Client> list = clientRepository.findAllClients(pageable, name);
-
-
+        clientBaseValue();
         return list.map(ClientDTO::new);
     }
 
     @Override
     public ClientDTO findClientById(Long id) {
         Client client = clientRepository.findById(id).orElseThrow();
-
+        double total;
+        for(Debt debt : client.getDebts()) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.getClient().getAccount().setDebtQuantity(debt.getClient().getDebts().size());
+            debt.getClient().getAccount().setDebtAmount(total);
+            debtRepository.save(debt);
+        }
+        for(Paid paid : client.getPaid()) {
+            total = paid.getProductQuantity() * paid.getProduct().getPrice();
+            paid.getClient().getAccount().setPaidQuantity(paid.getClient().getPaid().size());
+            paid.getClient().getAccount().setPaidAmount(total);
+            paidRepository.save(paid);
+        }
         return new ClientDTO(client);
     }
 
-    @Override
-    public ClientDTO findClientByName(String name) {
-        Client find = clientRepository.findClientByName(name);
-        return new ClientDTO(find);
-    }
 
     @Override
     public StatsSalesDTO totalValuesOfSales(){
@@ -70,8 +86,13 @@ public class ClientService implements IClientService {
             paid.getClient().getAccount().setPaidAmount(total);
             paidRepository.save(paid);
         }
-
         return accountRepository.totalValuesOfSales();
+    }
+
+    @Override
+    public ClientDTO findClientByName(String name) {
+        Client find = clientRepository.findClientByName(name);
+        return new ClientDTO(find);
     }
 
     @Override

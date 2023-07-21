@@ -44,7 +44,6 @@ INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  pro
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(5, '2023-02-05', 2, 0.0, 7);
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(7, '2023-02-13', 9, 0.0, 2);
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(4, '2023-02-16', 14, 0.0, 8);
-
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(2, '2023-01-05', 1, 0.0, 1);
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(7, '2023-01-20', 6, 0.0, 2);
 INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  product_id) VALUES(3, '2023-02-02', 5, 0.0, 4);
@@ -54,19 +53,21 @@ INSERT INTO tb_debt(client_id, debt_date, product_quantity, product_amount,  pro
 
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(5, 2, '2023-04-01', 'PIX', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 4, '2023-04-04', 'Cartão de Crédito', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 2, '2023-04-04', 'Cartão de Crédito', 1, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 8, '2023-04-04', 'Cartão de Crédito', 4, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 3, '2023-04-12', 'Cartão de Crédito', 2, 0.0);
+INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 6, '2023-04-12', 'Cartão de Crédito', 6, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(2, 5, '2023-04-05', 'Dinheiro', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(7, 6, '2023-04-10', 'PIX', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(8, 3, '2023-04-12', 'Cartão de Crédito', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(6, 1, '2023-04-14', 'PIX', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(8, 7, '2023-04-10', 'PIX', 3, 0.0);
-INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 4, '2023-04-12', 'Cartão de Crédito', 4, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(4, 9, '2023-04-14', 'Dinheiro', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(3, 5, '2023-04-14', 'PIX', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(4, 2, '2023-04-10', 'PIX', 3, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(5, 5, '2023-04-12', 'Cartão de Crédito', 4, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(6, 4, '2023-04-14', 'Dinheiro', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(3, 2, '2023-04-01', 'PIX', 4, 0.0);
-INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(1, 4, '2023-04-04', 'Cartão de Crédito', 1, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(6, 5, '2023-04-05', 'Dinheiro', 6, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(7, 6, '2023-04-10', 'PIX', 2, 0.0);
 INSERT INTO tb_paid(client_id, product_id, payment_date, payment_type, product_quantity, product_amount) VALUES(4, 3, '2023-04-12', 'Cartão de Crédito', 3, 0.0);

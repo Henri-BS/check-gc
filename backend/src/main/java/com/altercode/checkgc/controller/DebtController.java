@@ -53,6 +53,12 @@ public class DebtController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/group-by-date")
+    ResponseEntity<List<DebtDTO>> debtGroupByDate(@RequestParam(defaultValue = "") Client client){
+        List<DebtDTO> list = debtService.debtGroupByDate(client);
+        return ResponseEntity.ok(list);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<DebtDTO> findDebtById(@PathVariable Long id) {
         DebtDTO find = debtService.findDebtById(id);

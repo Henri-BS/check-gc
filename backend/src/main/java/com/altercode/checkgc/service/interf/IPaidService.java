@@ -26,4 +26,6 @@ public interface IPaidService {
     List<PaidDTO> findAllPaidByPaymentDate(String paymentDate);
 
     List<PaidDTO> findPaidByProduct(Product product);
+
+    List<PaidDTO> paidGroupByDate(Client client);
 }

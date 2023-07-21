@@ -1,11 +1,14 @@
 package com.altercode.checkgc.dto;
 
+import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Debt;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class DebtDTO implements Serializable {
 
     @Serial
@@ -36,6 +39,14 @@ public class DebtDTO implements Serializable {
         clientName = entity.getClient().getName();
         productDescription = entity.getProduct().getDescription();
     }
+
+    public DebtDTO(Client client, LocalDate debtDate, Long productQuantity, Double productAmount) {
+        clientName = client.getName();
+        this.debtDate = debtDate;
+        this.productQuantity = Math.toIntExact(productQuantity);
+        this.productAmount = productAmount;
+    }
+
 
     public Long getDebtId() {
         return debtId;

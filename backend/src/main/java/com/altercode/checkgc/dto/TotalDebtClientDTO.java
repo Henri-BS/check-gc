@@ -2,8 +2,6 @@ package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.Client;
 
-import java.time.LocalDate;
-
 public class TotalDebtClientDTO {
 
     private String clientName;

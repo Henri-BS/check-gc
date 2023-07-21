@@ -29,27 +29,26 @@ public class PaidService implements IPaidService {
     @Autowired
     private ClientRepository clientRepository;
 
-    @Override
-    public Page<PaidDTO> findAllPaid(Pageable pageable) {
-        Page<Paid> page = paidRepository.findAll(pageable);
-        double total ;
-        for(Paid paid: page) {
+    public void paidBaseValue(){
+        double total;
+        for(Paid paid: paidRepository.findAll()) {
             total = paid.getProductQuantity() * paid.getProduct().getPrice();
             paid.setProductAmount(total);
             paidRepository.save(paid);
         }
+    }
+
+    @Override
+    public Page<PaidDTO> findAllPaid(Pageable pageable) {
+        Page<Paid> page = paidRepository.findAll(pageable);
+        paidBaseValue();
         return page.map(PaidDTO::new);
     }
 
     @Override
     public List<PaidDTO> findAllPaidByClient(Client client) {
         List<Paid> list = paidRepository.findAllPaidByClient(client);
-        double total;
-        for(Paid paid : list) {
-            total = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.setProductAmount(total);
-            paidRepository.save(paid);
-        }
+        paidBaseValue();
         return list.stream().map(PaidDTO::new).collect(Collectors.toList());
     }
 
@@ -63,24 +62,19 @@ public class PaidService implements IPaidService {
     @Override
     public List<PaidDTO> findPaidByProduct(Product product) {
         List<Paid> list = paidRepository.findPaidByProduct(product);
-        double total;
-        for(Paid paid : list) {
-            total = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.setProductAmount(total);
-            paidRepository.save(paid);
-        }
+        paidBaseValue();
         return list.stream().map(PaidDTO::new).collect(Collectors.toList());
     }
 
     @Override
+    public List<PaidDTO> paidGroupByDate(Client client) {
+        paidBaseValue();
+        return  paidRepository.paidGroupByDate(client);    }
+
+    @Override
     public List<PaidDTO> paidGroupByClient(){
-        double total;
-        for(Paid paid : paidRepository.findAll()) {
-            total = paid.getProductQuantity() * paid.getProduct().getPrice();
-            paid.setProductAmount(total);
-            paidRepository.save(paid);
-        }
-      return  paidRepository.paidGroupByClient();
+        paidBaseValue();
+      return paidRepository.paidGroupByClient();
     }
 
     @Override
@@ -94,8 +88,6 @@ public class PaidService implements IPaidService {
         }
         return new PaidDTO(find);
     }
-
-
 
     @Override
     public PaidDTO savePaid(PaidDTO dto) {

@@ -37,64 +37,66 @@ public class DebtService implements IDebtService {
     @Autowired
     private ClientAccountRepository account;
 
+    public void debtBaseValue() {
+        double total;
+        for (Debt debt : debtRepository.findAll()) {
+            total = debt.getProductQuantity() * debt.getProduct().getPrice();
+            debt.setProductAmount(total);
+            if (debt.getChargeDate() == null) {
+                debt.setChargeDate(debt.getDebtDate().plusMonths(1));
+            }
+            debtRepository.save(debt);
+        }
+    }
+
     @Override
     public Page<DebtDTO> findAllDebts(Pageable pageable) {
-        Page<Debt> page = debtRepository.findAll( pageable);
-
-        double total ;
-        for(Debt d: page) {
-            total = d.getProductQuantity() * d.getProduct().getPrice();
-            d.setProductAmount(total);
-            if (d.getChargeDate() == null) {
-                d.setChargeDate(d.getDebtDate().plusMonths(1));
-            }
-            debtRepository.save(d);
-        }
+        Page<Debt> page = debtRepository.findAll(pageable);
+        debtBaseValue();
         return page.map(DebtDTO::new);
     }
 
     @Override
     public List<DebtDTO> findAllDebtsByClient(Client client) {
         List<Debt> list = debtRepository.findAllDebtsByClient(client);
-        double total;
-        for(Debt debt : list) {
-            total = debt.getProductQuantity() * debt.getProduct().getPrice();
-            debt.setProductAmount(total);
-            debtRepository.save(debt);
-        }
+        debtBaseValue();
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
     @Override
     public List<DebtDTO> findAllDebtsByDebtDate(String debtDate) {
         LocalDate date = LocalDate.parse(debtDate);
-
-
         List<Debt> list = debtRepository.findAllDebtsByDebtDate(date);
         return list.stream().map(DebtDTO::new).collect(Collectors.toList());
     }
 
     @Override
-    public List<TotalDebtDateDTO> debtAmountGroupByDate(){
+    public List<DebtDTO> debtGroupByDate(Client client) {
+        debtBaseValue();
+        return debtRepository.debtGroupByDate(client);
+    }
+
+    @Override
+    public List<TotalDebtDateDTO> debtAmountGroupByDate() {
         return debtRepository.debtAmountGroupByDate();
     }
 
     @Override
-    public List<TotalDebtClientDTO> debtAmountGroupByClient(){
+    public List<TotalDebtClientDTO> debtAmountGroupByClient() {
         return debtRepository.debtAmountGroupByClient();
     }
 
     @Override
     public DebtDTO findDebtById(Long id) {
         Debt find = debtRepository.findById(id).orElseThrow();
-        double total ;
+        double total;
         total = find.getProductQuantity() * find.getProduct().getPrice();
         find.setProductAmount(total);
 
         LocalDate debtDate = find.getDebtDate();
         LocalDate now = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
         Period period = Period.between(debtDate, now);
-        find.setDebtDays(period.getMonths() + " meses e " + period.getDays() + " dias" );
+        find.setDebtDays(period.getMonths() + " meses e " + period.getDays() + " dias");
         debtRepository.save(find);
 
         return new DebtDTO(find);
@@ -129,7 +131,7 @@ public class DebtService implements IDebtService {
     }
 
     @Override
-    public PaidDTO updateDebtForPaid(PaidDTO dto, Long debtId){
+    public PaidDTO updateDebtForPaid(PaidDTO dto, Long debtId) {
         Debt debt = debtRepository.findById(debtId).orElseThrow();
 
         Paid addPaid = new Paid();
@@ -149,4 +151,6 @@ public class DebtService implements IDebtService {
     public void deleteDebt(Long id) {
         this.debtRepository.deleteById(id);
     }
+
+
 }

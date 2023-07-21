@@ -1,5 +1,7 @@
 package com.altercode.checkgc.repository;
 
+import com.altercode.checkgc.dto.DebtDTO;
+import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.dto.TotalDebtDateDTO;
 import com.altercode.checkgc.entity.Client;
@@ -33,4 +35,7 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     List<Debt> findAllDebtsByClient(Client client);
 
+    @Query("SELECT new com.altercode.checkgc.dto.DebtDTO(obj.client, obj.debtDate, SUM(obj.productQuantity), SUM(obj.productAmount))" +
+            "FROM Debt AS obj WHERE (obj.client) LIKE(?1) GROUP BY obj.debtDate ")
+    List<DebtDTO> debtGroupByDate(Client client);
 }

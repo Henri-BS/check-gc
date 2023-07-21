@@ -50,6 +50,13 @@ public class PaidController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/group-by-date")
+    ResponseEntity<List<PaidDTO>> paidGroupByDate(@RequestParam(defaultValue = "") Client client){
+        List<PaidDTO> list = paidService.paidGroupByDate(client);
+        return ResponseEntity.ok(list);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<PaidDTO> findPaidById(@PathVariable Long id){
         PaidDTO find = paidService.findPaidById(id);

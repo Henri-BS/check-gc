@@ -2,7 +2,6 @@ import axios from "axios";
 import { PaidSmallCard } from "components/Card/PaidCard";
 import { ProductCard } from "components/Card/ProductCard";
 import { ProductAddForm } from "components/Form/ProductForm";
-import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
 import { Paid } from "types/paid";
