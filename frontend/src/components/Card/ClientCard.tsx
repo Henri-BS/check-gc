@@ -5,12 +5,9 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
 import { BASE_URL } from "utils/requests";
+import { Props } from "types/page";
 
-type ClientCardProps = {
-    client: Client;
-}
-
-export function ClientCard({ client }: ClientCardProps) {
+export function ClientCard({ client }: ClientProps) {
 
     const params = useParams();
 
@@ -67,7 +64,7 @@ export function ClientCard({ client }: ClientCardProps) {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><ClientEditForm clientId={`${params.clientId}`} /></div>
+                        <div className="modal-body"><ClientEditForm id={`${params.clientId}`} /></div>
                     </div>
                 </div>
             </div>
@@ -75,7 +72,7 @@ export function ClientCard({ client }: ClientCardProps) {
     );
 }
 
-export function ClientProfileCard({ clientId }: ClientProps) {
+export function ClientProfileCard({id: clientId }: Props) {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -143,7 +140,7 @@ export function ClientProfileCard({ clientId }: ClientProps) {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><ClientEditForm clientId={`${params.clientId}`} /></div>
+                        <div className="modal-body"><ClientEditForm id={`${params.clientId}`} /></div>
                     </div>
                 </div>
             </div>

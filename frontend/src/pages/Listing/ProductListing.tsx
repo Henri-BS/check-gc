@@ -4,6 +4,7 @@ import { ProductCard } from "components/Card/ProductCard";
 import { ProductAddForm } from "components/Form/ProductForm";
 import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
+import { Props } from "types/page";
 import { Paid } from "types/paid";
 import { ProductPage, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
@@ -79,7 +80,7 @@ export function ProductList() {
     );
 }
 
-export function PaidListByProduct({ productId }: ProductProps) {
+export function PaidListByProduct({id: productId }: Props) {
 
     const [paidList, setPaidList] = useState<Paid[]>();
     useEffect(() => {

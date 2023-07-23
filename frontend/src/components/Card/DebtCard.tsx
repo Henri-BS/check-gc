@@ -3,14 +3,12 @@ import { DebtEditForm } from "components/Form/DebtForm";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { Debt, DebtProps } from "types/debt";
+import { Debt, DebtByDate, DebtProps } from "types/debt";
+import { Props } from "types/page";
 import { BASE_URL } from "utils/requests";
 
-type DebtCardProps = {
-    debt: Debt;
-}
 
-export function DebtCard({ debt }: DebtCardProps) {
+export function DebtCard({ debt }: DebtProps) {
     return (
         <Link to={`/debt/${debt.debtId}`}>
             <div className="card-md-container blur-container" >
@@ -37,7 +35,7 @@ export function DebtCard({ debt }: DebtCardProps) {
     );
 }
 
-export function DebtSmallCard({ debt }: DebtCardProps) {
+export function DebtSmallCard({ debt }: DebtProps) {
     return (
         <Link to={`/debt/${debt.debtId}`} >
             <div className="card-md-container blur-container" >
@@ -57,7 +55,7 @@ export function DebtSmallCard({ debt }: DebtCardProps) {
     );
 }
 
-export function DebtProfileCard({ debtId }: DebtProps) {
+export function DebtProfileCard({ id: debtId }: Props) {
 
     const params = useParams();
     const navigate = useNavigate();
@@ -88,7 +86,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
     return (
         <>
             <div className="sub-navbar">
-           
+
                 <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
                     <i className="fa fa-edit" /> Editar Compra
                 </button>
@@ -98,9 +96,9 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             </div>
             <hr />
             <ul className="card-md-list">
-                <li className="card-lg-item "> Cliente:            
+                <li className="card-lg-item "> Cliente:
 
-                    <p className="card-lg-content">{debt?.clientName}</p>                
+                    <p className="card-lg-content">{debt?.clientName}</p>
 
                 </li>
                 <li className="card-lg-item "> Data da Compra:
@@ -127,6 +125,8 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             </ul>
 
 
+
+
             <div className="modal fade" role={"dialog"} id={"debtEditModal"}>
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
@@ -136,7 +136,7 @@ export function DebtProfileCard({ debtId }: DebtProps) {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><DebtEditForm debtId={`${params.debtId}`} /></div>
+                        <div className="modal-body"><DebtEditForm id={`${params.debtId}`} /></div>
                     </div>
                 </div>
             </div>
@@ -173,4 +173,48 @@ export function DebtProfileCard({ debtId }: DebtProps) {
             </div>
         </>
     );
+}
+
+export function DebtListByGroupDate({ id: clientId }: Props) {
+
+    const [debt, setDebt] = useState<DebtByDate[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/group-by-date/${clientId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+    }, [clientId]);
+
+    return (
+        <div className="horizontal-list-container">
+            {debt?.map(x => (
+                <div key={x.clientName} className="horizontal-list-item">
+                    <CardDate debtByDate={x} />
+                </div>
+            ))}
+        </div>
+    );
+
+type DebtByDateProps ={
+    debtByDate: DebtByDate;
+}
+
+    function CardDate({ debtByDate: dCard }: DebtByDateProps) {
+        return (
+            <div className="card-md-container blur-container" >
+                <ul className="card-md-list w-100">
+                    <li className="card-md-title ">Compras Feitas na Data:
+                        <p className="card-md-content">{moment(dCard.debtDate).format("DD/MM/YYYY")}</p>
+                    </li>
+                    <li className="card-md-item ">Quantidade do Produtos:
+                        <p className="card-md-content">{dCard.productQuantity}</p>
+                    </li>
+                    <li className="card-md-item ">Valor Total da Compra:
+                        <p className="card-md-content">R$ {dCard.productAmount.toFixed(2)}</p>
+                    </li>
+
+                </ul>
+            </div>
+        )
+    }
 }

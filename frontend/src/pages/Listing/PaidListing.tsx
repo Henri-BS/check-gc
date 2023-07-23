@@ -1,11 +1,10 @@
 import axios from "axios";
 import { PaidCard, PaidSmallCard } from "components/Card/PaidCard";
 import { PaidAddForm } from "components/Form/PaidForm";
-import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import { useState, useEffect } from "react";
-import { ClientProps } from "types/client";
-import { PaidPage, Paid, PaidProps } from "types/paid";
+import { Props } from "types/page";
+import { PaidPage, Paid } from "types/paid";
 import { BASE_URL } from "utils/requests";
 
 export function PaidList() {
@@ -68,7 +67,7 @@ export function PaidList() {
     );
 }
 
-export function PaidListByClient({ clientId }: ClientProps) {
+export function PaidListByClient({id: clientId }: Props) {
 
     const [paidList, setPaidList] = useState<Paid[]>();
     useEffect(() => {
@@ -94,7 +93,7 @@ export function PaidListByClient({ clientId }: ClientProps) {
     );
 }
 
-export function PaidListByDate({ paidId }: PaidProps) {
+export function PaidListByDate({id: paidId }: Props) {
 
     const [paid, setPaid] = useState<Paid>();
     useEffect(() => {

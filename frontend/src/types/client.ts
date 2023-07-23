@@ -20,7 +20,7 @@ export type ClientPage = {
 };
 
 export type ClientProps = {
-    clientId: string;
+    client: Client;
 }
 
 export type ClientAccount = {

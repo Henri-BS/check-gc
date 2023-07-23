@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DebtProps, Debt } from "types/debt";
 import { BASE_URL } from "utils/requests";
 import { ClientDatalist, ProductDatalist } from "./DatalistForm";
+import { Props } from "types/page";
 
 export function DebtAddForm() {
 
@@ -57,7 +58,7 @@ export function DebtAddForm() {
     );
 }
 
-export function DebtEditForm({ debtId }: DebtProps) {
+export function DebtEditForm({id: debtId }: Props) {
 
     const navigate = useNavigate();
 

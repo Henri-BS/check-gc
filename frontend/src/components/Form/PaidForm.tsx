@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { PaidProps, Paid } from "types/paid";
 import { BASE_URL } from "utils/requests";
 import { ClientDatalist, ProductDatalist } from "./DatalistForm";
+import { Props } from "types/page";
 
 export function PaidAddForm() {
 
@@ -64,7 +65,7 @@ export function PaidAddForm() {
     );
 }
 
-export function PaidEditForm({ paidId }: PaidProps) {
+export function PaidEditForm({id: paidId }: Props) {
 
     const [paid, setPaid] = useState<Paid>();
     useEffect(() => {

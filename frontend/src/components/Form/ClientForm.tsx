@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Client, ClientProps } from "types/client";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
+import { Props } from "types/page";
 
 export function ClientAddForm() {
 
@@ -52,7 +53,7 @@ export function ClientAddForm() {
     );
 }
 
-export function ClientEditForm({ clientId }: ClientProps) {
+export function ClientEditForm({id: clientId }: Props) {
 
     const [client, setClient] = useState<Client>();
     useEffect(() => {

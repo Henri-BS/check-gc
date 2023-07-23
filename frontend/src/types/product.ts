@@ -19,5 +19,5 @@ export type ProductPage = {
 }
 
 export type ProductProps = {
-    productId: string;
+    product: Product;
 }

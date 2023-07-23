@@ -1,5 +1,5 @@
 import { ClientProfileCard } from "components/Card/ClientCard";
-import { DebtProfileCard } from "components/Card/DebtCard";
+import { DebtListByGroupDate, DebtProfileCard } from "components/Card/DebtCard";
 import { PaidProfileCard } from "components/Card/PaidCard";
 import { ProductProfileCard } from "components/Card/ProductCard";
 import { DebtListByClient, DebtListByDate } from "pages/Listing/DebtListing";
@@ -15,10 +15,12 @@ export function ClientProfile() {
         <>
             <div className="container ">
 
-                <ClientProfileCard clientId={`${params.clientId}`} />
+                <ClientProfileCard id={`${params.clientId}`} />
                 <hr />
-                <DebtListByClient clientId={`${params.clientId}`} />
-                <PaidListByClient clientId={`${params.clientId}`} />
+                <DebtListByGroupDate id={`${params.clientId}`} />
+
+                <DebtListByClient id={`${params.clientId}`} />
+                <PaidListByClient id={`${params.clientId}`} />
             </div>
         </>
     );
@@ -29,9 +31,9 @@ export function DebtProfile() {
     const params = useParams();
     return (
         <div className="container">
-            <DebtProfileCard debtId={`${params.debtId}`} />
+            <DebtProfileCard id={`${params.debtId}`} />
             <hr />
-            <DebtListByDate debtId={`${params.debtId}`} />
+            <DebtListByDate id={`${params.debtId}`} />
         </div>
     )
 }
@@ -41,9 +43,9 @@ export function PaidProfile() {
     const params = useParams();
     return (
         <div className="container">
-            <PaidProfileCard paidId={`${params.paidId}`} />
+            <PaidProfileCard id={`${params.paidId}`} />
             <hr />
-            <PaidListByDate paidId={`${params.paidId}`} />
+            <PaidListByDate id={`${params.paidId}`} />
         </div>
     )
 }
@@ -52,9 +54,9 @@ export function ProductProfile() {
     const params = useParams();
     return (
         <div className="container">
-            <ProductProfileCard productId={`${params.productId}`} />
+            <ProductProfileCard id={`${params.productId}`} />
             <hr />
-            <PaidListByProduct productId={`${params.productId}`} />
+            <PaidListByProduct id={`${params.productId}`} />
         </div>
     );
 }

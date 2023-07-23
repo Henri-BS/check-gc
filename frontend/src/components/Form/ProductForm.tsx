@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Props } from "types/page";
 import { ProductProps, Product } from "types/product";
 import { BASE_URL } from "utils/requests";
 
@@ -43,7 +44,7 @@ export function ProductAddForm() {
     );
 }
 
-export function ProductEditForm({ productId }: ProductProps) {
+export function ProductEditForm({id: productId }: Props) {
     const navigate = useNavigate();
     const [product, setProduct] = useState<Product>();
     useEffect(() => {

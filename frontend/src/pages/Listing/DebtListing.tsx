@@ -7,6 +7,7 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { ClientProps } from "types/client";
 import { DebtPage, Debt, DebtProps } from "types/debt";
+import { Props } from "types/page";
 import { BASE_URL } from "utils/requests";
 
 export function DebtList() {
@@ -75,7 +76,7 @@ export function DebtList() {
     );
 }
 
-export function DebtListByClient({ clientId }: ClientProps) {
+export function DebtListByClient({id: clientId }: Props) {
 
     const [debtList, setDebtList] = useState<Debt[]>();
     useEffect(() => {
@@ -101,7 +102,7 @@ export function DebtListByClient({ clientId }: ClientProps) {
     );
 }
 
-export function DebtListByDate({ debtId }: DebtProps) {
+export function DebtListByDate({ id: debtId }: Props) {
 
     const [debt, setDebt] = useState<Debt>();
     useEffect(() => {

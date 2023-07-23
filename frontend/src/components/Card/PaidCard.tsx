@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Paid, PaidProps } from "types/paid";
 import { BASE_URL } from "utils/requests";
 import "./styles.css"
+import { Props } from "types/page";
 
 
 type PaidCardProps = {
@@ -59,7 +60,7 @@ export function PaidSmallCard({ paid }: PaidCardProps) {
     );
 }
 
-export function PaidProfileCard({ paidId }: PaidProps) {
+export function PaidProfileCard({id: paidId }: Props) {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -117,7 +118,7 @@ export function PaidProfileCard({ paidId }: PaidProps) {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><PaidEditForm paidId={`${params.paidId}`} /></div>
+                        <div className="modal-body"><PaidEditForm id={`${params.paidId}`} /></div>
                     </div>
                 </div>
             </div>

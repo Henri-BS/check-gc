@@ -26,9 +26,12 @@ export type DebtPage = {
 };
 
 export type DebtProps = {
-  debtId: string;
+  debt: Debt
 }
 
-export type Status = {
-  statusId: string;
+export type DebtByDate = {
+  productQuantity: number;
+  debtDate: string;
+  productAmount: number;
+  clientName: string;
 }

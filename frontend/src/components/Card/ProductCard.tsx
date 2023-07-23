@@ -2,14 +2,12 @@ import axios from "axios";
 import { ProductEditForm } from "components/Form/ProductForm";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { Props } from "types/page";
 import { Product, ProductProps } from "types/product";
 import { BASE_URL } from "utils/requests";
 
-type ProductCardProps = {
-    product: Product;
-}
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product }: ProductProps) {
     return (
         <>
         <Link to={`/product/${product.productId}`}>
@@ -26,7 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
     );
 }
 
-export function ProductProfileCard({ productId }: ProductProps) {
+export function ProductProfileCard({id: productId }: Props) {
 
     const params = useParams();
     const navigate = useNavigate();
@@ -83,7 +81,7 @@ export function ProductProfileCard({ productId }: ProductProps) {
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
                         </div>
-                        <div className="modal-body"><ProductEditForm productId={`${params.productId}`} /></div>
+                        <div className="modal-body"><ProductEditForm id={`${params.productId}`} /></div>
                     </div>
                 </div>
             </div>
