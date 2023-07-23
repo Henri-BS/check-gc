@@ -1,9 +1,9 @@
 import { ClientProfileCard } from "components/Card/ClientCard";
-import { DebtListByGroupDate, DebtProfileCard } from "components/Card/DebtCard";
+import { DebtProfileCard } from "components/Card/DebtCard";
 import { PaidProfileCard } from "components/Card/PaidCard";
 import { ProductProfileCard } from "components/Card/ProductCard";
-import { DebtListByClient, DebtListByDate } from "pages/Listing/DebtListing";
-import { PaidListByClient, PaidListByDate } from "pages/Listing/PaidListing";
+import { DebtListByClient, DebtListByDate, DebtTableByDate } from "pages/Listing/DebtListing";
+import { PaidListByClient, PaidListByDate, PaidTableByDate } from "pages/Listing/PaidListing";
 import { PaidListByProduct } from "pages/Listing/ProductListing";
 import { useParams } from "react-router-dom";
 
@@ -17,8 +17,9 @@ export function ClientProfile() {
 
                 <ClientProfileCard id={`${params.clientId}`} />
                 <hr />
-                <DebtListByGroupDate id={`${params.clientId}`} />
-
+                <DebtTableByDate id={`${params.clientId}`} />
+                
+<PaidTableByDate id={`${params.clientId}`}/>
                 <DebtListByClient id={`${params.clientId}`} />
                 <PaidListByClient id={`${params.clientId}`} />
             </div>

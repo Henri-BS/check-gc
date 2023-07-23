@@ -6,7 +6,7 @@ import Pagination from "components/Pagination";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { ClientProps } from "types/client";
-import { DebtPage, Debt, DebtProps } from "types/debt";
+import { DebtPage, Debt, DebtProps, DebtByDate } from "types/debt";
 import { Props } from "types/page";
 import { BASE_URL } from "utils/requests";
 
@@ -131,6 +131,44 @@ export function DebtListByDate({ id: debtId }: Props) {
                         <DebtSmallCard debt={x} />
                     </div>
                 ))}
+            </div>
+        </>
+    );
+}
+
+export function DebtTableByDate({ id: clientId }: Props) {
+
+    const [debt, setDebt] = useState<DebtByDate[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/group-by-date/${clientId}`)
+            .then((response) => {
+                setDebt(response.data);
+            });
+    }, [clientId]);
+
+    return (
+        <>
+            <div className="table-responsive">
+                <h4>Dívidas do Pendentes</h4>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Quantidade de Produtos</th>
+                            <th>Valor Total dos Produtos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="border-0">
+                        {debt?.map(item => (
+                            <tr key={item.clientName}>
+                                <td className="table-box"> {moment(item.debtDate).format("DD/MM/YYYY")} </td>
+                                <td className="table-box">{item.productQuantity}</td>
+                                <td className="table-box">{item.productAmount}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </>
     );

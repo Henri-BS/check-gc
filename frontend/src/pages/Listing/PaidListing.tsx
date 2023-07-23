@@ -2,9 +2,10 @@ import axios from "axios";
 import { PaidCard, PaidSmallCard } from "components/Card/PaidCard";
 import { PaidAddForm } from "components/Form/PaidForm";
 import Pagination from "components/Pagination";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { Props } from "types/page";
-import { PaidPage, Paid } from "types/paid";
+import { PaidPage, Paid, PaidByDate } from "types/paid";
 import { BASE_URL } from "utils/requests";
 
 export function PaidList() {
@@ -122,6 +123,44 @@ export function PaidListByDate({id: paidId }: Props) {
                         <PaidSmallCard paid={x} />
                     </div>
                 ))}
+            </div>
+        </>
+    );
+}
+
+export function PaidTableByDate({ id: clientId }: Props) {
+
+    const [paidList, setPaidList] = useState<PaidByDate[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/paid/group-by-date/${clientId}`)
+            .then((response) => {
+                setPaidList(response.data);
+            });
+    }, [clientId]);
+
+    return (
+        <>
+            <div className="table-responsive">
+                <h4>Dívidas Pagas</h4>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data do Pagamento</th>
+                            <th>Quantidade de Produtos</th>
+                            <th>Valor Total dos Produtos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="border-0">
+                        {paidList?.map(x => (
+                            <tr key={x.clientName}>
+                                <td className="table-box"> {moment(x.paymentDate).format("DD/MM/YYYY")} </td>
+                                <td className="table-box">{x.productQuantity}</td>
+                                <td className="table-box">{x.productAmount.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </>
     );

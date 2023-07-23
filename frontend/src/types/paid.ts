@@ -24,3 +24,10 @@ export type PaidPage = {
 export type PaidProps = {
   paid: Paid;
 }
+
+export type PaidByDate = {  
+  paymentDate: string;
+  productQuantity: number;
+  productAmount: number;
+  clientName: string;
+}

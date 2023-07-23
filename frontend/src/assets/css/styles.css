@@ -53,6 +53,14 @@ code {
     color: var(--red-prim);
 }
 
+.table {
+    border: 2px solid var(--dark-tert);
+    border-radius: 20px;
+    font-size: larger;
+    text-align: center;
+    color: var(--dark-prim);
+}
+
 .link-option {
     font-size: large;
     display: flex;
