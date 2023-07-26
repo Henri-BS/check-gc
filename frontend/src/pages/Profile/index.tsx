@@ -18,10 +18,8 @@ export function ClientProfile() {
                 <ClientProfileCard id={`${params.clientId}`} />
                 <hr />
                 <DebtTableByDate id={`${params.clientId}`} />
-                
-<PaidTableByDate id={`${params.clientId}`}/>
-                <DebtListByClient id={`${params.clientId}`} />
-                <PaidListByClient id={`${params.clientId}`} />
+                <hr />
+                <PaidTableByDate id={`${params.clientId}`} />
             </div>
         </>
     );

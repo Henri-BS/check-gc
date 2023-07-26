@@ -130,9 +130,9 @@ export function PaidListByDate({id: paidId }: Props) {
 
 export function PaidTableByDate({ id: clientId }: Props) {
 
-    const [paidList, setPaidList] = useState<PaidByDate[]>();
+    const [paidList, setPaidList] = useState<Paid[]>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/paid/group-by-date/${clientId}`)
+        axios.get(`${BASE_URL}/paid/list-client/${clientId}`)
             .then((response) => {
                 setPaidList(response.data);
             });
@@ -141,11 +141,12 @@ export function PaidTableByDate({ id: clientId }: Props) {
     return (
         <>
             <div className="table-responsive">
-                <h4>Dívidas Pagas</h4>
+                <h4> <i className="fa fa-bookmark"/> Dívidas Pagas</h4>
                 <table className="table table-bordered">
                     <thead>
                         <tr>
                             <th>Data do Pagamento</th>
+                            <th>Produto</th>
                             <th>Quantidade de Produtos</th>
                             <th>Valor Total dos Produtos</th>
                         </tr>
@@ -154,9 +155,10 @@ export function PaidTableByDate({ id: clientId }: Props) {
                     <tbody className="border-0">
                         {paidList?.map(x => (
                             <tr key={x.clientName}>
-                                <td className="table-box"> {moment(x.paymentDate).format("DD/MM/YYYY")} </td>
-                                <td className="table-box">{x.productQuantity}</td>
-                                <td className="table-box">{x.productAmount.toFixed(2)}</td>
+                                <td> {moment(x.paymentDate).format("DD/MM/YYYY")} </td>
+                                <td>{x.productDescription}</td>
+                                <td>{x.productQuantity}</td>
+                                <td>{x.productAmount.toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -138,9 +138,9 @@ export function DebtListByDate({ id: debtId }: Props) {
 
 export function DebtTableByDate({ id: clientId }: Props) {
 
-    const [debt, setDebt] = useState<DebtByDate[]>();
+    const [debt, setDebt] = useState<Debt[]>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/group-by-date/${clientId}`)
+        axios.get(`${BASE_URL}/debt/list-by-client/${clientId}`)
             .then((response) => {
                 setDebt(response.data);
             });
@@ -149,11 +149,12 @@ export function DebtTableByDate({ id: clientId }: Props) {
     return (
         <>
             <div className="table-responsive">
-                <h4>Dívidas do Pendentes</h4>
+                <h4><i className="fa fa-book"/> Dívidas Pendentes</h4>
                 <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Data</th>
+                            <th>Data</th>   
+                            <th>Produto</th>
                             <th>Quantidade de Produtos</th>
                             <th>Valor Total dos Produtos</th>
                         </tr>
@@ -162,9 +163,10 @@ export function DebtTableByDate({ id: clientId }: Props) {
                     <tbody className="border-0">
                         {debt?.map(item => (
                             <tr key={item.clientName}>
-                                <td className="table-box"> {moment(item.debtDate).format("DD/MM/YYYY")} </td>
-                                <td className="table-box">{item.productQuantity}</td>
-                                <td className="table-box">{item.productAmount}</td>
+                                <td> {moment(item.debtDate).format("DD/MM/YYYY")} </td> 
+                                <td>{item.productDescription}</td>
+                                <td>{item.productQuantity}</td>
+                                <td>{item.productAmount.toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>

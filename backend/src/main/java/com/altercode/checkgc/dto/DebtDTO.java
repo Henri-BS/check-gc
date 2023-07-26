@@ -45,6 +45,7 @@ public class DebtDTO implements Serializable {
         this.debtDate = debtDate;
         this.productQuantity = Math.toIntExact(productQuantity);
         this.productAmount = productAmount;
+
     }
 
 
@@ -58,6 +59,22 @@ public class DebtDTO implements Serializable {
 
     public LocalDate getDebtDate() {
         return debtDate;
+    }
+
+    public LocalDate getChargeDate() {
+        return chargeDate;
+    }
+
+    public void setChargeDate(LocalDate chargeDate) {
+        this.chargeDate = chargeDate;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
     public void setDebtDate(LocalDate debtDate) {

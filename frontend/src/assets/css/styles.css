@@ -54,11 +54,15 @@ code {
 }
 
 .table {
-    border: 2px solid var(--dark-tert);
     border-radius: 20px;
     font-size: larger;
     text-align: center;
     color: var(--dark-prim);
+}
+
+.table thead {
+    background-color: #ccc;
+    border: 1px solid;
 }
 
 .link-option {
