@@ -5,9 +5,11 @@ import { Navbar } from "components/Navbar";
 import Pagination from "components/Pagination";
 import moment from "moment";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ClientProps } from "types/client";
 import { DebtPage, Debt, DebtProps, DebtByDate } from "types/debt";
 import { Props } from "types/page";
+import { Product } from "types/product";
 import { BASE_URL } from "utils/requests";
 
 export function DebtList() {
@@ -75,12 +77,50 @@ export function DebtList() {
         </>
     );
 }
-
-export function DebtListByClient({id: clientId }: Props) {
+export function DebtTableByClient({ id: clientId }: Props) {
 
     const [debtList, setDebtList] = useState<Debt[]>();
     useEffect(() => {
         axios.get(`${BASE_URL}/debt/list-by-client/${clientId}`)
+            .then((response) => {
+                setDebtList(response.data);
+            });
+    }, [clientId]);
+
+    return (
+        <>
+            <div className="table-responsive">
+                <h4><i className="fa fa-book"/> Dívidas Pendentes</h4>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data do Dívida</th>   
+                            <th>Produto</th>
+                            <th>Quantidade de Produtos</th>
+                            <th>Valor Total dos Produtos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="border-0">
+                        {debtList?.map(x => (
+                            <tr key={x.clientName}>
+                                <td> {moment(x.debtDate).format("DD/MM/YYYY")} </td> 
+                                <Link to={`/product/${x.product}`}><td>{x.productDescription}</td></Link>
+                                <td>{x.productQuantity}</td>
+                                <td>{x.productAmount.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
+}
+export function DebtTableByDate({id: clientId }: Props) {
+
+    const [debtList, setDebtList] = useState<Debt[]>();
+    useEffect(() => {
+        axios.get(`${BASE_URL}/debt/group-by-date/${clientId}`)
             .then((response) => {
                 setDebtList(response.data);
             })
@@ -88,15 +128,27 @@ export function DebtListByClient({id: clientId }: Props) {
 
     return (
         <>
-            <div className="homelist-title">
-                <div><i className="fa fa-book" /> Dívidas Pendentes</div>
-            </div>
-            <div className="horizontal-list-container">
-                {debtList?.map((x) => (
-                    <div key={x.debtId} className="horizontal-list-item">
-                        <DebtSmallCard debt={x} />
-                    </div>
-                ))}
+            <div className="table-responsive">
+                <h4><i className="fa fa-book"/> Total de Dívidas Pendentes por Data</h4>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data da Dívida</th>   
+                            <th>Quantidade Total de Unidades de Produtos</th>
+                            <th>Valor Total dos Produtos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="border-0">
+                        {debtList?.map(x => (
+                            <tr key={x.clientName}>
+                                <td> {moment(x.debtDate).format("DD/MM/YYYY")} </td> 
+                                <td>{x.productQuantity}</td>
+                                <td>{x.productAmount.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </>
     );
@@ -136,42 +188,3 @@ export function DebtListByDate({ id: debtId }: Props) {
     );
 }
 
-export function DebtTableByDate({ id: clientId }: Props) {
-
-    const [debt, setDebt] = useState<Debt[]>();
-    useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list-by-client/${clientId}`)
-            .then((response) => {
-                setDebt(response.data);
-            });
-    }, [clientId]);
-
-    return (
-        <>
-            <div className="table-responsive">
-                <h4><i className="fa fa-book"/> Dívidas Pendentes</h4>
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Data</th>   
-                            <th>Produto</th>
-                            <th>Quantidade de Produtos</th>
-                            <th>Valor Total dos Produtos</th>
-                        </tr>
-                    </thead>
-
-                    <tbody className="border-0">
-                        {debt?.map(item => (
-                            <tr key={item.clientName}>
-                                <td> {moment(item.debtDate).format("DD/MM/YYYY")} </td> 
-                                <td>{item.productDescription}</td>
-                                <td>{item.productQuantity}</td>
-                                <td>{item.productAmount.toFixed(2)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </>
-    );
-}

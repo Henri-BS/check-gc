@@ -68,11 +68,11 @@ export function PaidList() {
     );
 }
 
-export function PaidListByClient({id: clientId }: Props) {
+export function PaidTableByDate({id: clientId }: Props) {
 
     const [paidList, setPaidList] = useState<Paid[]>();
     useEffect(() => {
-        axios.get(`${BASE_URL}/paid/list-client/${clientId}`)
+        axios.get(`${BASE_URL}/paid/group-by-date/${clientId}`)
             .then((response) => {
                 setPaidList(response.data);
             })
@@ -80,15 +80,27 @@ export function PaidListByClient({id: clientId }: Props) {
 
     return (
         <>
-            <div className="homelist-title">
-                <div><i className="fa fa-bookmark" /> Dívidas Pagas</div>
-            </div>
-            <div className="horizontal-list-container">
-                {paidList?.map((x) => (
-                    <div key={x.paidId} className="horizontal-list-item">
-                        <PaidSmallCard paid={x} />
-                    </div>
-                ))}
+            <div className="table-responsive">
+                <h4> <i className="fa fa-bookmark"/> Total das Dívidas Pagas por Data</h4>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Data do Pagamento</th>
+                            <th>Quantidade Total de Unidades de Produtos</th>
+                            <th>Valor Total dos Produtos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody className="border-0">
+                        {paidList?.map(x => (
+                            <tr key={x.clientName}>
+                                <td> {moment(x.paymentDate).format("DD/MM/YYYY")} </td>
+                                <td>{x.productQuantity}</td>
+                                <td>{x.productAmount.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </>
     );
@@ -128,7 +140,7 @@ export function PaidListByDate({id: paidId }: Props) {
     );
 }
 
-export function PaidTableByDate({ id: clientId }: Props) {
+export function PaidTableByClient({ id: clientId }: Props) {
 
     const [paidList, setPaidList] = useState<Paid[]>();
     useEffect(() => {
