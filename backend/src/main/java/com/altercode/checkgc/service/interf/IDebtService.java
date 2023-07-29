@@ -16,8 +16,6 @@ public interface IDebtService {
 
     List<DebtDTO> findAllDebtsByDebtDate(String debtDate);
 
-    List<TotalDebtDateDTO> debtAmountGroupByDate();
-
     List<TotalDebtClientDTO> debtAmountGroupByClient();
 
     DebtDTO findDebtById(Long id);

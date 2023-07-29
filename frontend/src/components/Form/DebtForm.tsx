@@ -15,7 +15,6 @@ export function DebtAddForm() {
         const debtDate = (event.target as any).debtDate.value;
         const productDescription = (event.target as any).productDescription.value;
         const productQuantity = (event.target as any).productQuantity.value;
-        const status = (event.target as any).status.value;
 
         const config: AxiosRequestConfig = {
             method: "POST",
@@ -25,8 +24,7 @@ export function DebtAddForm() {
                 clientName: clientName,
                 debtDate: debtDate,
                 productDescription: productDescription,
-                productQuantity: productQuantity,
-                status: status
+                productQuantity: productQuantity
             }
         }
         axios(config).then((response) => {
@@ -40,15 +38,15 @@ export function DebtAddForm() {
                     <ClientDatalist />
                 </div>
                 <div className="form-group">
+                    <ProductDatalist />
+                </div>
+                <div className="form-group">
                     <label htmlFor="debtDate">Data da Compra</label>
                     <input id="debtDate" type="date" className="form-control" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
                     <input id="productQuantity" type="text" className="form-control" />
-                </div>
-                <div className="form-group">
-                    <ProductDatalist />
                 </div>
             </div>
             <div className="modal-footer">
@@ -75,7 +73,6 @@ export function DebtEditForm({id: debtId }: Props) {
         const productQuantity = (event.target as any).productQuantity.value;
         const clientName = (event.target as any).clientName.value;
         const product = (event.target as any).product.value;
-        const status = (event.target as any).status.value;
 
         const config: AxiosRequestConfig = {
             method: "PUT",
@@ -86,9 +83,8 @@ export function DebtEditForm({id: debtId }: Props) {
                 debtDate: debtDate,
                 productQuantity: productQuantity,
                 clientName: clientName,
-                product: product,
-                status: status
-            }
+                product: product
+                        }
         }
         axios(config).then((response) => {
             navigate("/debt-list");

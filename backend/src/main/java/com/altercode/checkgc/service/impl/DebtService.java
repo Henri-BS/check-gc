@@ -76,10 +76,7 @@ public class DebtService implements IDebtService {
         return debtRepository.debtGroupByDate(client);
     }
 
-    @Override
-    public List<TotalDebtDateDTO> debtAmountGroupByDate() {
-        return debtRepository.debtAmountGroupByDate();
-    }
+
 
     @Override
     public List<TotalDebtClientDTO> debtAmountGroupByClient() {
@@ -111,9 +108,18 @@ public class DebtService implements IDebtService {
         add.setClient(client);
         add.setDebtDate(dto.getDebtDate());
         add.setProductQuantity(dto.getProductQuantity());
+        add.setDiscount(dto.getDiscount());
         add.setProduct(product);
+        debtRepository.saveAndFlush(add);
+        double total;
+        total = add.getProductQuantity() * add.getProduct().getPrice();
+        add.setProductAmount(total);
+        if (add.getChargeDate() == null) {
+            add.setChargeDate(add.getDebtDate().plusMonths(1));
+        }
 
-        return new DebtDTO(debtRepository.saveAndFlush(add));
+        return new DebtDTO(debtRepository.save(add));
+
     }
 
     @Override
@@ -151,6 +157,5 @@ public class DebtService implements IDebtService {
     public void deleteDebt(Long id) {
         this.debtRepository.deleteById(id);
     }
-
 
 }

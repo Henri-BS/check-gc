@@ -11,7 +11,7 @@ export function ClientDatalist() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/client/list-by-name?name=${value}`)
+        axios.get(`${BASE_URL}/client/list?name=${value}`)
             .then((response) => {
                 setClientPage(response.data);
             });
@@ -42,12 +42,9 @@ export function ClientDatalist() {
 
 export function ProductDatalist() {
     const [value, setValue] = useState("");
-    const [productPage, setProductPage] = useState<ProductPage>({
-        content: [],
-        number: 0
-    })
+    const [productPage, setProductPage] = useState<ProductPage>({content: [],number: 0})
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/list-by-description?description=${value}`)
+        axios.get(`${BASE_URL}/product/list?description=${value}`)
             .then((response) => {
                 setProductPage(response.data);
             })
@@ -63,17 +60,16 @@ export function ProductDatalist() {
                 onChange={(e) => setValue(e.target.value)}
                 className="form-control"
             />
-            <datalist id="productlist">
+            <datalist id="productList">
                 {productPage.content.filter(x =>
                     x.description.includes(value))
                     .map(x => (
                         <option id="value" value={x.description} key={x.productId}>
-                            {x.description}
+                         R$ {x.price.toFixed(2)}
                         </option>
                     ))
                 }
             </datalist>
         </>
     );
-
 }
