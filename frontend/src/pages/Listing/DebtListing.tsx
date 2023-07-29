@@ -22,7 +22,7 @@ export function DebtList() {
 
     const [debtList, setDebtList] = useState<DebtPage>({ content: [], number: 0 });
     useEffect(() => {
-        axios.get(`${BASE_URL}/debt/list?product=${value}&page=${pageNumber}`)
+        axios.get(`${BASE_URL}/debt/list?product=${value}&client=${value}&page=${pageNumber}`)
             .then((response) => {
                 setDebtList(response.data);
             });
@@ -43,7 +43,7 @@ export function DebtList() {
                         <div className="form-group">
                             <input id="value" type="text" value={value}
                                 onChange={(e) => setValue(e.target.value)}
-                                className="form-control" placeholder="busque dívidas pelos produtos..."
+                                className="form-control" placeholder="busque dívidas pelos produtos, clientes..."
                             />
                         </div>
                     </div>
@@ -51,7 +51,8 @@ export function DebtList() {
 
                 <div className="row">
                     {debtList.content?.filter((x) => (
-                        x.productDescription.toUpperCase().includes(value.toLocaleUpperCase()))
+                        x.productDescription.toUpperCase().includes(value.toLocaleUpperCase()) ||
+                        x.clientName.toUpperCase().includes(value.toLocaleUpperCase()))
                         ).map(x => (
                         <div key={x.debtId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <DebtCard debt={x} />

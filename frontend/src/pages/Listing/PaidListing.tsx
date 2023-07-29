@@ -5,43 +5,50 @@ import Pagination from "components/Pagination";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Props } from "types/page";
-import { PaidPage, Paid, PaidByDate } from "types/paid";
+import { PaidPage, Paid } from "types/paid";
 import { BASE_URL } from "utils/requests";
 
 export function PaidList() {
+    const [value, setValue] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
     }
 
-    const [paidPage, setPaidPaid] = useState<PaidPage>({
-        content: [],
-        number: 0
-    });
-
+    const [paidList, setPaidList] = useState<PaidPage>({ content: [], number: 0 });
     useEffect(() => {
-        axios.get(`${BASE_URL}/paid/list?page=${pageNumber}`)
+        axios.get(`${BASE_URL}/paid/list?product=${value}&client=${value}&page=${pageNumber}`)
             .then((response) => {
-                setPaidPaid(response.data);
+                setPaidList(response.data);
             });
-    }, [pageNumber])
-
+    }, [value, pageNumber]);
 
     return (
         <>
             <div className="container">
-                <nav className="pagination-container">
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addPaidModal" data-bs-toggle="modal">
-                        <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Pagamento</button>
+
+                <div className="pagination-container row">
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
+                        <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Compra</button>
                     </div>
                     <div className="col-12 col-md-4 col-xl-6 mb-2" >
-                        <Pagination page={paidPage} onPageChange={handlePageChange} />
+                        <Pagination page={paidList} onPageChange={handlePageChange} />
                     </div>
-                    <div className="col-12 col-md-4 col-xl-3 mb-2" >Compras Pagas: {paidPage.totalElements}</div>
-                </nav>
+                    <div className="col-12 col-md-4 col-xl-3 mb-2" >
+                        <div className="form-group">
+                            <input id="value" type="text" value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                                className="form-control" placeholder="busque dívidas pelos produtos, clientes..."
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 <div className="row">
-                    {paidPage.content.map(x => (
+                    {paidList.content?.filter((x) => (
+                        x.productDescription.toUpperCase().includes(value.toLocaleUpperCase()) ||
+                        x.clientName.toUpperCase().includes(value.toLocaleUpperCase()))
+                        ).map(x => (
                         <div key={x.paidId} className="col-12 col-md-6 col-xl-4 mb-3">
                             <PaidCard paid={x} />
                         </div>

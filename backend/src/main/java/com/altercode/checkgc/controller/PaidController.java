@@ -21,7 +21,11 @@ public class PaidController {
     private IPaidService paidService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<PaidDTO>> findAllPaid(Pageable pageable) {
+    public ResponseEntity<Page<PaidDTO>> findAllPaid(
+            @RequestParam(defaultValue = "") String product,
+            @RequestParam(defaultValue = "") String client,
+            Pageable pageable
+    ) {
         Page<PaidDTO> page = paidService.findAllPaid(pageable);
         return ResponseEntity.ok(page);
     }
