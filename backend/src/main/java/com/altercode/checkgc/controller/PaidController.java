@@ -3,7 +3,7 @@ package com.altercode.checkgc.controller;
 import com.altercode.checkgc.dto.PaidDTO;
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Product;
-import com.altercode.checkgc.service.interf.IPaidService;
+import com.altercode.checkgc.service.interf.PaidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +18,7 @@ import java.util.List;
 public class PaidController {
 
     @Autowired
-    private IPaidService paidService;
+    private PaidService paidService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<PaidDTO>> findAllPaid(
@@ -43,14 +43,8 @@ public class PaidController {
     }
 
     @GetMapping("/list-by-date/{paymentDate}")
-    public ResponseEntity<List<PaidDTO>> findAllPaidByPaymentDate(@PathVariable String paymentDate) {
-        List<PaidDTO> list = paidService.findAllPaidByPaymentDate(paymentDate);
-        return ResponseEntity.ok(list);
-    }
-
-    @GetMapping("/group-by-client")
-    public ResponseEntity<List<PaidDTO>> paidGroupByClient(){
-        List<PaidDTO> list = paidService.paidGroupByClient();
+    public ResponseEntity<List<PaidDTO>> findByPaymentDate(@PathVariable String paymentDate) {
+        List<PaidDTO> list = paidService.findByPaymentDate(paymentDate);
         return ResponseEntity.ok(list);
     }
 

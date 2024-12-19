@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PaidProps, Paid } from "types/paid";
+import { Paid } from "types/paid";
 import { BASE_URL } from "utils/requests";
 import { ClientDatalist, ProductDatalist } from "./DatalistForm";
 import { Props } from "types/page";
@@ -112,15 +112,15 @@ export function PaidEditForm({id: paidId }: Props) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="paymentDate">Data do Pagamento</label>
-                    <input id="paymentDate" type="date" className="form-control" />
+                    <input id="paymentDate" type="date" className="form-control" defaultValue={paid?.paymentDate}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="paymentType">Forma de Pagamento</label>
-                    <input id="paymentType" type="text" className="form-control" />
+                    <input id="paymentType" type="text" className="form-control" defaultValue={paid?.paymentType}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
-                    <input id="productQuantity" type="text" className="form-control" />
+                    <input id="productQuantity" type="text" className="form-control" defaultValue={paid?.productQuantity}/>
                 </div>
             </div>
 

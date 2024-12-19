@@ -2,6 +2,7 @@ package com.altercode.checkgc.dto;
 
 import com.altercode.checkgc.entity.Client;
 import com.altercode.checkgc.entity.Paid;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serial;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaidDTO implements Serializable {
 
     @Serial
@@ -48,6 +49,7 @@ public class PaidDTO implements Serializable {
     }
 
     public PaidDTO(Client client, LocalDate paymentDate, Long productQuantity, Double productAmount) {
+        clientId = client.getClientId();
         clientName = client.getName();
         this.paymentDate = paymentDate;
         this.productQuantity = Math.toIntExact(productQuantity);
@@ -58,71 +60,35 @@ public class PaidDTO implements Serializable {
         return paidId;
     }
 
-    public void setPaidId(Long paidId) {
-        this.paidId = paidId;
-    }
-
     public String getPaymentType() {
         return paymentType;
-    }
-
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
     }
 
     public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(LocalDate paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
     public Integer getProductQuantity() {
         return productQuantity;
-    }
-
-    public void setProductQuantity(Integer productQuantity) {
-        this.productQuantity = productQuantity;
     }
 
     public Double getProductAmount() {
         return productAmount;
     }
 
-    public void setProductAmount(Double productAmount) {
-        this.productAmount = productAmount;
-    }
-
     public Long getClientId() {
         return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
     }
 
     public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getClientName() {
         return clientName;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
     public String getProductDescription() {
         return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
     }
 }

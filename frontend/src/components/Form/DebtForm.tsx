@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { DebtProps, Debt } from "types/debt";
+import { Debt } from "types/debt";
 import { BASE_URL } from "utils/requests";
 import { ClientDatalist, ProductDatalist } from "./DatalistForm";
 import { Props } from "types/page";

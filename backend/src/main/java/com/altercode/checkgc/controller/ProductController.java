@@ -1,7 +1,7 @@
 package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.ProductDTO;
-import com.altercode.checkgc.service.interf.IProductService;
+import com.altercode.checkgc.service.interf.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    private IProductService productService;
+    private ProductService productService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<ProductDTO>> findProductsByDescription(Pageable pageable, @RequestParam(defaultValue = "") String description) {

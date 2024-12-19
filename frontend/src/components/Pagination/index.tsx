@@ -1,7 +1,3 @@
-import { ClientAccountPage, ClientPage } from "types/client";
-import { DebtPage } from "types/debt";
-import { PaidPage } from "types/paid";
-import { ProductPage } from "types/product";
 import "./styles.css";
 import { Page } from "types/page";
 

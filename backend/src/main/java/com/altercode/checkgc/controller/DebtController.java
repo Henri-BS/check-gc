@@ -2,9 +2,8 @@ package com.altercode.checkgc.controller;
 
 import com.altercode.checkgc.dto.DebtDTO;
 import com.altercode.checkgc.dto.PaidDTO;
-import com.altercode.checkgc.dto.TotalDebtClientDTO;
 import com.altercode.checkgc.entity.Client;
-import com.altercode.checkgc.service.interf.IDebtService;
+import com.altercode.checkgc.service.interf.DebtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +18,7 @@ import java.util.List;
 public class DebtController {
 
     @Autowired
-    private IDebtService debtService;
+    private DebtService debtService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<DebtDTO>> findAllDebts(
@@ -27,27 +26,23 @@ public class DebtController {
             @RequestParam(defaultValue = "") String client,
             Pageable pageable)
     {
-        Page<DebtDTO> list = debtService.findAllDebts(pageable);
+        Page<DebtDTO> list = debtService.findAll(pageable);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/list-by-client/{clientId}")
     public ResponseEntity<List<DebtDTO>> findAllDebtsByClient(@PathVariable Client clientId) {
-        List<DebtDTO> list = debtService.findAllDebtsByClient(clientId);
+        List<DebtDTO> list = debtService.findByClient(clientId);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/list-by-date/{debtDate}")
-    public ResponseEntity<List<DebtDTO>> findAllDebtsByDebtDate(@PathVariable String debtDate) {
-        List<DebtDTO> list = debtService.findAllDebtsByDebtDate(debtDate);
+    public ResponseEntity<List<DebtDTO>> findByDebtDate(@PathVariable String debtDate) {
+        List<DebtDTO> list = debtService.findByDebtDate(debtDate);
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/values-by-client")
-    public ResponseEntity<List<TotalDebtClientDTO>> debtAmountGroupByClient() {
-        List<TotalDebtClientDTO> list = debtService.debtAmountGroupByClient();
-        return ResponseEntity.ok(list);
-    }
+
 
     @GetMapping("/group-by-date/{client}")
     ResponseEntity<List<DebtDTO>> debtGroupByDate(@PathVariable Client client){

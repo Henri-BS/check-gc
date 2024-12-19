@@ -1,11 +1,14 @@
-import { ClientProfile, DebtProfile, PaidProfile, ProductProfile } from "pages/Profile";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "components/Navbar";
 import Home from "pages/Home";
 import { ClientList} from "pages/Listing/ClientListing";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DebtList } from "pages/Listing/DebtListing";
 import { PaidList } from "pages/Listing/PaidListing";
 import { ProductList } from "pages/Listing/ProductListing";
-import { Navbar } from "components/Navbar";
+import { ClientProfile } from "pages/Profile/ClientProfile";
+import { DebtProfile } from "pages/Profile/DebtProfile";
+import { PaidProfile } from "pages/Profile/PaidProfile";
+import { ProductProfile } from "pages/Profile/ProductProfile";
 
 function PageRoutes() {
     return (

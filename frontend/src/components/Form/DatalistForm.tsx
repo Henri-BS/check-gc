@@ -28,9 +28,9 @@ export function ClientDatalist() {
                 className="form-control"
             />
             <datalist id="clientList">
-                {clientPage.content.filter(x =>
+                {clientPage.content.filter((x) => 
                     x.name.includes(value))
-                    .map(x => (
+                    .map((x) => (
                         <option id="value" value={x.name} key={x.clientId}>
                             {x.name}
                         </option>

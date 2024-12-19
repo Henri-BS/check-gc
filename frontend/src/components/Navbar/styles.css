@@ -56,3 +56,13 @@
         margin: 12px;
     }
 }
+
+@media screen and (max-width: 450px) {
+    .navbar {
+        height: 260px;
+        font-size: 1rem;
+    }
+    .navbar-item {
+        margin: 12px;
+    }
+}

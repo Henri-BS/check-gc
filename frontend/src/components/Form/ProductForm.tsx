@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Props } from "types/page";
-import { ProductProps, Product } from "types/product";
+import { Product } from "types/product";
 import { BASE_URL } from "utils/requests";
 
 export function ProductAddForm() {

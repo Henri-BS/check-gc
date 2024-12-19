@@ -28,47 +28,23 @@ public class StatsSalesDTO implements Serializable {
         return debtAmount;
     }
 
-    public void setDebtAmount(Double debtAmount) {
-        this.debtAmount = debtAmount;
-    }
-
     public Double getDebtMaxValue() {
         return debtMaxValue;
-    }
-
-    public void setDebtMaxValue(Double debtMaxValue) {
-        this.debtMaxValue = debtMaxValue;
     }
 
     public Long getDebtQuantity() {
         return debtQuantity;
     }
 
-    public void setDebtQuantity(Long debtQuantity) {
-        this.debtQuantity = debtQuantity;
-    }
-
     public Double getPaidAmount() {
         return paidAmount;
-    }
-
-    public void setPaidAmount(Double paidAmount) {
-        this.paidAmount = paidAmount;
     }
 
     public Double getPaidMaxValue() {
         return paidMaxValue;
     }
 
-    public void setPaidMaxValue(Double paidMaxValue) {
-        this.paidMaxValue = paidMaxValue;
-    }
-
     public Long getPaidQuantity() {
         return paidQuantity;
-    }
-
-    public void setPaidQuantity(Long paidQuantity) {
-        this.paidQuantity = paidQuantity;
     }
 }

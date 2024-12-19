@@ -93,6 +93,7 @@ code {
     transition: all 0.2s ease-in;
     cursor: pointer;
     color: var(--dark-prim);
+    max-inline-size: 100%;
     border: 2px solid #b8b6b6;
 }
 
