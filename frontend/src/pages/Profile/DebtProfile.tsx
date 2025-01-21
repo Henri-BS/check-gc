@@ -54,10 +54,10 @@ export function DebtProfileInfo({ id: debtId }: Props) {
             <div className="sub-navbar">
 
                 <button className="btn btn-primary" data-bs-target="#debtEditModal" data-bs-toggle="modal">
-                    <i className="fa fa-edit" /> Editar Compra
+                    <i className="fa fa-edit" /> Editar
                 </button>
                 <button className="btn btn-danger" data-bs-target="#debtDeleteModal" data-bs-toggle="modal">
-                    <i className="fa fa-trash" /> Deletar Compra
+                    <i className="fa fa-trash" /> Deletar
                 </button>
             </div>
             <hr />
@@ -67,7 +67,7 @@ export function DebtProfileInfo({ id: debtId }: Props) {
                     <li className="card-lg-item "> Cliente:
                         <p className="card-lg-content">{debt?.clientName}</p>
                     </li>
-                    <li className="card-lg-item "> Data da Compra:
+                    <li className="card-lg-item "> Data da dívida:
                         <p className="card-lg-content">{moment(debt?.debtDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className=" card-lg-item">Devendo Há:
@@ -79,7 +79,7 @@ export function DebtProfileInfo({ id: debtId }: Props) {
                     <li className=" card-lg-item">Quantidade do Produto:
                         <p className="card-lg-content">{debt?.productQuantity}</p>
                     </li>
-                    <li className=" card-lg-item">Valor da Compra:
+                    <li className=" card-lg-item">Valor da Total:
                         <p className="card-lg-content">R${debt?.productAmount.toFixed(2)}</p>
                     </li>
                 </ul>

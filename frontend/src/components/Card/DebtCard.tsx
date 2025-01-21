@@ -11,7 +11,7 @@ export function DebtCard({ debt }: DebtProps) {
                     Cliente: {debt.clientName}
                 </div>
                 <ul className="card-md-list">
-                    <li className="card-md-item ">Data da Compra:
+                    <li className="card-md-item ">Data da Dívida:
                         <p className="card-md-content">{moment(debt.debtDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className="card-md-item ">Produto Solicitado:
@@ -20,7 +20,7 @@ export function DebtCard({ debt }: DebtProps) {
                     <li className="card-md-item ">Quantidade do Produto:
                         <p className="card-md-content">{debt.productQuantity}</p>
                     </li>
-                    <li className="card-md-item ">Valor da Compra:
+                    <li className="card-md-item ">Valor Total:
                         <p className="card-md-content">R$ {debt.productAmount.toFixed(2)}</p>
                     </li>
 
@@ -38,11 +38,11 @@ export function DebtSmallCard({ debt }: DebtProps) {
                     Produto Solicitado: {debt.productDescription}
                 </div>
                 <ul className="card-md-list">
-                    <li className="card-md-item">Data da Compra:
+                    <li className="card-md-item">Data da Dívida:
                         <p className="card-md-content">{moment(debt.debtDate).format("DD/MM/YYYY")}</p>
                     </li>
                     <li className="card-md-item">Valor:
-                        <p className="card-md-content">{debt.productAmount}</p>
+                        <p className="card-md-content">R${debt.productAmount.toFixed(2)}</p>
                     </li>
                 </ul>
             </div>

@@ -109,7 +109,6 @@ export function DebtEditForm({id: debtId }: Props) {
                     <label htmlFor="productQuantity">Quantidade do Produto</label>
                     <input id="productQuantity" className="form-control" defaultValue={debt?.productQuantity} />
                 </div>
-
               
             </div>
             <div className="modal-footer">

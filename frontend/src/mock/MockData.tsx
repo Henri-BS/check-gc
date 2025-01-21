@@ -1,7 +1,7 @@
 export const clientMock = [
     {
         clientId: 1,
-        name: 'Jack',
+        name: 'James',
         phoneNumber: '(83) 98723-3281',
         address: 'Bairro Jardim, Rua 22 - 3131',
         accountId: 1,
@@ -13,7 +13,7 @@ export const clientMock = [
             paidQuantity: 5,
             lastModifiedDate: '14/12/2024',
             clientId: 1,
-            clientName: 'Jack'
+            clientName: 'James'
         }
     },
     {
@@ -269,7 +269,7 @@ export const debtMock = [
         productAmount: 15.2,
         clientId: 1,
         productId: 1,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Chocolate Amargo 200g'
     },
     {
@@ -281,7 +281,7 @@ export const debtMock = [
         productAmount: 3.5,
         clientId: 1,
         productId: 4,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Kuat Mini Pet 250ml'
     },
     {
@@ -293,7 +293,7 @@ export const debtMock = [
         productAmount: 9.9,
         clientId: 1,
         productId: 9,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Leite Piracanjuba Desnatado Líquido 1l'
     },
     {
@@ -721,7 +721,7 @@ export const debtMock = [
         productAmount: 3.3,
         clientId: 1,
         productId: 11,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Óleo de Milho Sinhá 1l'
     },
     {
@@ -734,7 +734,7 @@ export const debtMock = [
         productAmount: 17.70,
         clientId: 1,
         productId: 7,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Iorgute Activia Líquido Prc Morango Danone 150g'
     },
     {
@@ -747,7 +747,7 @@ export const debtMock = [
         productAmount: 14,
         clientId: 1,
         productId: 4,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Kuat Mini Pet 250ml'
     },
     {
@@ -760,7 +760,7 @@ export const debtMock = [
         productAmount: 7,
         clientId: 1,
         productId: 2,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Fanta Laranja Mini Pet 250ml'
     },
     {
@@ -836,28 +836,28 @@ export const debtGroupByDateMock = [
         productQuantity: 1,
         productAmount: 9.9,
         clientId: 1,
-        clientName: 'Jack',
+        clientName: 'James',
     },
     {
         debtDate: '12/01/2024',
         productQuantity: 7,
         productAmount: 22,
         clientId: 1,
-        clientName: 'Jack',
+        clientName: 'James',
     },
     {
         debtDate: '22/04/2024',
         productQuantity: 6,
         productAmount: 17.70,
         clientId: 1,
-        clientName: 'Jack',
+        clientName: 'James',
     },
     {
         debtDate: '13/04/2024',
         productQuantity: 12,
         productAmount: 21,
         clientId: 1,
-        clientName: 'Jack',
+        clientName: 'James',
     },
     {
         debtDate: '05/01/2024',
@@ -1042,7 +1042,7 @@ export const paidMock = [
         productAmount: 3.5,
         clientId: 1,
         productId: 4,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Kuat Mini Pet 250ml'
     },
     {
@@ -1053,7 +1053,7 @@ export const paidMock = [
         productAmount: 1.75,
         clientId: 1,
         productId: 2,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Fanta Laranja Mini Pet 250ml'
     },
     {
@@ -1064,7 +1064,7 @@ export const paidMock = [
         productAmount: 94,
         clientId: 1,
         productId: 8,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Arroz Carvalho 5kg'
     },
     {
@@ -1075,7 +1075,7 @@ export const paidMock = [
         productAmount: 3.5,
         clientId: 1,
         productId: 3,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Refrigerante Fanta Uva Mini Pet 250ml'
     },
     {
@@ -1086,7 +1086,7 @@ export const paidMock = [
         productAmount: 17.70,
         clientId: 1,
         productId: 6,
-        clientName: 'Jack',
+        clientName: 'James',
         productDescription: 'Iorgute Activia Líquido Prc Ameixa Danone 150g'
     },
     {
@@ -1251,14 +1251,14 @@ export const paidGroupByDateMock = [
         productQuantity: 7,
         productAmount: 99.25,
         clientId: 1,
-        clientName: 'Jack'
+        clientName: 'James'
     },
     {
         paymentDate: '12/04/2024',
         productQuantity: 8,
         productAmount: 21.20,
         clientId: 1,
-        clientName: 'Jack'
+        clientName: 'James'
     },
     {
         paymentDate: '05/04/2024',

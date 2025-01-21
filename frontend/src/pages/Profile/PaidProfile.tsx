@@ -45,16 +45,20 @@ export function PaidProfileInfo({ id: paidId }: Props) {
         <>
             <div className="sub-navbar">
                 <button className="btn btn-primary" data-bs-target="#paidEditModal" data-bs-toggle="modal">
-                    <i className="fa fa-edit" /> Editar Compra
+                    <i className="fa fa-edit" /> Editar
                 </button>
                 <button className="btn btn-danger" data-bs-target="#paidDeleteModal" data-bs-toggle="modal">
-                    <i className="fa fa-trash" /> Deletar Compra
+                    <i className="fa fa-trash" /> Deletar
                 </button>
             </div>
             <hr />
 
             {!paid ? <PaidMockProfile id={`${params.paidId}`} /> :
                 <ul className="card-md-list">
+                    
+                    <li className=" card-lg-item">Cliente:
+                        <p className="card-lg-content">{paid?.clientName}</p>
+                    </li>
                     <li className="card-lg-item "> Data do Pagamento:
                         <p className="card-lg-content">{moment(paid?.paymentDate).format("DD/MM/YYYY")}</p>
                     </li>
@@ -64,7 +68,7 @@ export function PaidProfileInfo({ id: paidId }: Props) {
                     <li className=" card-lg-item">Quantidade do Produto:
                         <p className="card-lg-content">{paid?.productQuantity}</p>
                     </li>
-                    <li className=" card-lg-item">Valor da Compra:
+                    <li className=" card-lg-item">Valor Total:
                         <p className="card-lg-content">{paid?.productAmount}</p>
                     </li>
                     <li className=" card-lg-item">Forma de Pagamento:
@@ -77,7 +81,7 @@ export function PaidProfileInfo({ id: paidId }: Props) {
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
                         <div className="modal-header">
-                            <label htmlFor="paid">Alterar informações sobre a compra paga</label>
+                            <label htmlFor="paid">Alterar informações do registro de pagamento</label>
                             <button className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
@@ -90,7 +94,7 @@ export function PaidProfileInfo({ id: paidId }: Props) {
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
                         <div className="modal-header">
-                            <label htmlFor="clientLabel" className="modal-title">Deseja deletar a compra ?</label>
+                            <label htmlFor="clientLabel" className="modal-title">Deseja deletar o registro de pagamento ?</label>
                             <button className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>

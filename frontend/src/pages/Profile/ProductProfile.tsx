@@ -50,10 +50,10 @@ export function ProductProfileInfo({ id: productId }: Props) {
         <>
             <div className="sub-navbar">
                 <button className="btn btn-primary" data-bs-target="#productEditModal" data-bs-toggle="modal">
-                    <i className="fa fa-edit" /> Editar Produto
+                    <i className="fa fa-edit" /> Editar
                 </button>
                 <button className="btn btn-danger" data-bs-target="#productDeleteModal" data-bs-toggle="modal">
-                    <i className="fa fa-trash" /> Deletar Produto
+                    <i className="fa fa-trash" /> Deletar
                 </button>
             </div>
             <hr />
@@ -64,7 +64,7 @@ export function ProductProfileInfo({ id: productId }: Props) {
                         <p className="card-lg-content">{product?.description}</p>
                     </li>
                     <li className=" card-lg-item">Preço:
-                        <p className="card-lg-content">{product?.price}</p>
+                        <p className="card-lg-content">R${product?.price.toFixed(2)}</p>
                     </li>
                 </ul>
             }

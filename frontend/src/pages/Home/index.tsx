@@ -57,16 +57,18 @@ function Home() {
 
     return (
         <>
-            <b className="text-danger fs-5 d-flex m-3">
-                Esta é uma demonstração com funcionalidades limitadas, possibilitando apenas a visualização de dados estáticos. Uma versão mais atualizada será disponibilizada em breve.
-            </b>
+            {!!value ? "" :
+                <b className="text-danger fs-5 d-flex m-3">
+                    Esta é uma demonstração com funcionalidades limitadas, possibilitando apenas a visualização de dados estáticos. Uma versão mais atualizada será disponibilizada em breve.
+                </b>
+            }
             {!value ? <ClientMockTotalValues /> :
                 <nav className="bar-container row">
                     <div className="bar-item col-6">
-                        <b>Valor das Dívidas Pendentes:</b> {value?.debtAmount.toFixed(2)}
+                        <b>Valor das Dívidas Pendentes:</b> R${value?.debtAmount.toFixed(2)}
                     </div>
                     <div className="bar-item col-6">
-                        <b>Valor das Dívidas Paga:</b> {value?.paidAmount.toFixed(2)}
+                        <b>Valor das Dívidas Paga:</b> R${value?.paidAmount.toFixed(2)}
                     </div>
                     <div className="bar-item col-6">
                         <b>Quantidade de Dívidas Pendentes:</b> {value?.debtQuantity}
@@ -74,10 +76,10 @@ function Home() {
                         <b>Quantidade de Dívidas Pagas:</b> {value?.paidQuantity}
                     </div>
                     <div className="bar-item col-6">
-                        <b>Maior Dívida Pendente:</b> {value?.debtMaxValue.toFixed(2)}
+                        <b>Maior Dívida Pendente:</b> R${value?.debtMaxValue.toFixed(2)}
                     </div>
                     <div className="bar-item col-6">
-                        <b>Maior Dívida Paga:</b> {value?.paidMaxValue.toFixed(2)}
+                        <b>Maior Dívida Paga:</b> R${value?.paidMaxValue.toFixed(2)}
                     </div>
                 </nav>
 
@@ -118,7 +120,7 @@ function Home() {
                                         <Link to={`/product/${x.productId}`} className="text-decoration-none">
                                             <ul className="homelist-item">
                                                 <li className="homelist-content">Produto: {x.description}</li>
-                                                <li className="homelist-content">Preço: {x.price.toFixed(2)}</li>
+                                                <li className="homelist-content">Preço: R${x.price.toFixed(2)}</li>
                                             </ul>
                                         </Link>
                                     ))}

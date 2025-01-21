@@ -22,14 +22,14 @@ export function PaidCard({ paid }: PaidCardProps) {
                     <li className="card-md-item"> Tipo de Pagamento:
                         <p className="card-md-content">{paid.paymentType}</p>
                     </li>
-                    <li className="card-md-item"> Produto Comprado:
+                    <li className="card-md-item"> Produto Solicitado:
                         <p className="card-md-content">{paid.productDescription}</p>
                     </li>
-                    <li className="card-md-item"> Quantidade:
+                    <li className="card-md-item"> Quantidade do Produto:
                         <p className="card-md-content">{paid.productQuantity}</p>
                     </li>
-                    <li className="card-md-item"> Valor da Compra:
-                        <p className="card-md-content">{paid.productAmount.toFixed(2)}</p>
+                    <li className="card-md-item"> Valor Total:
+                        <p className="card-md-content">R${paid.productAmount.toFixed(2)}</p>
                     </li>
                 </ul>
             </div>
@@ -42,15 +42,15 @@ export function PaidSmallCard({ paid }: PaidCardProps) {
         <Link to={`/paid/${paid.paidId}`}>
             <div className="card-md-container blur-container">
             <div className="card-md-title">
-                    Produto Pago: {paid.productDescription}
+              Cliente: {paid.clientName}
                 </div>
                 <li className="card-md-item">Data do Pagamento:
                     <p className="card-md-content">{moment(paid.paymentDate).format("DD/MM/YYYY")}</p>
                 </li>
                 <li className="card-md-item">Valor:
-                    <p className="card-md-content">{paid.productAmount}</p>
+                    <p className="card-md-content">R${paid.productAmount.toFixed(2)}</p>
                 </li>
-                <li className="card-md-item">Valor:
+                <li className="card-md-item">Quantidade:
                     <p className="card-md-content">{paid.productQuantity}</p>
                 </li>
             </div>

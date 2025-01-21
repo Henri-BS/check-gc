@@ -24,7 +24,7 @@ export function ProductList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&description=${value}`)
+        axios.get(`${BASE_URL}/product/list?page=${pageNumber}&description=${value}&size=9`)
             .then((response) => {
                 setProductList(response.data);
             });

@@ -30,7 +30,7 @@ export function PaidList() {
             {!paidList.content.length ? <PaidMockList /> :
                 <div className="container">
                     <div className="pagination-container row">
-                        <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addDebtModal" data-bs-toggle="modal">
+                        <div className="col-12 col-md-4 col-xl-3 mb-2" data-bs-target="#addPaidModal" data-bs-toggle="modal">
                             <button className="btn btn-confirm"><i className="fa fa-save" /> Adicionar Pagamento</button>
                         </div>
                         <div className="col-12 col-md-4 col-xl-6 mb-2" >

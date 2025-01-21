@@ -45,9 +45,12 @@ public class DebtServiceImpl implements DebtService {
             Period period = Period.between(debtDate, LocalDate.from(now));
 
 
-           String years = period.getYears() <= 1 ? period.getYears() + " ano, " : period.getYears() + " anos, ";
-           String months = period.getMonths() <= 1 ? period.getMonths() + " mês, " : period.getMonths() + " meses, ";
-           String days = period.getDays() <= 1 ? period.getDays() + " dia " : period.getDays() + " dias ";
+            String years = period.getYears() == 1 ? period.getYears() + " ano, " : period.getYears() + " anos, ";
+            String months = period.getMonths() == 1 ? period.getMonths() + " mês, " : period.getMonths() + " meses, ";
+            String days = period.getDays() == 1 ? period.getDays() + " dia " : period.getDays() + " dias ";
+            years = period.getYears() == 0 ? "" : years;
+            months = period.getMonths() == 0 ? "" : months;
+            days = period.getDays() == 0 ? "" : days;
 
             debt.setDebtDays(years + months + days);
             debtRepository.save(debt);

@@ -55,10 +55,10 @@ export function ClientProfileInfo({ id: clientId }: Props) {
         <>
             <div className="sub-navbar">
                 <button className="btn btn-primary" data-bs-target="#clientEditModal" data-bs-toggle="modal">
-                    <i className="fa fa-edit" /> Editar Cliente
+                    <i className="fa fa-edit" /> Editar
                 </button>
                 <button className="btn btn-danger" data-bs-target="#clientDeleteModal" data-bs-toggle="modal">
-                    <i className="fa fa-trash" /> Deletar Cliente
+                    <i className="fa fa-trash" /> Deletar
                 </button>
             </div>
             <hr />
@@ -77,13 +77,13 @@ export function ClientProfileInfo({ id: clientId }: Props) {
                     <li className="card-lg-item">Dívidas Pendentes:
                         <p className="card-lg-content">{client?.account.debtQuantity}</p>
                     </li>
-                    <li className="card-lg-item">Valor Total das Compras Pendentes:
+                    <li className="card-lg-item">Valor Total das Dívidas Pendentes:
                         <p className="card-lg-content">R$ {client?.account.debtAmount}</p>
                     </li>
                     <li className="card-lg-item">Compras Pagas:
                         <p className="card-lg-content">{client?.account.paidQuantity}</p>
                     </li>
-                    <li className="card-lg-item">Valor Total das Compras Pagas:
+                    <li className="card-lg-item">Valor Total das Dívidas Pagas:
                         <p className="card-lg-content">R$ {client?.account.paidAmount.toFixed(2)}</p>
                     </li>
                     <li className="card-lg-item">Última Alteração:

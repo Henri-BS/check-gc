@@ -21,7 +21,7 @@ export function ClientList() {
         number: 0
     });
     useEffect(() => {
-        axios.get(`${BASE_URL}/client/list?page=${pageNumber}&name=${value}`)
+        axios.get(`${BASE_URL}/client/list?page=${pageNumber}&name=${value}&size=9`)
             .then((response) => {
                 setClientList(response.data);
             });

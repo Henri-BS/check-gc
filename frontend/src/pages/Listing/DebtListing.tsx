@@ -66,7 +66,7 @@ export function DebtList() {
                 <div className="modal-dialog" role={"document"}>
                     <div className="modal-content">
                         <div className="modal-header">
-                            <label htmlFor="clientLabel" className="modal-title">Adicionar um novo cliente</label>
+                            <label htmlFor="clientLabel" className="modal-title">Adicionar dívida</label>
                             <button className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"><i className="fa fa-times" /></span>
                             </button>
